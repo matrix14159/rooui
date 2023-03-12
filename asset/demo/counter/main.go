@@ -3,7 +3,7 @@
 package main
 
 import (
-	"rooui/ui"
+	"github.com/matrix14159/rooui/ui"
 )
 
 func main() {
