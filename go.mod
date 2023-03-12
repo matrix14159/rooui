@@ -1,4 +1,4 @@
-module rooui
+module github.com/matrix14159/rooui
 
 go 1.20
 
