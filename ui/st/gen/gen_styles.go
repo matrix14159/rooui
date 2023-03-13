@@ -65,7 +65,7 @@ func generateStyles() {
 func writeImports() string {
 	return fmt.Sprintf(`
 		import (
-			"sunny/rooui/ui"
+			"github.com/matrix14159/rooui/ui"
 		)`)
 }
 
