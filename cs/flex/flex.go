@@ -1,8 +1,8 @@
 package flex
 
 import (
-	"sunny/rooui/ui"
-	"sunny/rooui/ui/st"
+	"github.com/matrix14159/rooui/ui"
+	"github.com/matrix14159/rooui/ui/st"
 )
 
 type Flex struct {
