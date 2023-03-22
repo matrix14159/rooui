@@ -13,11 +13,14 @@ type Select struct {
 
 	value   *ui.Ref[string]
 	options *ui.RefSlice[Option]
+
+	onChanged func()
 }
 
 type Option struct {
-	Label string
-	Value string
+	Label    string
+	Value    string
+	Disabled bool
 }
 
 func New() *Select {
@@ -64,6 +67,22 @@ func (p *Select) handleChanged(event ui.Event) {
 	}()
 	idx := event.Target().Underlying().Get("selectedIndex").Int()
 	p.value.Set(p.options.Get(idx).Value)
+
+	if p.onChanged != nil {
+		p.onChanged()
+	}
+}
+
+func (p *Select) OnChanged(handler func()) *Select {
+	p.onChanged = handler
+	return p
+}
+
+func (p *Select) isOptionSelected(index int) bool {
+	if index < 0 || index >= p.options.Len() {
+		return false
+	}
+	return p.options.Get(index).Value == p.value.Value()
 }
 
 func (p *Select) Render() ui.UI {
@@ -73,7 +92,9 @@ func (p *Select) Render() ui.UI {
 			ui.Slice(p.options, func(i *ui.Ref[int], v *ui.Ref[Option]) ui.UI {
 				return ui.Option().
 					Value(v.Value().Value).
-					Text(v.Value().Label)
+					Text(v.Value().Label).
+					Disabled(v.Value().Disabled).
+					Selected(p.isOptionSelected(i.Value()))
 			}),
 		).
 		Body(p.content.Content...).
