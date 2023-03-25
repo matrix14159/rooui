@@ -148,6 +148,11 @@ func (p *htmlBaseElement) setStyle(items ...*Ref[StyleItem]) {
 	p.style.bindUpdateHandler(p, items...)
 }
 
+func (p *htmlBaseElement) setStyleIf(v *Ref[bool], items ...*Ref[StyleItem]) {
+	p.style.SetStyleIf(v, items...)
+	p.style.bindUpdateHandler(p, items...)
+}
+
 func (p *htmlBaseElement) setClass(name string, items ...*Ref[StyleItem]) {
 	group := p.classes.SetClass(name, items...)
 	p.classes.bindUpdateHandler(p, group)
@@ -251,6 +256,15 @@ func (p *htmlBaseElement) BuildTreeDomElement() []dom.Element {
 		item := one.Value()
 		s.Style().SetProperty(item.Name(), item.ValueWithUnit(), "")
 	}
+	// set condition style
+	for _, group := range p.style.ConditionStyles {
+		if group.Condition.Value() {
+			for _, one := range group.StyleItems {
+				item := one.Value()
+				s.Style().SetProperty(item.Name(), item.ValueWithUnit(), "")
+			}
+		}
+	}
 
 	heads := d.GetElementsByTagName("head")
 	if len(heads) > 0 {
@@ -349,7 +363,7 @@ func (p *htmlBaseElement) doUnmounted() {
 		p.text = nil
 	}
 
-	p.style.unbindUpdateHandler(p)
+	p.style.clear(p)
 	p.classes.unbindUpdateHandler(p)
 
 	// remove from dom
