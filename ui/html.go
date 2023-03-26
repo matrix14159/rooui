@@ -286,6 +286,10 @@ type HtmlA interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlA
 
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlA
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlA
 
@@ -767,6 +771,11 @@ func (p *htmlA) Style(items ...*Ref[StyleItem]) HtmlA {
 	return p
 }
 
+func (p *htmlA) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlA {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlA) TabIndex(val any) HtmlA {
 	p.SetProperty("tabindex", val)
 	return p
@@ -1070,6 +1079,10 @@ type HtmlAbbr interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlAbbr
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAbbr
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlAbbr
@@ -1521,6 +1534,11 @@ func (p *htmlAbbr) Style(items ...*Ref[StyleItem]) HtmlAbbr {
 	return p
 }
 
+func (p *htmlAbbr) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAbbr {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlAbbr) TabIndex(val any) HtmlAbbr {
 	p.SetProperty("tabindex", val)
 	return p
@@ -1814,6 +1832,10 @@ type HtmlAddress interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlAddress
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAddress
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlAddress
@@ -2265,6 +2287,11 @@ func (p *htmlAddress) Style(items ...*Ref[StyleItem]) HtmlAddress {
 	return p
 }
 
+func (p *htmlAddress) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAddress {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlAddress) TabIndex(val any) HtmlAddress {
 	p.SetProperty("tabindex", val)
 	return p
@@ -2582,6 +2609,10 @@ type HtmlArea interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlArea
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlArea
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlArea
@@ -3076,6 +3107,11 @@ func (p *htmlArea) Style(items ...*Ref[StyleItem]) HtmlArea {
 	return p
 }
 
+func (p *htmlArea) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlArea {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlArea) TabIndex(val any) HtmlArea {
 	p.SetProperty("tabindex", val)
 	return p
@@ -3374,6 +3410,10 @@ type HtmlArticle interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlArticle
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlArticle
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlArticle
@@ -3825,6 +3865,11 @@ func (p *htmlArticle) Style(items ...*Ref[StyleItem]) HtmlArticle {
 	return p
 }
 
+func (p *htmlArticle) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlArticle {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlArticle) TabIndex(val any) HtmlArticle {
 	p.SetProperty("tabindex", val)
 	return p
@@ -4118,6 +4163,10 @@ type HtmlAside interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlAside
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAside
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlAside
@@ -4569,6 +4618,11 @@ func (p *htmlAside) Style(items ...*Ref[StyleItem]) HtmlAside {
 	return p
 }
 
+func (p *htmlAside) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAside {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlAside) TabIndex(val any) HtmlAside {
 	p.SetProperty("tabindex", val)
 	return p
@@ -4949,6 +5003,10 @@ type HtmlAudio interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlAudio
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAudio
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlAudio
@@ -5545,6 +5603,11 @@ func (p *htmlAudio) Style(items ...*Ref[StyleItem]) HtmlAudio {
 	return p
 }
 
+func (p *htmlAudio) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlAudio {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlAudio) TabIndex(val any) HtmlAudio {
 	p.SetProperty("tabindex", val)
 	return p
@@ -5838,6 +5901,10 @@ type HtmlB interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlB
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlB
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlB
@@ -6289,6 +6356,11 @@ func (p *htmlB) Style(items ...*Ref[StyleItem]) HtmlB {
 	return p
 }
 
+func (p *htmlB) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlB {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlB) TabIndex(val any) HtmlB {
 	p.SetProperty("tabindex", val)
 	return p
@@ -6585,6 +6657,10 @@ type HtmlBase interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlBase
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBase
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlBase
@@ -7044,6 +7120,11 @@ func (p *htmlBase) Style(items ...*Ref[StyleItem]) HtmlBase {
 	return p
 }
 
+func (p *htmlBase) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBase {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlBase) TabIndex(val any) HtmlBase {
 	p.SetProperty("tabindex", val)
 	return p
@@ -7342,6 +7423,10 @@ type HtmlBdi interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlBdi
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBdi
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlBdi
@@ -7793,6 +7878,11 @@ func (p *htmlBdi) Style(items ...*Ref[StyleItem]) HtmlBdi {
 	return p
 }
 
+func (p *htmlBdi) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBdi {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlBdi) TabIndex(val any) HtmlBdi {
 	p.SetProperty("tabindex", val)
 	return p
@@ -8086,6 +8176,10 @@ type HtmlBdo interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlBdo
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBdo
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlBdo
@@ -8537,6 +8631,11 @@ func (p *htmlBdo) Style(items ...*Ref[StyleItem]) HtmlBdo {
 	return p
 }
 
+func (p *htmlBdo) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBdo {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlBdo) TabIndex(val any) HtmlBdo {
 	p.SetProperty("tabindex", val)
 	return p
@@ -8833,6 +8932,10 @@ type HtmlBlockquote interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlBlockquote
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBlockquote
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlBlockquote
@@ -9289,6 +9392,11 @@ func (p *htmlBlockquote) Style(items ...*Ref[StyleItem]) HtmlBlockquote {
 	return p
 }
 
+func (p *htmlBlockquote) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBlockquote {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlBlockquote) TabIndex(val any) HtmlBlockquote {
 	p.SetProperty("tabindex", val)
 	return p
@@ -9627,6 +9735,10 @@ type HtmlBody interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlBody
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBody
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlBody
@@ -10153,6 +10265,11 @@ func (p *htmlBody) Style(items ...*Ref[StyleItem]) HtmlBody {
 	return p
 }
 
+func (p *htmlBody) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBody {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlBody) TabIndex(val any) HtmlBody {
 	p.SetProperty("tabindex", val)
 	return p
@@ -10446,6 +10563,10 @@ type HtmlBr interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlBr
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBr
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlBr
@@ -10897,6 +11018,11 @@ func (p *htmlBr) Style(items ...*Ref[StyleItem]) HtmlBr {
 	return p
 }
 
+func (p *htmlBr) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlBr {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlBr) TabIndex(val any) HtmlBr {
 	p.SetProperty("tabindex", val)
 	return p
@@ -11217,6 +11343,10 @@ type HtmlButton interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlButton
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlButton
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlButton
@@ -11719,6 +11849,11 @@ func (p *htmlButton) Style(items ...*Ref[StyleItem]) HtmlButton {
 	return p
 }
 
+func (p *htmlButton) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlButton {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlButton) TabIndex(val any) HtmlButton {
 	p.SetProperty("tabindex", val)
 	return p
@@ -12025,6 +12160,10 @@ type HtmlCanvas interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlCanvas
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCanvas
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlCanvas
@@ -12484,6 +12623,11 @@ func (p *htmlCanvas) Style(items ...*Ref[StyleItem]) HtmlCanvas {
 	return p
 }
 
+func (p *htmlCanvas) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCanvas {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlCanvas) TabIndex(val any) HtmlCanvas {
 	p.SetProperty("tabindex", val)
 	return p
@@ -12782,6 +12926,10 @@ type HtmlCaption interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlCaption
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCaption
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlCaption
@@ -13233,6 +13381,11 @@ func (p *htmlCaption) Style(items ...*Ref[StyleItem]) HtmlCaption {
 	return p
 }
 
+func (p *htmlCaption) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCaption {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlCaption) TabIndex(val any) HtmlCaption {
 	p.SetProperty("tabindex", val)
 	return p
@@ -13526,6 +13679,10 @@ type HtmlCite interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlCite
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCite
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlCite
@@ -13977,6 +14134,11 @@ func (p *htmlCite) Style(items ...*Ref[StyleItem]) HtmlCite {
 	return p
 }
 
+func (p *htmlCite) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCite {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlCite) TabIndex(val any) HtmlCite {
 	p.SetProperty("tabindex", val)
 	return p
@@ -14270,6 +14432,10 @@ type HtmlCode interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlCode
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCode
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlCode
@@ -14721,6 +14887,11 @@ func (p *htmlCode) Style(items ...*Ref[StyleItem]) HtmlCode {
 	return p
 }
 
+func (p *htmlCode) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCode {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlCode) TabIndex(val any) HtmlCode {
 	p.SetProperty("tabindex", val)
 	return p
@@ -15017,6 +15188,10 @@ type HtmlCol interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlCol
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCol
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlCol
@@ -15473,6 +15648,11 @@ func (p *htmlCol) Style(items ...*Ref[StyleItem]) HtmlCol {
 	return p
 }
 
+func (p *htmlCol) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlCol {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlCol) TabIndex(val any) HtmlCol {
 	p.SetProperty("tabindex", val)
 	return p
@@ -15769,6 +15949,10 @@ type HtmlColGroup interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlColGroup
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlColGroup
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlColGroup
@@ -16225,6 +16409,11 @@ func (p *htmlColGroup) Style(items ...*Ref[StyleItem]) HtmlColGroup {
 	return p
 }
 
+func (p *htmlColGroup) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlColGroup {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlColGroup) TabIndex(val any) HtmlColGroup {
 	p.SetProperty("tabindex", val)
 	return p
@@ -16518,6 +16707,10 @@ type HtmlData interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlData
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlData
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlData
@@ -16972,6 +17165,11 @@ func (p *htmlData) Style(items ...*Ref[StyleItem]) HtmlData {
 	return p
 }
 
+func (p *htmlData) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlData {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlData) TabIndex(val any) HtmlData {
 	p.SetProperty("tabindex", val)
 	return p
@@ -17270,6 +17468,10 @@ type HtmlDataList interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDataList
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDataList
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDataList
@@ -17721,6 +17923,11 @@ func (p *htmlDataList) Style(items ...*Ref[StyleItem]) HtmlDataList {
 	return p
 }
 
+func (p *htmlDataList) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDataList {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDataList) TabIndex(val any) HtmlDataList {
 	p.SetProperty("tabindex", val)
 	return p
@@ -18014,6 +18221,10 @@ type HtmlDd interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDd
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDd
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDd
@@ -18465,6 +18676,11 @@ func (p *htmlDd) Style(items ...*Ref[StyleItem]) HtmlDd {
 	return p
 }
 
+func (p *htmlDd) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDd {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDd) TabIndex(val any) HtmlDd {
 	p.SetProperty("tabindex", val)
 	return p
@@ -18764,6 +18980,10 @@ type HtmlDel interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDel
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDel
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDel
@@ -19225,6 +19445,11 @@ func (p *htmlDel) Style(items ...*Ref[StyleItem]) HtmlDel {
 	return p
 }
 
+func (p *htmlDel) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDel {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDel) TabIndex(val any) HtmlDel {
 	p.SetProperty("tabindex", val)
 	return p
@@ -19524,6 +19749,10 @@ type HtmlDetails interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDetails
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDetails
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDetails
@@ -19985,6 +20214,11 @@ func (p *htmlDetails) Style(items ...*Ref[StyleItem]) HtmlDetails {
 	return p
 }
 
+func (p *htmlDetails) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDetails {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDetails) TabIndex(val any) HtmlDetails {
 	p.SetProperty("tabindex", val)
 	return p
@@ -20278,6 +20512,10 @@ type HtmlDfn interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDfn
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDfn
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDfn
@@ -20729,6 +20967,11 @@ func (p *htmlDfn) Style(items ...*Ref[StyleItem]) HtmlDfn {
 	return p
 }
 
+func (p *htmlDfn) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDfn {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDfn) TabIndex(val any) HtmlDfn {
 	p.SetProperty("tabindex", val)
 	return p
@@ -21025,6 +21268,10 @@ type HtmlDialog interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDialog
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDialog
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDialog
@@ -21481,6 +21728,11 @@ func (p *htmlDialog) Style(items ...*Ref[StyleItem]) HtmlDialog {
 	return p
 }
 
+func (p *htmlDialog) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDialog {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDialog) TabIndex(val any) HtmlDialog {
 	p.SetProperty("tabindex", val)
 	return p
@@ -21774,6 +22026,10 @@ type HtmlDiv interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDiv
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDiv
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDiv
@@ -22225,6 +22481,11 @@ func (p *htmlDiv) Style(items ...*Ref[StyleItem]) HtmlDiv {
 	return p
 }
 
+func (p *htmlDiv) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDiv {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDiv) TabIndex(val any) HtmlDiv {
 	p.SetProperty("tabindex", val)
 	return p
@@ -22518,6 +22779,10 @@ type HtmlDl interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDl
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDl
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDl
@@ -22969,6 +23234,11 @@ func (p *htmlDl) Style(items ...*Ref[StyleItem]) HtmlDl {
 	return p
 }
 
+func (p *htmlDl) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDl {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDl) TabIndex(val any) HtmlDl {
 	p.SetProperty("tabindex", val)
 	return p
@@ -23262,6 +23532,10 @@ type HtmlDt interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlDt
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDt
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlDt
@@ -23713,6 +23987,11 @@ func (p *htmlDt) Style(items ...*Ref[StyleItem]) HtmlDt {
 	return p
 }
 
+func (p *htmlDt) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlDt {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlDt) TabIndex(val any) HtmlDt {
 	p.SetProperty("tabindex", val)
 	return p
@@ -24006,6 +24285,10 @@ type HtmlEm interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlEm
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlEm
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlEm
@@ -24457,6 +24740,11 @@ func (p *htmlEm) Style(items ...*Ref[StyleItem]) HtmlEm {
 	return p
 }
 
+func (p *htmlEm) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlEm {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlEm) TabIndex(val any) HtmlEm {
 	p.SetProperty("tabindex", val)
 	return p
@@ -24756,6 +25044,10 @@ type HtmlEmbed interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlEmbed
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlEmbed
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlEmbed
@@ -25223,6 +25515,11 @@ func (p *htmlEmbed) Style(items ...*Ref[StyleItem]) HtmlEmbed {
 	return p
 }
 
+func (p *htmlEmbed) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlEmbed {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlEmbed) TabIndex(val any) HtmlEmbed {
 	p.SetProperty("tabindex", val)
 	return p
@@ -25535,6 +25832,10 @@ type HtmlFieldSet interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlFieldSet
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFieldSet
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlFieldSet
@@ -26001,6 +26302,11 @@ func (p *htmlFieldSet) Style(items ...*Ref[StyleItem]) HtmlFieldSet {
 	return p
 }
 
+func (p *htmlFieldSet) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFieldSet {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlFieldSet) TabIndex(val any) HtmlFieldSet {
 	p.SetProperty("tabindex", val)
 	return p
@@ -26294,6 +26600,10 @@ type HtmlFigCaption interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlFigCaption
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFigCaption
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlFigCaption
@@ -26745,6 +27055,11 @@ func (p *htmlFigCaption) Style(items ...*Ref[StyleItem]) HtmlFigCaption {
 	return p
 }
 
+func (p *htmlFigCaption) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFigCaption {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlFigCaption) TabIndex(val any) HtmlFigCaption {
 	p.SetProperty("tabindex", val)
 	return p
@@ -27038,6 +27353,10 @@ type HtmlFigure interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlFigure
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFigure
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlFigure
@@ -27489,6 +27808,11 @@ func (p *htmlFigure) Style(items ...*Ref[StyleItem]) HtmlFigure {
 	return p
 }
 
+func (p *htmlFigure) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFigure {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlFigure) TabIndex(val any) HtmlFigure {
 	p.SetProperty("tabindex", val)
 	return p
@@ -27782,6 +28106,10 @@ type HtmlFooter interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlFooter
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFooter
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlFooter
@@ -28233,6 +28561,11 @@ func (p *htmlFooter) Style(items ...*Ref[StyleItem]) HtmlFooter {
 	return p
 }
 
+func (p *htmlFooter) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlFooter {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlFooter) TabIndex(val any) HtmlFooter {
 	p.SetProperty("tabindex", val)
 	return p
@@ -28547,6 +28880,10 @@ type HtmlForm interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlForm
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlForm
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlForm
@@ -29036,6 +29373,11 @@ func (p *htmlForm) Style(items ...*Ref[StyleItem]) HtmlForm {
 	return p
 }
 
+func (p *htmlForm) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlForm {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlForm) TabIndex(val any) HtmlForm {
 	p.SetProperty("tabindex", val)
 	return p
@@ -29334,6 +29676,10 @@ type HtmlH1 interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlH1
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH1
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlH1
@@ -29785,6 +30131,11 @@ func (p *htmlH1) Style(items ...*Ref[StyleItem]) HtmlH1 {
 	return p
 }
 
+func (p *htmlH1) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH1 {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlH1) TabIndex(val any) HtmlH1 {
 	p.SetProperty("tabindex", val)
 	return p
@@ -30078,6 +30429,10 @@ type HtmlH2 interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlH2
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH2
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlH2
@@ -30529,6 +30884,11 @@ func (p *htmlH2) Style(items ...*Ref[StyleItem]) HtmlH2 {
 	return p
 }
 
+func (p *htmlH2) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH2 {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlH2) TabIndex(val any) HtmlH2 {
 	p.SetProperty("tabindex", val)
 	return p
@@ -30822,6 +31182,10 @@ type HtmlH3 interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlH3
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH3
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlH3
@@ -31273,6 +31637,11 @@ func (p *htmlH3) Style(items ...*Ref[StyleItem]) HtmlH3 {
 	return p
 }
 
+func (p *htmlH3) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH3 {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlH3) TabIndex(val any) HtmlH3 {
 	p.SetProperty("tabindex", val)
 	return p
@@ -31566,6 +31935,10 @@ type HtmlH4 interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlH4
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH4
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlH4
@@ -32017,6 +32390,11 @@ func (p *htmlH4) Style(items ...*Ref[StyleItem]) HtmlH4 {
 	return p
 }
 
+func (p *htmlH4) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH4 {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlH4) TabIndex(val any) HtmlH4 {
 	p.SetProperty("tabindex", val)
 	return p
@@ -32310,6 +32688,10 @@ type HtmlH5 interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlH5
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH5
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlH5
@@ -32761,6 +33143,11 @@ func (p *htmlH5) Style(items ...*Ref[StyleItem]) HtmlH5 {
 	return p
 }
 
+func (p *htmlH5) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH5 {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlH5) TabIndex(val any) HtmlH5 {
 	p.SetProperty("tabindex", val)
 	return p
@@ -33054,6 +33441,10 @@ type HtmlH6 interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlH6
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH6
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlH6
@@ -33505,6 +33896,11 @@ func (p *htmlH6) Style(items ...*Ref[StyleItem]) HtmlH6 {
 	return p
 }
 
+func (p *htmlH6) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlH6 {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlH6) TabIndex(val any) HtmlH6 {
 	p.SetProperty("tabindex", val)
 	return p
@@ -33798,6 +34194,10 @@ type HtmlHead interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlHead
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHead
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlHead
@@ -34249,6 +34649,11 @@ func (p *htmlHead) Style(items ...*Ref[StyleItem]) HtmlHead {
 	return p
 }
 
+func (p *htmlHead) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHead {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlHead) TabIndex(val any) HtmlHead {
 	p.SetProperty("tabindex", val)
 	return p
@@ -34542,6 +34947,10 @@ type HtmlHeader interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlHeader
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHeader
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlHeader
@@ -34993,6 +35402,11 @@ func (p *htmlHeader) Style(items ...*Ref[StyleItem]) HtmlHeader {
 	return p
 }
 
+func (p *htmlHeader) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHeader {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlHeader) TabIndex(val any) HtmlHeader {
 	p.SetProperty("tabindex", val)
 	return p
@@ -35286,6 +35700,10 @@ type HtmlHGroup interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlHGroup
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHGroup
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlHGroup
@@ -35737,6 +36155,11 @@ func (p *htmlHGroup) Style(items ...*Ref[StyleItem]) HtmlHGroup {
 	return p
 }
 
+func (p *htmlHGroup) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHGroup {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlHGroup) TabIndex(val any) HtmlHGroup {
 	p.SetProperty("tabindex", val)
 	return p
@@ -36030,6 +36453,10 @@ type HtmlHr interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlHr
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHr
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlHr
@@ -36481,6 +36908,11 @@ func (p *htmlHr) Style(items ...*Ref[StyleItem]) HtmlHr {
 	return p
 }
 
+func (p *htmlHr) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHr {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlHr) TabIndex(val any) HtmlHr {
 	p.SetProperty("tabindex", val)
 	return p
@@ -36774,6 +37206,10 @@ type HtmlHtml interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlHtml
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHtml
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlHtml
@@ -37228,6 +37664,11 @@ func (p *htmlHtml) Style(items ...*Ref[StyleItem]) HtmlHtml {
 	return p
 }
 
+func (p *htmlHtml) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHtml {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlHtml) TabIndex(val any) HtmlHtml {
 	p.SetProperty("tabindex", val)
 	return p
@@ -37526,6 +37967,10 @@ type HtmlI interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlI
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlI
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlI
@@ -37977,6 +38422,11 @@ func (p *htmlI) Style(items ...*Ref[StyleItem]) HtmlI {
 	return p
 }
 
+func (p *htmlI) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlI {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlI) TabIndex(val any) HtmlI {
 	p.SetProperty("tabindex", val)
 	return p
@@ -38306,6 +38756,10 @@ type HtmlIFrame interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlIFrame
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlIFrame
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlIFrame
@@ -38820,6 +39274,11 @@ func (p *htmlIFrame) Style(items ...*Ref[StyleItem]) HtmlIFrame {
 	return p
 }
 
+func (p *htmlIFrame) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlIFrame {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlIFrame) TabIndex(val any) HtmlIFrame {
 	p.SetProperty("tabindex", val)
 	return p
@@ -39154,6 +39613,10 @@ type HtmlImg interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlImg
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlImg
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlImg
@@ -39671,6 +40134,11 @@ func (p *htmlImg) Style(items ...*Ref[StyleItem]) HtmlImg {
 	return p
 }
 
+func (p *htmlImg) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlImg {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlImg) TabIndex(val any) HtmlImg {
 	p.SetProperty("tabindex", val)
 	return p
@@ -40067,6 +40535,10 @@ type HtmlInput interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlInput
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlInput
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlInput
@@ -40683,6 +41155,11 @@ func (p *htmlInput) Style(items ...*Ref[StyleItem]) HtmlInput {
 	return p
 }
 
+func (p *htmlInput) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlInput {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlInput) TabIndex(val any) HtmlInput {
 	p.SetProperty("tabindex", val)
 	return p
@@ -40997,6 +41474,10 @@ type HtmlIns interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlIns
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlIns
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlIns
@@ -41458,6 +41939,11 @@ func (p *htmlIns) Style(items ...*Ref[StyleItem]) HtmlIns {
 	return p
 }
 
+func (p *htmlIns) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlIns {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlIns) TabIndex(val any) HtmlIns {
 	p.SetProperty("tabindex", val)
 	return p
@@ -41751,6 +42237,10 @@ type HtmlKbd interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlKbd
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlKbd
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlKbd
@@ -42202,6 +42692,11 @@ func (p *htmlKbd) Style(items ...*Ref[StyleItem]) HtmlKbd {
 	return p
 }
 
+func (p *htmlKbd) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlKbd {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlKbd) TabIndex(val any) HtmlKbd {
 	p.SetProperty("tabindex", val)
 	return p
@@ -42498,6 +42993,10 @@ type HtmlLabel interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlLabel
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLabel
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlLabel
@@ -42954,6 +43453,11 @@ func (p *htmlLabel) Style(items ...*Ref[StyleItem]) HtmlLabel {
 	return p
 }
 
+func (p *htmlLabel) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLabel {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlLabel) TabIndex(val any) HtmlLabel {
 	p.SetProperty("tabindex", val)
 	return p
@@ -43247,6 +43751,10 @@ type HtmlLegend interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlLegend
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLegend
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlLegend
@@ -43698,6 +44206,11 @@ func (p *htmlLegend) Style(items ...*Ref[StyleItem]) HtmlLegend {
 	return p
 }
 
+func (p *htmlLegend) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLegend {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlLegend) TabIndex(val any) HtmlLegend {
 	p.SetProperty("tabindex", val)
 	return p
@@ -43991,6 +44504,10 @@ type HtmlLi interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlLi
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLi
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlLi
@@ -44445,6 +44962,11 @@ func (p *htmlLi) Style(items ...*Ref[StyleItem]) HtmlLi {
 	return p
 }
 
+func (p *htmlLi) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLi {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlLi) TabIndex(val any) HtmlLi {
 	p.SetProperty("tabindex", val)
 	return p
@@ -44785,6 +45307,10 @@ type HtmlLink interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlLink
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLink
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlLink
@@ -45309,6 +45835,11 @@ func (p *htmlLink) Style(items ...*Ref[StyleItem]) HtmlLink {
 	return p
 }
 
+func (p *htmlLink) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlLink {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlLink) TabIndex(val any) HtmlLink {
 	p.SetProperty("tabindex", val)
 	return p
@@ -45607,6 +46138,10 @@ type HtmlMain interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlMain
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMain
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlMain
@@ -46058,6 +46593,11 @@ func (p *htmlMain) Style(items ...*Ref[StyleItem]) HtmlMain {
 	return p
 }
 
+func (p *htmlMain) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMain {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlMain) TabIndex(val any) HtmlMain {
 	p.SetProperty("tabindex", val)
 	return p
@@ -46354,6 +46894,10 @@ type HtmlHMap interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlHMap
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHMap
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlHMap
@@ -46810,6 +47354,11 @@ func (p *htmlHMap) Style(items ...*Ref[StyleItem]) HtmlHMap {
 	return p
 }
 
+func (p *htmlHMap) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlHMap {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlHMap) TabIndex(val any) HtmlHMap {
 	p.SetProperty("tabindex", val)
 	return p
@@ -47103,6 +47652,10 @@ type HtmlMark interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlMark
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMark
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlMark
@@ -47554,6 +48107,11 @@ func (p *htmlMark) Style(items ...*Ref[StyleItem]) HtmlMark {
 	return p
 }
 
+func (p *htmlMark) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMark {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlMark) TabIndex(val any) HtmlMark {
 	p.SetProperty("tabindex", val)
 	return p
@@ -47847,6 +48405,10 @@ type HtmlMenu interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlMenu
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMenu
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlMenu
@@ -48298,6 +48860,11 @@ func (p *htmlMenu) Style(items ...*Ref[StyleItem]) HtmlMenu {
 	return p
 }
 
+func (p *htmlMenu) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMenu {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlMenu) TabIndex(val any) HtmlMenu {
 	p.SetProperty("tabindex", val)
 	return p
@@ -48600,6 +49167,10 @@ type HtmlMeta interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlMeta
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMeta
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlMeta
@@ -49066,6 +49637,11 @@ func (p *htmlMeta) Style(items ...*Ref[StyleItem]) HtmlMeta {
 	return p
 }
 
+func (p *htmlMeta) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMeta {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlMeta) TabIndex(val any) HtmlMeta {
 	p.SetProperty("tabindex", val)
 	return p
@@ -49374,6 +49950,10 @@ type HtmlMeter interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlMeter
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMeter
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlMeter
@@ -49853,6 +50433,11 @@ func (p *htmlMeter) Style(items ...*Ref[StyleItem]) HtmlMeter {
 	return p
 }
 
+func (p *htmlMeter) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlMeter {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlMeter) TabIndex(val any) HtmlMeter {
 	p.SetProperty("tabindex", val)
 	return p
@@ -50151,6 +50736,10 @@ type HtmlNav interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlNav
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlNav
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlNav
@@ -50602,6 +51191,11 @@ func (p *htmlNav) Style(items ...*Ref[StyleItem]) HtmlNav {
 	return p
 }
 
+func (p *htmlNav) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlNav {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlNav) TabIndex(val any) HtmlNav {
 	p.SetProperty("tabindex", val)
 	return p
@@ -50895,6 +51489,10 @@ type HtmlNoScript interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlNoScript
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlNoScript
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlNoScript
@@ -51346,6 +51944,11 @@ func (p *htmlNoScript) Style(items ...*Ref[StyleItem]) HtmlNoScript {
 	return p
 }
 
+func (p *htmlNoScript) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlNoScript {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlNoScript) TabIndex(val any) HtmlNoScript {
 	p.SetProperty("tabindex", val)
 	return p
@@ -51651,6 +52254,10 @@ type HtmlObject interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlObject
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlObject
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlObject
@@ -52131,6 +52738,11 @@ func (p *htmlObject) Style(items ...*Ref[StyleItem]) HtmlObject {
 	return p
 }
 
+func (p *htmlObject) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlObject {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlObject) TabIndex(val any) HtmlObject {
 	p.SetProperty("tabindex", val)
 	return p
@@ -52445,6 +53057,10 @@ type HtmlOl interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlOl
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOl
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlOl
@@ -52909,6 +53525,11 @@ func (p *htmlOl) Style(items ...*Ref[StyleItem]) HtmlOl {
 	return p
 }
 
+func (p *htmlOl) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOl {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlOl) TabIndex(val any) HtmlOl {
 	p.SetProperty("tabindex", val)
 	return p
@@ -53213,6 +53834,10 @@ type HtmlOptGroup interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlOptGroup
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOptGroup
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlOptGroup
@@ -53674,6 +54299,11 @@ func (p *htmlOptGroup) Style(items ...*Ref[StyleItem]) HtmlOptGroup {
 	return p
 }
 
+func (p *htmlOptGroup) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOptGroup {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlOptGroup) TabIndex(val any) HtmlOptGroup {
 	p.SetProperty("tabindex", val)
 	return p
@@ -53976,6 +54606,10 @@ type HtmlOption interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlOption
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOption
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlOption
@@ -54445,6 +55079,11 @@ func (p *htmlOption) Style(items ...*Ref[StyleItem]) HtmlOption {
 	return p
 }
 
+func (p *htmlOption) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOption {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlOption) TabIndex(val any) HtmlOption {
 	p.SetProperty("tabindex", val)
 	return p
@@ -54752,6 +55391,10 @@ type HtmlOutput interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlOutput
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOutput
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlOutput
@@ -55218,6 +55861,11 @@ func (p *htmlOutput) Style(items ...*Ref[StyleItem]) HtmlOutput {
 	return p
 }
 
+func (p *htmlOutput) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlOutput {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlOutput) TabIndex(val any) HtmlOutput {
 	p.SetProperty("tabindex", val)
 	return p
@@ -55511,6 +56159,10 @@ type HtmlP interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlP
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlP
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlP
@@ -55962,6 +56614,11 @@ func (p *htmlP) Style(items ...*Ref[StyleItem]) HtmlP {
 	return p
 }
 
+func (p *htmlP) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlP {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlP) TabIndex(val any) HtmlP {
 	p.SetProperty("tabindex", val)
 	return p
@@ -56255,6 +56912,10 @@ type HtmlPicture interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlPicture
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlPicture
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlPicture
@@ -56706,6 +57367,11 @@ func (p *htmlPicture) Style(items ...*Ref[StyleItem]) HtmlPicture {
 	return p
 }
 
+func (p *htmlPicture) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlPicture {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlPicture) TabIndex(val any) HtmlPicture {
 	p.SetProperty("tabindex", val)
 	return p
@@ -56999,6 +57665,10 @@ type HtmlPre interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlPre
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlPre
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlPre
@@ -57450,6 +58120,11 @@ func (p *htmlPre) Style(items ...*Ref[StyleItem]) HtmlPre {
 	return p
 }
 
+func (p *htmlPre) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlPre {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlPre) TabIndex(val any) HtmlPre {
 	p.SetProperty("tabindex", val)
 	return p
@@ -57746,6 +58421,10 @@ type HtmlProgress interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlProgress
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlProgress
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlProgress
@@ -58205,6 +58884,11 @@ func (p *htmlProgress) Style(items ...*Ref[StyleItem]) HtmlProgress {
 	return p
 }
 
+func (p *htmlProgress) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlProgress {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlProgress) TabIndex(val any) HtmlProgress {
 	p.SetProperty("tabindex", val)
 	return p
@@ -58506,6 +59190,10 @@ type HtmlQ interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlQ
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlQ
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlQ
@@ -58962,6 +59650,11 @@ func (p *htmlQ) Style(items ...*Ref[StyleItem]) HtmlQ {
 	return p
 }
 
+func (p *htmlQ) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlQ {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlQ) TabIndex(val any) HtmlQ {
 	p.SetProperty("tabindex", val)
 	return p
@@ -59255,6 +59948,10 @@ type HtmlRp interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlRp
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlRp
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlRp
@@ -59706,6 +60403,11 @@ func (p *htmlRp) Style(items ...*Ref[StyleItem]) HtmlRp {
 	return p
 }
 
+func (p *htmlRp) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlRp {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlRp) TabIndex(val any) HtmlRp {
 	p.SetProperty("tabindex", val)
 	return p
@@ -59999,6 +60701,10 @@ type HtmlRt interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlRt
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlRt
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlRt
@@ -60450,6 +61156,11 @@ func (p *htmlRt) Style(items ...*Ref[StyleItem]) HtmlRt {
 	return p
 }
 
+func (p *htmlRt) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlRt {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlRt) TabIndex(val any) HtmlRt {
 	p.SetProperty("tabindex", val)
 	return p
@@ -60743,6 +61454,10 @@ type HtmlRuby interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlRuby
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlRuby
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlRuby
@@ -61194,6 +61909,11 @@ func (p *htmlRuby) Style(items ...*Ref[StyleItem]) HtmlRuby {
 	return p
 }
 
+func (p *htmlRuby) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlRuby {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlRuby) TabIndex(val any) HtmlRuby {
 	p.SetProperty("tabindex", val)
 	return p
@@ -61487,6 +62207,10 @@ type HtmlS interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlS
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlS
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlS
@@ -61938,6 +62662,11 @@ func (p *htmlS) Style(items ...*Ref[StyleItem]) HtmlS {
 	return p
 }
 
+func (p *htmlS) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlS {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlS) TabIndex(val any) HtmlS {
 	p.SetProperty("tabindex", val)
 	return p
@@ -62231,6 +62960,10 @@ type HtmlSamp interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSamp
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSamp
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSamp
@@ -62682,6 +63415,11 @@ func (p *htmlSamp) Style(items ...*Ref[StyleItem]) HtmlSamp {
 	return p
 }
 
+func (p *htmlSamp) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSamp {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSamp) TabIndex(val any) HtmlSamp {
 	p.SetProperty("tabindex", val)
 	return p
@@ -63002,6 +63740,10 @@ type HtmlScript interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlScript
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlScript
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlScript
@@ -63501,6 +64243,11 @@ func (p *htmlScript) Style(items ...*Ref[StyleItem]) HtmlScript {
 	return p
 }
 
+func (p *htmlScript) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlScript {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlScript) TabIndex(val any) HtmlScript {
 	p.SetProperty("tabindex", val)
 	return p
@@ -63799,6 +64546,10 @@ type HtmlSection interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSection
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSection
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSection
@@ -64250,6 +65001,11 @@ func (p *htmlSection) Style(items ...*Ref[StyleItem]) HtmlSection {
 	return p
 }
 
+func (p *htmlSection) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSection {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSection) TabIndex(val any) HtmlSection {
 	p.SetProperty("tabindex", val)
 	return p
@@ -64570,6 +65326,10 @@ type HtmlSelect interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSelect
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSelect
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSelect
@@ -65066,6 +65826,11 @@ func (p *htmlSelect) Style(items ...*Ref[StyleItem]) HtmlSelect {
 	return p
 }
 
+func (p *htmlSelect) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSelect {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSelect) TabIndex(val any) HtmlSelect {
 	p.SetProperty("tabindex", val)
 	return p
@@ -65362,6 +66127,10 @@ type HtmlSlot interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSlot
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSlot
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSlot
@@ -65818,6 +66587,11 @@ func (p *htmlSlot) Style(items ...*Ref[StyleItem]) HtmlSlot {
 	return p
 }
 
+func (p *htmlSlot) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSlot {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSlot) TabIndex(val any) HtmlSlot {
 	p.SetProperty("tabindex", val)
 	return p
@@ -66111,6 +66885,10 @@ type HtmlSmall interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSmall
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSmall
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSmall
@@ -66562,6 +67340,11 @@ func (p *htmlSmall) Style(items ...*Ref[StyleItem]) HtmlSmall {
 	return p
 }
 
+func (p *htmlSmall) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSmall {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSmall) TabIndex(val any) HtmlSmall {
 	p.SetProperty("tabindex", val)
 	return p
@@ -66870,6 +67653,10 @@ type HtmlSource interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSource
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSource
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSource
@@ -67352,6 +68139,11 @@ func (p *htmlSource) Style(items ...*Ref[StyleItem]) HtmlSource {
 	return p
 }
 
+func (p *htmlSource) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSource {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSource) TabIndex(val any) HtmlSource {
 	p.SetProperty("tabindex", val)
 	return p
@@ -67655,6 +68447,10 @@ type HtmlSpan interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSpan
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSpan
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSpan
@@ -68106,6 +68902,11 @@ func (p *htmlSpan) Style(items ...*Ref[StyleItem]) HtmlSpan {
 	return p
 }
 
+func (p *htmlSpan) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSpan {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSpan) TabIndex(val any) HtmlSpan {
 	p.SetProperty("tabindex", val)
 	return p
@@ -68399,6 +69200,10 @@ type HtmlStrong interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlStrong
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlStrong
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlStrong
@@ -68850,6 +69655,11 @@ func (p *htmlStrong) Style(items ...*Ref[StyleItem]) HtmlStrong {
 	return p
 }
 
+func (p *htmlStrong) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlStrong {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlStrong) TabIndex(val any) HtmlStrong {
 	p.SetProperty("tabindex", val)
 	return p
@@ -69149,6 +69959,10 @@ type HtmlStyle interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlStyle
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlStyle
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlStyle
@@ -69610,6 +70424,11 @@ func (p *htmlStyle) Style(items ...*Ref[StyleItem]) HtmlStyle {
 	return p
 }
 
+func (p *htmlStyle) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlStyle {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlStyle) TabIndex(val any) HtmlStyle {
 	p.SetProperty("tabindex", val)
 	return p
@@ -69903,6 +70722,10 @@ type HtmlSub interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSub
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSub
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSub
@@ -70354,6 +71177,11 @@ func (p *htmlSub) Style(items ...*Ref[StyleItem]) HtmlSub {
 	return p
 }
 
+func (p *htmlSub) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSub {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSub) TabIndex(val any) HtmlSub {
 	p.SetProperty("tabindex", val)
 	return p
@@ -70647,6 +71475,10 @@ type HtmlSummary interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSummary
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSummary
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSummary
@@ -71098,6 +71930,11 @@ func (p *htmlSummary) Style(items ...*Ref[StyleItem]) HtmlSummary {
 	return p
 }
 
+func (p *htmlSummary) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSummary {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSummary) TabIndex(val any) HtmlSummary {
 	p.SetProperty("tabindex", val)
 	return p
@@ -71391,6 +72228,10 @@ type HtmlSup interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlSup
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSup
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlSup
@@ -71842,6 +72683,11 @@ func (p *htmlSup) Style(items ...*Ref[StyleItem]) HtmlSup {
 	return p
 }
 
+func (p *htmlSup) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlSup {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlSup) TabIndex(val any) HtmlSup {
 	p.SetProperty("tabindex", val)
 	return p
@@ -72135,6 +72981,10 @@ type HtmlTable interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTable
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTable
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTable
@@ -72586,6 +73436,11 @@ func (p *htmlTable) Style(items ...*Ref[StyleItem]) HtmlTable {
 	return p
 }
 
+func (p *htmlTable) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTable {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTable) TabIndex(val any) HtmlTable {
 	p.SetProperty("tabindex", val)
 	return p
@@ -72879,6 +73734,10 @@ type HtmlTBody interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTBody
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTBody
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTBody
@@ -73330,6 +74189,11 @@ func (p *htmlTBody) Style(items ...*Ref[StyleItem]) HtmlTBody {
 	return p
 }
 
+func (p *htmlTBody) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTBody {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTBody) TabIndex(val any) HtmlTBody {
 	p.SetProperty("tabindex", val)
 	return p
@@ -73632,6 +74496,10 @@ type HtmlTd interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTd
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTd
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTd
@@ -74098,6 +74966,11 @@ func (p *htmlTd) Style(items ...*Ref[StyleItem]) HtmlTd {
 	return p
 }
 
+func (p *htmlTd) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTd {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTd) TabIndex(val any) HtmlTd {
 	p.SetProperty("tabindex", val)
 	return p
@@ -74391,6 +75264,10 @@ type HtmlTemplate interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTemplate
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTemplate
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTemplate
@@ -74842,6 +75719,11 @@ func (p *htmlTemplate) Style(items ...*Ref[StyleItem]) HtmlTemplate {
 	return p
 }
 
+func (p *htmlTemplate) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTemplate {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTemplate) TabIndex(val any) HtmlTemplate {
 	p.SetProperty("tabindex", val)
 	return p
@@ -75180,6 +76062,10 @@ type HtmlTextarea interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTextarea
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTextarea
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTextarea
@@ -75713,6 +76599,11 @@ func (p *htmlTextarea) Style(items ...*Ref[StyleItem]) HtmlTextarea {
 	return p
 }
 
+func (p *htmlTextarea) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTextarea {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTextarea) TabIndex(val any) HtmlTextarea {
 	p.SetProperty("tabindex", val)
 	return p
@@ -76016,6 +76907,10 @@ type HtmlTFoot interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTFoot
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTFoot
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTFoot
@@ -76467,6 +77362,11 @@ func (p *htmlTFoot) Style(items ...*Ref[StyleItem]) HtmlTFoot {
 	return p
 }
 
+func (p *htmlTFoot) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTFoot {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTFoot) TabIndex(val any) HtmlTFoot {
 	p.SetProperty("tabindex", val)
 	return p
@@ -76775,6 +77675,10 @@ type HtmlTh interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTh
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTh
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTh
@@ -77251,6 +78155,11 @@ func (p *htmlTh) Style(items ...*Ref[StyleItem]) HtmlTh {
 	return p
 }
 
+func (p *htmlTh) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTh {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTh) TabIndex(val any) HtmlTh {
 	p.SetProperty("tabindex", val)
 	return p
@@ -77544,6 +78453,10 @@ type HtmlTHead interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTHead
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTHead
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTHead
@@ -77995,6 +78908,11 @@ func (p *htmlTHead) Style(items ...*Ref[StyleItem]) HtmlTHead {
 	return p
 }
 
+func (p *htmlTHead) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTHead {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTHead) TabIndex(val any) HtmlTHead {
 	p.SetProperty("tabindex", val)
 	return p
@@ -78291,6 +79209,10 @@ type HtmlTime interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTime
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTime
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTime
@@ -78747,6 +79669,11 @@ func (p *htmlTime) Style(items ...*Ref[StyleItem]) HtmlTime {
 	return p
 }
 
+func (p *htmlTime) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTime {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTime) TabIndex(val any) HtmlTime {
 	p.SetProperty("tabindex", val)
 	return p
@@ -79040,6 +79967,10 @@ type HtmlTitle interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTitle
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTitle
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTitle
@@ -79491,6 +80422,11 @@ func (p *htmlTitle) Style(items ...*Ref[StyleItem]) HtmlTitle {
 	return p
 }
 
+func (p *htmlTitle) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTitle {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTitle) TabIndex(val any) HtmlTitle {
 	p.SetProperty("tabindex", val)
 	return p
@@ -79784,6 +80720,10 @@ type Htmltr interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) Htmltr
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) Htmltr
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) Htmltr
@@ -80235,6 +81175,11 @@ func (p *htmltr) Style(items ...*Ref[StyleItem]) Htmltr {
 	return p
 }
 
+func (p *htmltr) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) Htmltr {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmltr) TabIndex(val any) Htmltr {
 	p.SetProperty("tabindex", val)
 	return p
@@ -80543,6 +81488,10 @@ type HtmlTrack interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlTrack
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTrack
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlTrack
@@ -81019,6 +81968,11 @@ func (p *htmlTrack) Style(items ...*Ref[StyleItem]) HtmlTrack {
 	return p
 }
 
+func (p *htmlTrack) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlTrack {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlTrack) TabIndex(val any) HtmlTrack {
 	p.SetProperty("tabindex", val)
 	return p
@@ -81312,6 +82266,10 @@ type HtmlU interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlU
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlU
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlU
@@ -81763,6 +82721,11 @@ func (p *htmlU) Style(items ...*Ref[StyleItem]) HtmlU {
 	return p
 }
 
+func (p *htmlU) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlU {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlU) TabIndex(val any) HtmlU {
 	p.SetProperty("tabindex", val)
 	return p
@@ -82056,6 +83019,10 @@ type HtmlUl interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlUl
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlUl
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlUl
@@ -82507,6 +83474,11 @@ func (p *htmlUl) Style(items ...*Ref[StyleItem]) HtmlUl {
 	return p
 }
 
+func (p *htmlUl) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlUl {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlUl) TabIndex(val any) HtmlUl {
 	p.SetProperty("tabindex", val)
 	return p
@@ -82800,6 +83772,10 @@ type HtmlVar interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlVar
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlVar
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlVar
@@ -83251,6 +84227,11 @@ func (p *htmlVar) Style(items ...*Ref[StyleItem]) HtmlVar {
 	return p
 }
 
+func (p *htmlVar) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlVar {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlVar) TabIndex(val any) HtmlVar {
 	p.SetProperty("tabindex", val)
 	return p
@@ -83646,6 +84627,10 @@ type HtmlVideo interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlVideo
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlVideo
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlVideo
@@ -84270,6 +85255,11 @@ func (p *htmlVideo) Style(items ...*Ref[StyleItem]) HtmlVideo {
 	return p
 }
 
+func (p *htmlVideo) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlVideo {
+	p.setStyleIf(v, items...)
+	return p
+}
+
 func (p *htmlVideo) TabIndex(val any) HtmlVideo {
 	p.SetProperty("tabindex", val)
 	return p
@@ -84568,6 +85558,10 @@ type HtmlWbr interface {
 	// Style set the style attribute with items
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
 	Style(items ...*Ref[StyleItem]) HtmlWbr
+
+	// StyleIf set the style attribute with items when the condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+	StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlWbr
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
 	TabIndex(val any) HtmlWbr
@@ -85016,6 +86010,11 @@ func (p *htmlWbr) SpellCheck(val any) HtmlWbr {
 
 func (p *htmlWbr) Style(items ...*Ref[StyleItem]) HtmlWbr {
 	p.setStyle(items...)
+	return p
+}
+
+func (p *htmlWbr) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) HtmlWbr {
+	p.setStyleIf(v, items...)
 	return p
 }
 

@@ -533,7 +533,8 @@ func _globalAttributeList() (ret []string) {
 		"Part",
 		"Slot",
 		"SpellCheck",
-		"Style", //
+		"Style",   //
+		"StyleIf", //
 		"TabIndex",
 		"Title",
 		"Translate",
@@ -561,6 +562,8 @@ func initAttributes() {
 			defines[key] = attributeId()
 		case "Style":
 			defines[key] = attributeStyle()
+		case "StyleIf":
+			defines[key] = attributeStyleIf()
 		default:
 			defines[key] = getPropertyWriter(attributes[key])
 		}
@@ -2445,6 +2448,28 @@ func attributeStyle() tagWriter {
 			return fmt.Sprintf(`
 				func (p *html%s) Style(items ...*Ref[StyleItem]) Html%s {
 					p.setStyle(items...)
+					return p
+				}`,
+				t.Name, t.Name)
+		},
+	}
+}
+
+func attributeStyleIf() tagWriter {
+	return tagWriter{
+		define: func(t tag) string {
+			return fmt.Sprintf(`
+				// StyleIf set the style attribute with items when the condition is true
+				// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
+				StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) Html%s
+		
+				`,
+				t.Name)
+		},
+		implement: func(t tag) string {
+			return fmt.Sprintf(`
+				func (p *html%s) StyleIf(v *Ref[bool], items ...*Ref[StyleItem]) Html%s {
+					p.setStyleIf(v, items...)
 					return p
 				}`,
 				t.Name, t.Name)
