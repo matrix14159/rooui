@@ -2480,12 +2480,12 @@ func attributeStyleIf() tagWriter {
 // example: about div click
 // define:
 //
-//	 // OnClick register listener handler for click event
-//		OnClick(listener func(event Event), useCapture bool) HtmlDiv
+//	 // OnClick register handler for click event
+//		OnClick(handler func(event Event, options ...any), options ...any) HtmlDiv
 //
 // implement:
 //
-//	func (p *htmlDiv) OnClick(listener func(event Event), useCapture bool) HtmlDiv {
+//	func (p *htmlDiv) OnClick(handler func(event Event), useCapture bool) HtmlDiv {
 //		  p.registerEventHandler("click", listener, useCapture)
 //		  return p
 //	}
@@ -2494,7 +2494,7 @@ func getEventWriter(event tagEvent) tagWriter {
 		define: func(t tag) string {
 			return fmt.Sprintf(`
 				// %s
-				On%s(listener func(event Event)) Html%s
+				On%s(handler func(event Event, options ...any), options ...any) Html%s
 		
 				`,
 				event.doc,
@@ -2502,8 +2502,8 @@ func getEventWriter(event tagEvent) tagWriter {
 		},
 		implement: func(t tag) string {
 			return fmt.Sprintf(`
-				func (p *html%s) On%s(listener func(event Event)) Html%s {
-					p.registerEventHandler("%s", listener)
+				func (p *html%s) On%s(handler func(event Event, options ...any), options ...any) Html%s {
+					p.registerEventHandler("%s", handler, options...)
 					return p
 				}`,
 				t.Name, event.name, t.Name,

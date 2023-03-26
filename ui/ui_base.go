@@ -38,9 +38,16 @@ type htmlBaseElement struct {
 }
 
 type htmlEventHandler struct {
-	name       string            // event name
-	listener   func(event Event) // handler function
+	name       string                            // event name
+	handler    func(event Event, options ...any) // handler function
 	useCapture bool
+	options    []any
+}
+
+func (p htmlEventHandler) listener() func(event Event) {
+	return func(event Event) {
+		p.handler(event, p.options...)
+	}
 }
 
 func (p *htmlBaseElement) Kind() Kind {
@@ -112,7 +119,7 @@ func (p *htmlBaseElement) SetProperty(name string, value any) {
 func (p *htmlBaseElement) bindInputValue(value any) {
 	p.SetProperty("value", value)
 	if r, ok := value.(*Ref[string]); ok {
-		handler := func(event Event) {
+		handler := func(event Event, options ...any) {
 			r.Set(p.domEl.Underlying().Get("value").String())
 		}
 		p.registerEventHandler("input", handler)
@@ -158,25 +165,32 @@ func (p *htmlBaseElement) setClass(name string, items ...*Ref[StyleItem]) {
 	p.classes.bindUpdateHandler(p, group)
 }
 
-func (p *htmlBaseElement) registerEventHandler(name string, listener func(event Event)) {
+func (p *htmlBaseElement) registerEventHandler(name string, handler func(event Event, options ...any), options ...any) {
 	if p.events == nil {
 		p.events = make(map[string][]htmlEventHandler)
 	}
 	p.events[name] = append(p.events[name], htmlEventHandler{
 		name:       name,
-		listener:   listener,
+		handler:    handler,
 		useCapture: false,
+		options:    options,
 	})
 }
 
-func (p *htmlBaseElement) AddEventListener(typ string, useCapture bool, listener func(Event)) js.Func {
+func (p *htmlBaseElement) AddEventListener(name string, useCapture bool, handler func(Event, ...any), options ...any) js.Func {
 	defer func() {
 		if err := recover(); err != nil {
 			Console.Error("%v", err)
 		}
 	}()
+	evtHandler := htmlEventHandler{
+		name:       name,
+		handler:    handler,
+		useCapture: useCapture,
+		options:    options,
+	}
 	if p.domEl != nil {
-		return p.domEl.AddEventListener(typ, useCapture, listener)
+		return p.domEl.AddEventListener(name, useCapture, evtHandler.listener())
 	} else {
 		panic(fmt.Sprintf("dom element is nil, can't add event listener. id:%v", p.GetUIElementId()))
 	}
@@ -284,7 +298,7 @@ func (p *htmlBaseElement) BuildTreeDomElement() []dom.Element {
 
 	for name, events := range p.events {
 		for _, event := range events {
-			s.AddEventListener(name, event.useCapture, event.listener)
+			s.AddEventListener(name, event.useCapture, event.listener())
 		}
 	}
 

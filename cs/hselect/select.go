@@ -59,7 +59,7 @@ func (p *Select) Value(val *ui.Ref[string]) *Select {
 	return p
 }
 
-func (p *Select) handleChanged(event ui.Event) {
+func (p *Select) handleChanged(event ui.Event, options ...any) {
 	defer func() {
 		if err := recover(); err != nil {
 			ui.Console.Error("select handle changed error:%v\n", err)
