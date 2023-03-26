@@ -512,7 +512,8 @@ func _globalAttributeList() (ret []string) {
 		"AccessKey",
 		"AutoCapitalize",
 		"AutoFocus",
-		"Class", //
+		"Class",   //
+		"ClassIf", //
 		"ContentEditAble",
 		"DataWith", // data-*
 		"Dir",
@@ -556,6 +557,8 @@ func initAttributes() {
 		switch one {
 		case "Class":
 			defines[key] = attributeClass()
+		case "ClassIf":
+			defines[key] = attributeClassIf()
 		case "DataWith":
 			defines[key] = attributeDataWith()
 		case "Id":
@@ -2426,6 +2429,28 @@ func attributeClass() tagWriter {
 			return fmt.Sprintf(`
 				func (p *html%s) Class(name string, items ...*Ref[StyleItem]) Html%s {
 					p.setClass(name, items...)
+					return p
+				}`,
+				t.Name, t.Name)
+		},
+	}
+}
+
+func attributeClassIf() tagWriter {
+	return tagWriter{
+		define: func(t tag) string {
+			return fmt.Sprintf(`
+				// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+				// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+				ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Html%s
+		
+				`,
+				t.Name)
+		},
+		implement: func(t tag) string {
+			return fmt.Sprintf(`
+				func (p *html%s) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Html%s {
+					p.setClassIf(v, name, items...)
 					return p
 				}`,
 				t.Name, t.Name)

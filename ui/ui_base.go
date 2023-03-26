@@ -165,6 +165,11 @@ func (p *htmlBaseElement) setClass(name string, items ...*Ref[StyleItem]) {
 	p.classes.bindUpdateHandler(p, group)
 }
 
+func (p *htmlBaseElement) setClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) {
+	group := p.classes.SetClassIf(v, name, items...)
+	p.classes.bindUpdateHandler(p, group)
+}
+
 func (p *htmlBaseElement) registerEventHandler(name string, handler func(event Event, options ...any), options ...any) {
 	if p.events == nil {
 		p.events = make(map[string][]htmlEventHandler)
@@ -280,16 +285,19 @@ func (p *htmlBaseElement) BuildTreeDomElement() []dom.Element {
 		}
 	}
 
+	// set class
 	heads := d.GetElementsByTagName("head")
 	if len(heads) > 0 {
 		for classId, group := range p.classes.Classes {
-			st := d.CreateElement("style")
-			st.SetAttribute("type", "text/css")
-			st.SetID(classId)
-			st.SetInnerHTML(group.ToClass())
-			heads[0].(*dom.HTMLHeadElement).AppendChild(st)
+			if len(group.Items) > 0 {
+				st := d.CreateElement("style")
+				st.SetAttribute("type", "text/css")
+				st.SetID(classId)
+				st.SetInnerHTML(group.ToClass())
+				heads[0].(*dom.HTMLHeadElement).AppendChild(st)
+			}
 
-			if strings.HasPrefix(group.ClassName, ".") {
+			if group.Use.Value() && strings.HasPrefix(group.ClassName, ".") {
 				cn := strings.TrimLeft(group.ClassName, ".")
 				s.Class().Add(cn)
 			}
@@ -378,7 +386,7 @@ func (p *htmlBaseElement) doUnmounted() {
 	}
 
 	p.style.clear(p)
-	p.classes.unbindUpdateHandler(p)
+	p.classes.clear(p)
 
 	// remove from dom
 	w := dom.GetWindow()

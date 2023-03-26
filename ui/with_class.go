@@ -1,15 +1,44 @@
 package ui
 
 import (
+	"strings"
+
 	dom "honnef.co/go/js/dom/v2"
 )
 
 type WithClass struct {
 	// key: StyleGroup.ClassId
 	Classes map[string]StyleGroup
+
+	target UI
 }
 
 func (p *WithClass) SetClass(name string, items ...*Ref[StyleItem]) (group StyleGroup) {
+	return p._setClass(ToRef(true), name, items...)
+}
+
+func (p *WithClass) SetClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) (group StyleGroup) {
+	group = p._setClass(v, name, items...)
+	handler := func(oldVal, newVal any) {
+		if p.target == nil {
+			return
+		}
+
+		w := dom.GetWindow()
+		d := w.Document()
+		el := d.GetElementByID(p.target.GetUIElementId()).(dom.HTMLElement)
+		cn := strings.TrimLeft(group.ClassName, ".")
+		if newVal.(bool) {
+			el.Class().Add(cn)
+		} else {
+			el.Class().Remove(cn)
+		}
+	}
+	v.AddUpdatedHandler(handler)
+	return
+}
+
+func (p *WithClass) _setClass(v *Ref[bool], name string, items ...*Ref[StyleItem]) (group StyleGroup) {
 	if name == "" {
 		Console.Error("class name is empty")
 		return
@@ -19,6 +48,7 @@ func (p *WithClass) SetClass(name string, items ...*Ref[StyleItem]) (group Style
 		ClassId:   NewId(),
 		ClassName: name,
 		Items:     items,
+		Use:       v,
 	}
 
 	if p.Classes == nil {
@@ -29,6 +59,7 @@ func (p *WithClass) SetClass(name string, items ...*Ref[StyleItem]) (group Style
 }
 
 func (p *WithClass) bindUpdateHandler(target UI, group StyleGroup) {
+	p.target = target
 	if group.ClassName == "" {
 		Console.Error("class name is empty")
 		return
@@ -56,7 +87,7 @@ func (p *WithClass) bindUpdateHandler(target UI, group StyleGroup) {
 	}
 }
 
-func (p *WithClass) unbindUpdateHandler(target UI) {
+func (p *WithClass) clear(target UI) {
 	for _, group := range p.Classes {
 		for _, one := range group.Items {
 			one.Value().RemoveValueUpdatedHandler()

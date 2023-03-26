@@ -16,9 +16,10 @@ type StyleItem interface {
 }
 
 type StyleGroup struct {
-	ClassId   string // <style id=ClassId />
-	ClassName string // <style class=ClassName />
-	Items     []*Ref[StyleItem]
+	ClassId   string            // <style id=ClassId />
+	ClassName string            // <style class=ClassName />
+	Items     []*Ref[StyleItem] // style items
+	Use       *Ref[bool]        // use or not, default is true
 }
 
 func (p StyleGroup) ToClass() string {

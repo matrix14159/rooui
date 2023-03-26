@@ -27,6 +27,10 @@ type HtmlA interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlA
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlA
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlA
 
@@ -338,6 +342,11 @@ func (p *htmlA) Body(elems ...UI) HtmlA {
 
 func (p *htmlA) Class(name string, items ...*Ref[StyleItem]) HtmlA {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlA) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlA {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -836,6 +845,10 @@ type HtmlAbbr interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlAbbr
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAbbr
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlAbbr
 
@@ -1126,6 +1139,11 @@ func (p *htmlAbbr) Body(elems ...UI) HtmlAbbr {
 
 func (p *htmlAbbr) Class(name string, items ...*Ref[StyleItem]) HtmlAbbr {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlAbbr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAbbr {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -1589,6 +1607,10 @@ type HtmlAddress interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlAddress
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAddress
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlAddress
 
@@ -1879,6 +1901,11 @@ func (p *htmlAddress) Body(elems ...UI) HtmlAddress {
 
 func (p *htmlAddress) Class(name string, items ...*Ref[StyleItem]) HtmlAddress {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlAddress) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAddress {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -2345,6 +2372,10 @@ type HtmlArea interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlArea
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlArea
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlArea
 
@@ -2664,6 +2695,11 @@ func (p *htmlArea) Body(elems ...UI) HtmlArea {
 
 func (p *htmlArea) Class(name string, items ...*Ref[StyleItem]) HtmlArea {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlArea) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlArea {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -3167,6 +3203,10 @@ type HtmlArticle interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlArticle
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlArticle
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlArticle
 
@@ -3457,6 +3497,11 @@ func (p *htmlArticle) Body(elems ...UI) HtmlArticle {
 
 func (p *htmlArticle) Class(name string, items ...*Ref[StyleItem]) HtmlArticle {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlArticle) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlArticle {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -3920,6 +3965,10 @@ type HtmlAside interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlAside
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAside
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlAside
 
@@ -4210,6 +4259,11 @@ func (p *htmlAside) Body(elems ...UI) HtmlAside {
 
 func (p *htmlAside) Class(name string, items ...*Ref[StyleItem]) HtmlAside {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlAside) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAside {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -4676,6 +4730,10 @@ type HtmlAudio interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlAudio
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAudio
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlAudio
 
@@ -5055,6 +5113,11 @@ func (p *htmlAudio) Body(elems ...UI) HtmlAudio {
 
 func (p *htmlAudio) Class(name string, items ...*Ref[StyleItem]) HtmlAudio {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlAudio) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlAudio {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -5658,6 +5721,10 @@ type HtmlB interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlB
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlB
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlB
 
@@ -5948,6 +6015,11 @@ func (p *htmlB) Body(elems ...UI) HtmlB {
 
 func (p *htmlB) Class(name string, items ...*Ref[StyleItem]) HtmlB {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlB) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlB {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -6411,6 +6483,10 @@ type HtmlBase interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlBase
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBase
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlBase
 
@@ -6707,6 +6783,11 @@ func (p *htmlBase) Body(elems ...UI) HtmlBase {
 
 func (p *htmlBase) Class(name string, items ...*Ref[StyleItem]) HtmlBase {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlBase) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBase {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -7180,6 +7261,10 @@ type HtmlBdi interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlBdi
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBdi
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlBdi
 
@@ -7470,6 +7555,11 @@ func (p *htmlBdi) Body(elems ...UI) HtmlBdi {
 
 func (p *htmlBdi) Class(name string, items ...*Ref[StyleItem]) HtmlBdi {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlBdi) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBdi {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -7933,6 +8023,10 @@ type HtmlBdo interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlBdo
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBdo
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlBdo
 
@@ -8223,6 +8317,11 @@ func (p *htmlBdo) Body(elems ...UI) HtmlBdo {
 
 func (p *htmlBdo) Class(name string, items ...*Ref[StyleItem]) HtmlBdo {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlBdo) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBdo {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -8689,6 +8788,10 @@ type HtmlBlockquote interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlBlockquote
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBlockquote
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlBlockquote
 
@@ -8984,6 +9087,11 @@ func (p *htmlBlockquote) Cite(val any) HtmlBlockquote {
 
 func (p *htmlBlockquote) Class(name string, items ...*Ref[StyleItem]) HtmlBlockquote {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlBlockquote) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBlockquote {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -9447,6 +9555,10 @@ type HtmlBody interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlBody
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBody
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlBody
 
@@ -9782,6 +9894,11 @@ func (p *htmlBody) Body(elems ...UI) HtmlBody {
 
 func (p *htmlBody) Class(name string, items ...*Ref[StyleItem]) HtmlBody {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlBody) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBody {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -10320,6 +10437,10 @@ type HtmlBr interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlBr
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBr
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlBr
 
@@ -10610,6 +10731,11 @@ func (p *htmlBr) Body(elems ...UI) HtmlBr {
 
 func (p *htmlBr) Class(name string, items ...*Ref[StyleItem]) HtmlBr {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlBr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlBr {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -11076,6 +11202,10 @@ type HtmlButton interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlButton
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlButton
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlButton
 
@@ -11401,6 +11531,11 @@ func (p *htmlButton) Body(elems ...UI) HtmlButton {
 
 func (p *htmlButton) Class(name string, items ...*Ref[StyleItem]) HtmlButton {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlButton) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlButton {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -11914,6 +12049,10 @@ type HtmlCanvas interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlCanvas
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCanvas
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlCanvas
 
@@ -12210,6 +12349,11 @@ func (p *htmlCanvas) Body(elems ...UI) HtmlCanvas {
 
 func (p *htmlCanvas) Class(name string, items ...*Ref[StyleItem]) HtmlCanvas {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlCanvas) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCanvas {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -12683,6 +12827,10 @@ type HtmlCaption interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlCaption
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCaption
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlCaption
 
@@ -12973,6 +13121,11 @@ func (p *htmlCaption) Body(elems ...UI) HtmlCaption {
 
 func (p *htmlCaption) Class(name string, items ...*Ref[StyleItem]) HtmlCaption {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlCaption) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCaption {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -13436,6 +13589,10 @@ type HtmlCite interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlCite
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCite
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlCite
 
@@ -13726,6 +13883,11 @@ func (p *htmlCite) Body(elems ...UI) HtmlCite {
 
 func (p *htmlCite) Class(name string, items ...*Ref[StyleItem]) HtmlCite {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlCite) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCite {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -14189,6 +14351,10 @@ type HtmlCode interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlCode
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCode
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlCode
 
@@ -14479,6 +14645,11 @@ func (p *htmlCode) Body(elems ...UI) HtmlCode {
 
 func (p *htmlCode) Class(name string, items ...*Ref[StyleItem]) HtmlCode {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlCode) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCode {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -14942,6 +15113,10 @@ type HtmlCol interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlCol
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCol
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlCol
 
@@ -15235,6 +15410,11 @@ func (p *htmlCol) Body(elems ...UI) HtmlCol {
 
 func (p *htmlCol) Class(name string, items ...*Ref[StyleItem]) HtmlCol {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlCol) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlCol {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -15703,6 +15883,10 @@ type HtmlColGroup interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlColGroup
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlColGroup
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlColGroup
 
@@ -15996,6 +16180,11 @@ func (p *htmlColGroup) Body(elems ...UI) HtmlColGroup {
 
 func (p *htmlColGroup) Class(name string, items ...*Ref[StyleItem]) HtmlColGroup {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlColGroup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlColGroup {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -16464,6 +16653,10 @@ type HtmlData interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlData
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlData
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlData
 
@@ -16757,6 +16950,11 @@ func (p *htmlData) Body(elems ...UI) HtmlData {
 
 func (p *htmlData) Class(name string, items ...*Ref[StyleItem]) HtmlData {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlData) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlData {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -17225,6 +17423,10 @@ type HtmlDataList interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDataList
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDataList
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDataList
 
@@ -17515,6 +17717,11 @@ func (p *htmlDataList) Body(elems ...UI) HtmlDataList {
 
 func (p *htmlDataList) Class(name string, items ...*Ref[StyleItem]) HtmlDataList {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDataList) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDataList {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -17978,6 +18185,10 @@ type HtmlDd interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDd
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDd
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDd
 
@@ -18268,6 +18479,11 @@ func (p *htmlDd) Body(elems ...UI) HtmlDd {
 
 func (p *htmlDd) Class(name string, items ...*Ref[StyleItem]) HtmlDd {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDd) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDd {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -18734,6 +18950,10 @@ type HtmlDel interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDel
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDel
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDel
 
@@ -19032,6 +19252,11 @@ func (p *htmlDel) Cite(val any) HtmlDel {
 
 func (p *htmlDel) Class(name string, items ...*Ref[StyleItem]) HtmlDel {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDel) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDel {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -19500,6 +19725,10 @@ type HtmlDetails interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDetails
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDetails
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDetails
 
@@ -19796,6 +20025,11 @@ func (p *htmlDetails) Body(elems ...UI) HtmlDetails {
 
 func (p *htmlDetails) Class(name string, items ...*Ref[StyleItem]) HtmlDetails {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDetails) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDetails {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -20269,6 +20503,10 @@ type HtmlDfn interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDfn
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDfn
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDfn
 
@@ -20559,6 +20797,11 @@ func (p *htmlDfn) Body(elems ...UI) HtmlDfn {
 
 func (p *htmlDfn) Class(name string, items ...*Ref[StyleItem]) HtmlDfn {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDfn) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDfn {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -21022,6 +21265,10 @@ type HtmlDialog interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDialog
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDialog
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDialog
 
@@ -21315,6 +21562,11 @@ func (p *htmlDialog) Body(elems ...UI) HtmlDialog {
 
 func (p *htmlDialog) Class(name string, items ...*Ref[StyleItem]) HtmlDialog {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDialog) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDialog {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -21783,6 +22035,10 @@ type HtmlDiv interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDiv
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDiv
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDiv
 
@@ -22073,6 +22329,11 @@ func (p *htmlDiv) Body(elems ...UI) HtmlDiv {
 
 func (p *htmlDiv) Class(name string, items ...*Ref[StyleItem]) HtmlDiv {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDiv) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDiv {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -22536,6 +22797,10 @@ type HtmlDl interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDl
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDl
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDl
 
@@ -22826,6 +23091,11 @@ func (p *htmlDl) Body(elems ...UI) HtmlDl {
 
 func (p *htmlDl) Class(name string, items ...*Ref[StyleItem]) HtmlDl {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDl) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDl {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -23289,6 +23559,10 @@ type HtmlDt interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlDt
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDt
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlDt
 
@@ -23579,6 +23853,11 @@ func (p *htmlDt) Body(elems ...UI) HtmlDt {
 
 func (p *htmlDt) Class(name string, items ...*Ref[StyleItem]) HtmlDt {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlDt) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlDt {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -24042,6 +24321,10 @@ type HtmlEm interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlEm
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlEm
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlEm
 
@@ -24332,6 +24615,11 @@ func (p *htmlEm) Body(elems ...UI) HtmlEm {
 
 func (p *htmlEm) Class(name string, items ...*Ref[StyleItem]) HtmlEm {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlEm) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlEm {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -24795,6 +25083,10 @@ type HtmlEmbed interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlEmbed
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlEmbed
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlEmbed
 
@@ -25097,6 +25389,11 @@ func (p *htmlEmbed) Body(elems ...UI) HtmlEmbed {
 
 func (p *htmlEmbed) Class(name string, items ...*Ref[StyleItem]) HtmlEmbed {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlEmbed) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlEmbed {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -25580,6 +25877,10 @@ type HtmlFieldSet interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlFieldSet
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFieldSet
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlFieldSet
 
@@ -25879,6 +26180,11 @@ func (p *htmlFieldSet) Body(elems ...UI) HtmlFieldSet {
 
 func (p *htmlFieldSet) Class(name string, items ...*Ref[StyleItem]) HtmlFieldSet {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlFieldSet) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFieldSet {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -26357,6 +26663,10 @@ type HtmlFigCaption interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlFigCaption
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFigCaption
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlFigCaption
 
@@ -26647,6 +26957,11 @@ func (p *htmlFigCaption) Body(elems ...UI) HtmlFigCaption {
 
 func (p *htmlFigCaption) Class(name string, items ...*Ref[StyleItem]) HtmlFigCaption {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlFigCaption) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFigCaption {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -27110,6 +27425,10 @@ type HtmlFigure interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlFigure
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFigure
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlFigure
 
@@ -27400,6 +27719,11 @@ func (p *htmlFigure) Body(elems ...UI) HtmlFigure {
 
 func (p *htmlFigure) Class(name string, items ...*Ref[StyleItem]) HtmlFigure {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlFigure) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFigure {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -27863,6 +28187,10 @@ type HtmlFooter interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlFooter
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFooter
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlFooter
 
@@ -28153,6 +28481,11 @@ func (p *htmlFooter) Body(elems ...UI) HtmlFooter {
 
 func (p *htmlFooter) Class(name string, items ...*Ref[StyleItem]) HtmlFooter {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlFooter) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlFooter {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -28622,6 +28955,10 @@ type HtmlForm interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlForm
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlForm
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlForm
 
@@ -28940,6 +29277,11 @@ func (p *htmlForm) Body(elems ...UI) HtmlForm {
 
 func (p *htmlForm) Class(name string, items ...*Ref[StyleItem]) HtmlForm {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlForm) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlForm {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -29433,6 +29775,10 @@ type HtmlH1 interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlH1
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH1
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlH1
 
@@ -29723,6 +30069,11 @@ func (p *htmlH1) Body(elems ...UI) HtmlH1 {
 
 func (p *htmlH1) Class(name string, items ...*Ref[StyleItem]) HtmlH1 {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlH1) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH1 {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -30186,6 +30537,10 @@ type HtmlH2 interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlH2
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH2
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlH2
 
@@ -30476,6 +30831,11 @@ func (p *htmlH2) Body(elems ...UI) HtmlH2 {
 
 func (p *htmlH2) Class(name string, items ...*Ref[StyleItem]) HtmlH2 {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlH2) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH2 {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -30939,6 +31299,10 @@ type HtmlH3 interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlH3
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH3
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlH3
 
@@ -31229,6 +31593,11 @@ func (p *htmlH3) Body(elems ...UI) HtmlH3 {
 
 func (p *htmlH3) Class(name string, items ...*Ref[StyleItem]) HtmlH3 {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlH3) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH3 {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -31692,6 +32061,10 @@ type HtmlH4 interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlH4
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH4
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlH4
 
@@ -31982,6 +32355,11 @@ func (p *htmlH4) Body(elems ...UI) HtmlH4 {
 
 func (p *htmlH4) Class(name string, items ...*Ref[StyleItem]) HtmlH4 {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlH4) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH4 {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -32445,6 +32823,10 @@ type HtmlH5 interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlH5
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH5
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlH5
 
@@ -32735,6 +33117,11 @@ func (p *htmlH5) Body(elems ...UI) HtmlH5 {
 
 func (p *htmlH5) Class(name string, items ...*Ref[StyleItem]) HtmlH5 {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlH5) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH5 {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -33198,6 +33585,10 @@ type HtmlH6 interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlH6
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH6
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlH6
 
@@ -33488,6 +33879,11 @@ func (p *htmlH6) Body(elems ...UI) HtmlH6 {
 
 func (p *htmlH6) Class(name string, items ...*Ref[StyleItem]) HtmlH6 {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlH6) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlH6 {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -33951,6 +34347,10 @@ type HtmlHead interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlHead
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHead
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlHead
 
@@ -34241,6 +34641,11 @@ func (p *htmlHead) Body(elems ...UI) HtmlHead {
 
 func (p *htmlHead) Class(name string, items ...*Ref[StyleItem]) HtmlHead {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlHead) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHead {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -34704,6 +35109,10 @@ type HtmlHeader interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlHeader
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHeader
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlHeader
 
@@ -34994,6 +35403,11 @@ func (p *htmlHeader) Body(elems ...UI) HtmlHeader {
 
 func (p *htmlHeader) Class(name string, items ...*Ref[StyleItem]) HtmlHeader {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlHeader) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHeader {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -35457,6 +35871,10 @@ type HtmlHGroup interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlHGroup
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHGroup
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlHGroup
 
@@ -35747,6 +36165,11 @@ func (p *htmlHGroup) Body(elems ...UI) HtmlHGroup {
 
 func (p *htmlHGroup) Class(name string, items ...*Ref[StyleItem]) HtmlHGroup {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlHGroup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHGroup {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -36210,6 +36633,10 @@ type HtmlHr interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlHr
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHr
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlHr
 
@@ -36500,6 +36927,11 @@ func (p *htmlHr) Body(elems ...UI) HtmlHr {
 
 func (p *htmlHr) Class(name string, items ...*Ref[StyleItem]) HtmlHr {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlHr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHr {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -36963,6 +37395,10 @@ type HtmlHtml interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlHtml
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHtml
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlHtml
 
@@ -37256,6 +37692,11 @@ func (p *htmlHtml) Body(elems ...UI) HtmlHtml {
 
 func (p *htmlHtml) Class(name string, items ...*Ref[StyleItem]) HtmlHtml {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlHtml) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHtml {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -37724,6 +38165,10 @@ type HtmlI interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlI
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlI
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlI
 
@@ -38014,6 +38459,11 @@ func (p *htmlI) Body(elems ...UI) HtmlI {
 
 func (p *htmlI) Class(name string, items ...*Ref[StyleItem]) HtmlI {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlI) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlI {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -38486,6 +38936,10 @@ type HtmlIFrame interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlIFrame
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlIFrame
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlIFrame
 
@@ -38821,6 +39275,11 @@ func (p *htmlIFrame) Body(elems ...UI) HtmlIFrame {
 
 func (p *htmlIFrame) Class(name string, items ...*Ref[StyleItem]) HtmlIFrame {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlIFrame) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlIFrame {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -39337,6 +39796,10 @@ type HtmlImg interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlImg
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlImg
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlImg
 
@@ -39671,6 +40134,11 @@ func (p *htmlImg) Body(elems ...UI) HtmlImg {
 
 func (p *htmlImg) Class(name string, items ...*Ref[StyleItem]) HtmlImg {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlImg) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlImg {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -40214,6 +40682,10 @@ type HtmlInput interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlInput
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlInput
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlInput
 
@@ -40617,6 +41089,11 @@ func (p *htmlInput) Checked(val any) HtmlInput {
 
 func (p *htmlInput) Class(name string, items ...*Ref[StyleItem]) HtmlInput {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlInput) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlInput {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -41228,6 +41705,10 @@ type HtmlIns interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlIns
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlIns
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlIns
 
@@ -41526,6 +42007,11 @@ func (p *htmlIns) Cite(val any) HtmlIns {
 
 func (p *htmlIns) Class(name string, items ...*Ref[StyleItem]) HtmlIns {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlIns) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlIns {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -41994,6 +42480,10 @@ type HtmlKbd interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlKbd
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlKbd
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlKbd
 
@@ -42284,6 +42774,11 @@ func (p *htmlKbd) Body(elems ...UI) HtmlKbd {
 
 func (p *htmlKbd) Class(name string, items ...*Ref[StyleItem]) HtmlKbd {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlKbd) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlKbd {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -42747,6 +43242,10 @@ type HtmlLabel interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlLabel
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLabel
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlLabel
 
@@ -43040,6 +43539,11 @@ func (p *htmlLabel) Body(elems ...UI) HtmlLabel {
 
 func (p *htmlLabel) Class(name string, items ...*Ref[StyleItem]) HtmlLabel {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlLabel) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLabel {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -43508,6 +44012,10 @@ type HtmlLegend interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlLegend
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLegend
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlLegend
 
@@ -43798,6 +44306,11 @@ func (p *htmlLegend) Body(elems ...UI) HtmlLegend {
 
 func (p *htmlLegend) Class(name string, items ...*Ref[StyleItem]) HtmlLegend {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlLegend) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLegend {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -44261,6 +44774,10 @@ type HtmlLi interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlLi
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLi
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlLi
 
@@ -44554,6 +45071,11 @@ func (p *htmlLi) Body(elems ...UI) HtmlLi {
 
 func (p *htmlLi) Class(name string, items ...*Ref[StyleItem]) HtmlLi {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlLi) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLi {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -45028,6 +45550,10 @@ type HtmlLink interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlLink
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLink
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlLink
 
@@ -45367,6 +45893,11 @@ func (p *htmlLink) Body(elems ...UI) HtmlLink {
 
 func (p *htmlLink) Class(name string, items ...*Ref[StyleItem]) HtmlLink {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlLink) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlLink {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -45895,6 +46426,10 @@ type HtmlMain interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlMain
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMain
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlMain
 
@@ -46185,6 +46720,11 @@ func (p *htmlMain) Body(elems ...UI) HtmlMain {
 
 func (p *htmlMain) Class(name string, items ...*Ref[StyleItem]) HtmlMain {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlMain) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMain {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -46648,6 +47188,10 @@ type HtmlHMap interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlHMap
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHMap
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlHMap
 
@@ -46941,6 +47485,11 @@ func (p *htmlHMap) Body(elems ...UI) HtmlHMap {
 
 func (p *htmlHMap) Class(name string, items ...*Ref[StyleItem]) HtmlHMap {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlHMap) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlHMap {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -47409,6 +47958,10 @@ type HtmlMark interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlMark
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMark
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlMark
 
@@ -47699,6 +48252,11 @@ func (p *htmlMark) Body(elems ...UI) HtmlMark {
 
 func (p *htmlMark) Class(name string, items ...*Ref[StyleItem]) HtmlMark {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlMark) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMark {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -48162,6 +48720,10 @@ type HtmlMenu interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlMenu
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMenu
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlMenu
 
@@ -48452,6 +49014,11 @@ func (p *htmlMenu) Body(elems ...UI) HtmlMenu {
 
 func (p *htmlMenu) Class(name string, items ...*Ref[StyleItem]) HtmlMenu {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlMenu) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMenu {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -48918,6 +49485,10 @@ type HtmlMeta interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlMeta
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMeta
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#attr-content
 	Content(val any) HtmlMeta
 
@@ -49219,6 +49790,11 @@ func (p *htmlMeta) Charset(val any) HtmlMeta {
 
 func (p *htmlMeta) Class(name string, items ...*Ref[StyleItem]) HtmlMeta {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlMeta) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMeta {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -49692,6 +50268,10 @@ type HtmlMeter interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlMeter
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMeter
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlMeter
 
@@ -50000,6 +50580,11 @@ func (p *htmlMeter) Body(elems ...UI) HtmlMeter {
 
 func (p *htmlMeter) Class(name string, items ...*Ref[StyleItem]) HtmlMeter {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlMeter) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlMeter {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -50493,6 +51078,10 @@ type HtmlNav interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlNav
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlNav
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlNav
 
@@ -50783,6 +51372,11 @@ func (p *htmlNav) Body(elems ...UI) HtmlNav {
 
 func (p *htmlNav) Class(name string, items ...*Ref[StyleItem]) HtmlNav {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlNav) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlNav {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -51246,6 +51840,10 @@ type HtmlNoScript interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlNoScript
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlNoScript
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlNoScript
 
@@ -51536,6 +52134,11 @@ func (p *htmlNoScript) Body(elems ...UI) HtmlNoScript {
 
 func (p *htmlNoScript) Class(name string, items ...*Ref[StyleItem]) HtmlNoScript {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlNoScript) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlNoScript {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -51999,6 +52602,10 @@ type HtmlObject interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlObject
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlObject
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlObject
 
@@ -52310,6 +52917,11 @@ func (p *htmlObject) Body(elems ...UI) HtmlObject {
 
 func (p *htmlObject) Class(name string, items ...*Ref[StyleItem]) HtmlObject {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlObject) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlObject {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -52808,6 +53420,10 @@ type HtmlOl interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlOl
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOl
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlOl
 
@@ -53107,6 +53723,11 @@ func (p *htmlOl) Body(elems ...UI) HtmlOl {
 
 func (p *htmlOl) Class(name string, items ...*Ref[StyleItem]) HtmlOl {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlOl) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOl {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -53585,6 +54206,10 @@ type HtmlOptGroup interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlOptGroup
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOptGroup
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlOptGroup
 
@@ -53881,6 +54506,11 @@ func (p *htmlOptGroup) Body(elems ...UI) HtmlOptGroup {
 
 func (p *htmlOptGroup) Class(name string, items ...*Ref[StyleItem]) HtmlOptGroup {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlOptGroup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOptGroup {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -54354,6 +54984,10 @@ type HtmlOption interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlOption
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOption
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlOption
 
@@ -54656,6 +55290,11 @@ func (p *htmlOption) Body(elems ...UI) HtmlOption {
 
 func (p *htmlOption) Class(name string, items ...*Ref[StyleItem]) HtmlOption {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlOption) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOption {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -55139,6 +55778,10 @@ type HtmlOutput interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlOutput
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOutput
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlOutput
 
@@ -55438,6 +56081,11 @@ func (p *htmlOutput) Body(elems ...UI) HtmlOutput {
 
 func (p *htmlOutput) Class(name string, items ...*Ref[StyleItem]) HtmlOutput {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlOutput) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlOutput {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -55916,6 +56564,10 @@ type HtmlP interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlP
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlP
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlP
 
@@ -56206,6 +56858,11 @@ func (p *htmlP) Body(elems ...UI) HtmlP {
 
 func (p *htmlP) Class(name string, items ...*Ref[StyleItem]) HtmlP {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlP) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlP {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -56669,6 +57326,10 @@ type HtmlPicture interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlPicture
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlPicture
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlPicture
 
@@ -56959,6 +57620,11 @@ func (p *htmlPicture) Body(elems ...UI) HtmlPicture {
 
 func (p *htmlPicture) Class(name string, items ...*Ref[StyleItem]) HtmlPicture {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlPicture) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlPicture {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -57422,6 +58088,10 @@ type HtmlPre interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlPre
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlPre
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlPre
 
@@ -57712,6 +58382,11 @@ func (p *htmlPre) Body(elems ...UI) HtmlPre {
 
 func (p *htmlPre) Class(name string, items ...*Ref[StyleItem]) HtmlPre {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlPre) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlPre {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -58175,6 +58850,10 @@ type HtmlProgress interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlProgress
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlProgress
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlProgress
 
@@ -58471,6 +59150,11 @@ func (p *htmlProgress) Body(elems ...UI) HtmlProgress {
 
 func (p *htmlProgress) Class(name string, items ...*Ref[StyleItem]) HtmlProgress {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlProgress) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlProgress {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -58947,6 +59631,10 @@ type HtmlQ interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlQ
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlQ
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlQ
 
@@ -59242,6 +59930,11 @@ func (p *htmlQ) Cite(val any) HtmlQ {
 
 func (p *htmlQ) Class(name string, items ...*Ref[StyleItem]) HtmlQ {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlQ) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlQ {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -59705,6 +60398,10 @@ type HtmlRp interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlRp
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlRp
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlRp
 
@@ -59995,6 +60692,11 @@ func (p *htmlRp) Body(elems ...UI) HtmlRp {
 
 func (p *htmlRp) Class(name string, items ...*Ref[StyleItem]) HtmlRp {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlRp) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlRp {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -60458,6 +61160,10 @@ type HtmlRt interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlRt
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlRt
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlRt
 
@@ -60748,6 +61454,11 @@ func (p *htmlRt) Body(elems ...UI) HtmlRt {
 
 func (p *htmlRt) Class(name string, items ...*Ref[StyleItem]) HtmlRt {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlRt) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlRt {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -61211,6 +61922,10 @@ type HtmlRuby interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlRuby
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlRuby
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlRuby
 
@@ -61501,6 +62216,11 @@ func (p *htmlRuby) Body(elems ...UI) HtmlRuby {
 
 func (p *htmlRuby) Class(name string, items ...*Ref[StyleItem]) HtmlRuby {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlRuby) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlRuby {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -61964,6 +62684,10 @@ type HtmlS interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlS
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlS
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlS
 
@@ -62254,6 +62978,11 @@ func (p *htmlS) Body(elems ...UI) HtmlS {
 
 func (p *htmlS) Class(name string, items ...*Ref[StyleItem]) HtmlS {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlS) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlS {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -62717,6 +63446,10 @@ type HtmlSamp interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSamp
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSamp
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSamp
 
@@ -63007,6 +63740,11 @@ func (p *htmlSamp) Body(elems ...UI) HtmlSamp {
 
 func (p *htmlSamp) Class(name string, items ...*Ref[StyleItem]) HtmlSamp {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSamp) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSamp {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -63476,6 +64214,10 @@ type HtmlScript interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlScript
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlScript
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlScript
 
@@ -63800,6 +64542,11 @@ func (p *htmlScript) Body(elems ...UI) HtmlScript {
 
 func (p *htmlScript) Class(name string, items ...*Ref[StyleItem]) HtmlScript {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlScript) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlScript {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -64303,6 +65050,10 @@ type HtmlSection interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSection
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSection
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSection
 
@@ -64593,6 +65344,11 @@ func (p *htmlSection) Body(elems ...UI) HtmlSection {
 
 func (p *htmlSection) Class(name string, items ...*Ref[StyleItem]) HtmlSection {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSection) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSection {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -65059,6 +65815,10 @@ type HtmlSelect interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSelect
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSelect
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSelect
 
@@ -65378,6 +66138,11 @@ func (p *htmlSelect) Body(elems ...UI) HtmlSelect {
 
 func (p *htmlSelect) Class(name string, items ...*Ref[StyleItem]) HtmlSelect {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSelect) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSelect {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -65881,6 +66646,10 @@ type HtmlSlot interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSlot
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSlot
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSlot
 
@@ -66174,6 +66943,11 @@ func (p *htmlSlot) Body(elems ...UI) HtmlSlot {
 
 func (p *htmlSlot) Class(name string, items ...*Ref[StyleItem]) HtmlSlot {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSlot) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSlot {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -66642,6 +67416,10 @@ type HtmlSmall interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSmall
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSmall
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSmall
 
@@ -66932,6 +67710,11 @@ func (p *htmlSmall) Body(elems ...UI) HtmlSmall {
 
 func (p *htmlSmall) Class(name string, items ...*Ref[StyleItem]) HtmlSmall {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSmall) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSmall {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -67395,6 +68178,10 @@ type HtmlSource interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSource
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSource
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSource
 
@@ -67706,6 +68493,11 @@ func (p *htmlSource) Body(elems ...UI) HtmlSource {
 
 func (p *htmlSource) Class(name string, items ...*Ref[StyleItem]) HtmlSource {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSource) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSource {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -68204,6 +68996,10 @@ type HtmlSpan interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSpan
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSpan
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSpan
 
@@ -68494,6 +69290,11 @@ func (p *htmlSpan) Body(elems ...UI) HtmlSpan {
 
 func (p *htmlSpan) Class(name string, items ...*Ref[StyleItem]) HtmlSpan {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSpan) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSpan {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -68957,6 +69758,10 @@ type HtmlStrong interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlStrong
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlStrong
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlStrong
 
@@ -69247,6 +70052,11 @@ func (p *htmlStrong) Body(elems ...UI) HtmlStrong {
 
 func (p *htmlStrong) Class(name string, items ...*Ref[StyleItem]) HtmlStrong {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlStrong) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlStrong {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -69713,6 +70523,10 @@ type HtmlStyle interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlStyle
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlStyle
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlStyle
 
@@ -70011,6 +70825,11 @@ func (p *htmlStyle) Body(elems ...UI) HtmlStyle {
 
 func (p *htmlStyle) Class(name string, items ...*Ref[StyleItem]) HtmlStyle {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlStyle) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlStyle {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -70479,6 +71298,10 @@ type HtmlSub interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSub
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSub
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSub
 
@@ -70769,6 +71592,11 @@ func (p *htmlSub) Body(elems ...UI) HtmlSub {
 
 func (p *htmlSub) Class(name string, items ...*Ref[StyleItem]) HtmlSub {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSub) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSub {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -71232,6 +72060,10 @@ type HtmlSummary interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSummary
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSummary
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSummary
 
@@ -71522,6 +72354,11 @@ func (p *htmlSummary) Body(elems ...UI) HtmlSummary {
 
 func (p *htmlSummary) Class(name string, items ...*Ref[StyleItem]) HtmlSummary {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSummary) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSummary {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -71985,6 +72822,10 @@ type HtmlSup interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlSup
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSup
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlSup
 
@@ -72275,6 +73116,11 @@ func (p *htmlSup) Body(elems ...UI) HtmlSup {
 
 func (p *htmlSup) Class(name string, items ...*Ref[StyleItem]) HtmlSup {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlSup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlSup {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -72738,6 +73584,10 @@ type HtmlTable interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTable
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTable
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTable
 
@@ -73028,6 +73878,11 @@ func (p *htmlTable) Body(elems ...UI) HtmlTable {
 
 func (p *htmlTable) Class(name string, items ...*Ref[StyleItem]) HtmlTable {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTable) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTable {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -73491,6 +74346,10 @@ type HtmlTBody interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTBody
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTBody
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTBody
 
@@ -73781,6 +74640,11 @@ func (p *htmlTBody) Body(elems ...UI) HtmlTBody {
 
 func (p *htmlTBody) Class(name string, items ...*Ref[StyleItem]) HtmlTBody {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTBody) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTBody {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -74244,6 +75108,10 @@ type HtmlTd interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTd
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTd
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td#attr-colspan
 	ColSpan(val any) HtmlTd
 
@@ -74543,6 +75411,11 @@ func (p *htmlTd) Body(elems ...UI) HtmlTd {
 
 func (p *htmlTd) Class(name string, items ...*Ref[StyleItem]) HtmlTd {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTd) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTd {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -75021,6 +75894,10 @@ type HtmlTemplate interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTemplate
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTemplate
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTemplate
 
@@ -75311,6 +76188,11 @@ func (p *htmlTemplate) Body(elems ...UI) HtmlTemplate {
 
 func (p *htmlTemplate) Class(name string, items ...*Ref[StyleItem]) HtmlTemplate {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTemplate) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTemplate {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -75780,6 +76662,10 @@ type HtmlTextarea interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTextarea
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTextarea
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols
 	Cols(val any) HtmlTextarea
 
@@ -76126,6 +77012,11 @@ func (p *htmlTextarea) Body(elems ...UI) HtmlTextarea {
 
 func (p *htmlTextarea) Class(name string, items ...*Ref[StyleItem]) HtmlTextarea {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTextarea) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTextarea {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -76664,6 +77555,10 @@ type HtmlTFoot interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTFoot
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTFoot
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTFoot
 
@@ -76954,6 +77849,11 @@ func (p *htmlTFoot) Body(elems ...UI) HtmlTFoot {
 
 func (p *htmlTFoot) Class(name string, items ...*Ref[StyleItem]) HtmlTFoot {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTFoot) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTFoot {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -77420,6 +78320,10 @@ type HtmlTh interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTh
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTh
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th#attr-colspan
 	ColSpan(val any) HtmlTh
 
@@ -77727,6 +78631,11 @@ func (p *htmlTh) Body(elems ...UI) HtmlTh {
 
 func (p *htmlTh) Class(name string, items ...*Ref[StyleItem]) HtmlTh {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTh) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTh {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -78210,6 +79119,10 @@ type HtmlTHead interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTHead
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTHead
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTHead
 
@@ -78500,6 +79413,11 @@ func (p *htmlTHead) Body(elems ...UI) HtmlTHead {
 
 func (p *htmlTHead) Class(name string, items ...*Ref[StyleItem]) HtmlTHead {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTHead) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTHead {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -78963,6 +79881,10 @@ type HtmlTime interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTime
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTime
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTime
 
@@ -79256,6 +80178,11 @@ func (p *htmlTime) Body(elems ...UI) HtmlTime {
 
 func (p *htmlTime) Class(name string, items ...*Ref[StyleItem]) HtmlTime {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTime) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTime {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -79724,6 +80651,10 @@ type HtmlTitle interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTitle
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTitle
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTitle
 
@@ -80014,6 +80945,11 @@ func (p *htmlTitle) Body(elems ...UI) HtmlTitle {
 
 func (p *htmlTitle) Class(name string, items ...*Ref[StyleItem]) HtmlTitle {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTitle) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTitle {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -80477,6 +81413,10 @@ type Htmltr interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) Htmltr
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htmltr
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) Htmltr
 
@@ -80767,6 +81707,11 @@ func (p *htmltr) Body(elems ...UI) Htmltr {
 
 func (p *htmltr) Class(name string, items ...*Ref[StyleItem]) Htmltr {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmltr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htmltr {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -81230,6 +82175,10 @@ type HtmlTrack interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlTrack
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTrack
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlTrack
 
@@ -81535,6 +82484,11 @@ func (p *htmlTrack) Body(elems ...UI) HtmlTrack {
 
 func (p *htmlTrack) Class(name string, items ...*Ref[StyleItem]) HtmlTrack {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlTrack) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlTrack {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -82023,6 +82977,10 @@ type HtmlU interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlU
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlU
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlU
 
@@ -82313,6 +83271,11 @@ func (p *htmlU) Body(elems ...UI) HtmlU {
 
 func (p *htmlU) Class(name string, items ...*Ref[StyleItem]) HtmlU {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlU) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlU {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -82776,6 +83739,10 @@ type HtmlUl interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlUl
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlUl
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlUl
 
@@ -83066,6 +84033,11 @@ func (p *htmlUl) Body(elems ...UI) HtmlUl {
 
 func (p *htmlUl) Class(name string, items ...*Ref[StyleItem]) HtmlUl {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlUl) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlUl {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -83529,6 +84501,10 @@ type HtmlVar interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlVar
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlVar
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlVar
 
@@ -83819,6 +84795,11 @@ func (p *htmlVar) Body(elems ...UI) HtmlVar {
 
 func (p *htmlVar) Class(name string, items ...*Ref[StyleItem]) HtmlVar {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlVar) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlVar {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -84288,6 +85269,10 @@ type HtmlVideo interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlVideo
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlVideo
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlVideo
 
@@ -84687,6 +85672,11 @@ func (p *htmlVideo) Body(elems ...UI) HtmlVideo {
 
 func (p *htmlVideo) Class(name string, items ...*Ref[StyleItem]) HtmlVideo {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlVideo) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlVideo {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
@@ -85315,6 +86305,10 @@ type HtmlWbr interface {
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
 	Class(name string, items ...*Ref[StyleItem]) HtmlWbr
 
+	// ClassIf set the class attribute with name, and specify the class content with items when condition is true
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+	ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlWbr
+
 	// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
 	ContentEditAble(val any) HtmlWbr
 
@@ -85605,6 +86599,11 @@ func (p *htmlWbr) Body(elems ...UI) HtmlWbr {
 
 func (p *htmlWbr) Class(name string, items ...*Ref[StyleItem]) HtmlWbr {
 	p.setClass(name, items...)
+	return p
+}
+
+func (p *htmlWbr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) HtmlWbr {
+	p.setClassIf(v, name, items...)
 	return p
 }
 
