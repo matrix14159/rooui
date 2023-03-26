@@ -24,7 +24,7 @@ func NewCounter() *Counter {
 	return p
 }
 
-func (p *Counter) increase(event ui.Event) {
+func (p *Counter) increase(event ui.Event, options ...any) {
 	p.count.Set(p.count.Value() + 1)
 }
 

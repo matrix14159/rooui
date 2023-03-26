@@ -35,12 +35,8 @@ func (p *Demo) isActive(name string) *ui.Ref[bool] {
 	})
 }
 
-func (p *Demo) setActiveTab(event ui.Event) {
-	if p.active.Value() == "hello" {
-		p.active.Set("world")
-	} else {
-		p.active.Set("hello")
-	}
+func (p *Demo) setActiveTab(event ui.Event, options ...any) {
+	p.active.Set(options[0].(string))
 }
 
 func (p *Demo) Render() ui.UI {
@@ -53,7 +49,7 @@ func (p *Demo) Render() ui.UI {
 				st.Color("red"),
 			).Body(
 				ui.Span().Text(v),
-			).OnClick(p.setActiveTab)
+			).OnClick(p.setActiveTab, v.Value())
 		}),
 	)
 }
