@@ -209,7 +209,7 @@ func (p *htmlBaseElement) RemoveEventListener(typ string, useCapture bool, liste
 
 func (p *htmlBaseElement) TurnOnDisplay() {
 	if p.domEl != nil {
-		if p.bakDisplay != "" {
+		if p.bakDisplay != "" && p.bakDisplay != "none" {
 			p.domEl.Style().SetProperty("display", p.bakDisplay, "")
 		} else {
 			if p.domEl.Style().GetPropertyValue("display") == "none" {
