@@ -31,6 +31,10 @@ type refSliceUpdatedHandler[T any] struct {
 	handler func(pos int, val T)
 }
 
+func (p RefSlice[T]) RawData() []T {
+	return p.data
+}
+
 func (p RefSlice[T]) Len() int {
 	return len(p.data)
 }

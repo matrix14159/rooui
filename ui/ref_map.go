@@ -26,6 +26,10 @@ type refMapDeleteHandler[K comparable] struct {
 	handler func(keys []K)
 }
 
+func (p RefMap[K, V]) RawData() map[K]V {
+	return p.data
+}
+
 func (p RefMap[K, V]) Len() int {
 	return len(p.data)
 }
