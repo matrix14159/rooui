@@ -351,7 +351,7 @@ func (p *htmlA) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlA) ContentEditAble(val any) HtmlA {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -1148,7 +1148,7 @@ func (p *htmlAbbr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlAbbr) ContentEditAble(val any) HtmlAbbr {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -1910,7 +1910,7 @@ func (p *htmlAddress) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlAddress) ContentEditAble(val any) HtmlAddress {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -2704,7 +2704,7 @@ func (p *htmlArea) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlArea) ContentEditAble(val any) HtmlArea {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -3506,7 +3506,7 @@ func (p *htmlArticle) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlArticle) ContentEditAble(val any) HtmlArticle {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -4268,7 +4268,7 @@ func (p *htmlAside) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlAside) ContentEditAble(val any) HtmlAside {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -5122,7 +5122,7 @@ func (p *htmlAudio) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlAudio) ContentEditAble(val any) HtmlAudio {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -6024,7 +6024,7 @@ func (p *htmlB) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlB) ContentEditAble(val any) HtmlB {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -6792,7 +6792,7 @@ func (p *htmlBase) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlBase) ContentEditAble(val any) HtmlBase {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -7564,7 +7564,7 @@ func (p *htmlBdi) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlBdi) ContentEditAble(val any) HtmlBdi {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -8326,7 +8326,7 @@ func (p *htmlBdo) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlBdo) ContentEditAble(val any) HtmlBdo {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -9096,7 +9096,7 @@ func (p *htmlBlockquote) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleI
 }
 
 func (p *htmlBlockquote) ContentEditAble(val any) HtmlBlockquote {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -9903,7 +9903,7 @@ func (p *htmlBody) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlBody) ContentEditAble(val any) HtmlBody {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -10740,7 +10740,7 @@ func (p *htmlBr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlBr) ContentEditAble(val any) HtmlBr {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -11540,7 +11540,7 @@ func (p *htmlButton) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlButton) ContentEditAble(val any) HtmlButton {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -12358,7 +12358,7 @@ func (p *htmlCanvas) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlCanvas) ContentEditAble(val any) HtmlCanvas {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -13130,7 +13130,7 @@ func (p *htmlCaption) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlCaption) ContentEditAble(val any) HtmlCaption {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -13892,7 +13892,7 @@ func (p *htmlCite) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlCite) ContentEditAble(val any) HtmlCite {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -14654,7 +14654,7 @@ func (p *htmlCode) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlCode) ContentEditAble(val any) HtmlCode {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -15419,7 +15419,7 @@ func (p *htmlCol) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlCol) ContentEditAble(val any) HtmlCol {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -16189,7 +16189,7 @@ func (p *htmlColGroup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlColGroup) ContentEditAble(val any) HtmlColGroup {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -16959,7 +16959,7 @@ func (p *htmlData) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlData) ContentEditAble(val any) HtmlData {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -17726,7 +17726,7 @@ func (p *htmlDataList) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlDataList) ContentEditAble(val any) HtmlDataList {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -18488,7 +18488,7 @@ func (p *htmlDd) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlDd) ContentEditAble(val any) HtmlDd {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -19261,7 +19261,7 @@ func (p *htmlDel) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlDel) ContentEditAble(val any) HtmlDel {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -20034,7 +20034,7 @@ func (p *htmlDetails) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlDetails) ContentEditAble(val any) HtmlDetails {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -20806,7 +20806,7 @@ func (p *htmlDfn) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlDfn) ContentEditAble(val any) HtmlDfn {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -21571,7 +21571,7 @@ func (p *htmlDialog) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlDialog) ContentEditAble(val any) HtmlDialog {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -22338,7 +22338,7 @@ func (p *htmlDiv) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlDiv) ContentEditAble(val any) HtmlDiv {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -23100,7 +23100,7 @@ func (p *htmlDl) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlDl) ContentEditAble(val any) HtmlDl {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -23862,7 +23862,7 @@ func (p *htmlDt) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlDt) ContentEditAble(val any) HtmlDt {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -24624,7 +24624,7 @@ func (p *htmlEm) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlEm) ContentEditAble(val any) HtmlEm {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -25398,7 +25398,7 @@ func (p *htmlEmbed) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlEmbed) ContentEditAble(val any) HtmlEmbed {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -26189,7 +26189,7 @@ func (p *htmlFieldSet) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlFieldSet) ContentEditAble(val any) HtmlFieldSet {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -26966,7 +26966,7 @@ func (p *htmlFigCaption) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleI
 }
 
 func (p *htmlFigCaption) ContentEditAble(val any) HtmlFigCaption {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -27728,7 +27728,7 @@ func (p *htmlFigure) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlFigure) ContentEditAble(val any) HtmlFigure {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -28490,7 +28490,7 @@ func (p *htmlFooter) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlFooter) ContentEditAble(val any) HtmlFooter {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -29286,7 +29286,7 @@ func (p *htmlForm) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlForm) ContentEditAble(val any) HtmlForm {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -30078,7 +30078,7 @@ func (p *htmlH1) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlH1) ContentEditAble(val any) HtmlH1 {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -30840,7 +30840,7 @@ func (p *htmlH2) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlH2) ContentEditAble(val any) HtmlH2 {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -31602,7 +31602,7 @@ func (p *htmlH3) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlH3) ContentEditAble(val any) HtmlH3 {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -32364,7 +32364,7 @@ func (p *htmlH4) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlH4) ContentEditAble(val any) HtmlH4 {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -33126,7 +33126,7 @@ func (p *htmlH5) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlH5) ContentEditAble(val any) HtmlH5 {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -33888,7 +33888,7 @@ func (p *htmlH6) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlH6) ContentEditAble(val any) HtmlH6 {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -34650,7 +34650,7 @@ func (p *htmlHead) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlHead) ContentEditAble(val any) HtmlHead {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -35412,7 +35412,7 @@ func (p *htmlHeader) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlHeader) ContentEditAble(val any) HtmlHeader {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -36174,7 +36174,7 @@ func (p *htmlHGroup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlHGroup) ContentEditAble(val any) HtmlHGroup {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -36936,7 +36936,7 @@ func (p *htmlHr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlHr) ContentEditAble(val any) HtmlHr {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -37701,7 +37701,7 @@ func (p *htmlHtml) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlHtml) ContentEditAble(val any) HtmlHtml {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -38468,7 +38468,7 @@ func (p *htmlI) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlI) ContentEditAble(val any) HtmlI {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -39284,7 +39284,7 @@ func (p *htmlIFrame) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlIFrame) ContentEditAble(val any) HtmlIFrame {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -40143,7 +40143,7 @@ func (p *htmlImg) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlImg) ContentEditAble(val any) HtmlImg {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -41098,7 +41098,7 @@ func (p *htmlInput) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlInput) ContentEditAble(val any) HtmlInput {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -42016,7 +42016,7 @@ func (p *htmlIns) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlIns) ContentEditAble(val any) HtmlIns {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -42783,7 +42783,7 @@ func (p *htmlKbd) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlKbd) ContentEditAble(val any) HtmlKbd {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -43548,7 +43548,7 @@ func (p *htmlLabel) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlLabel) ContentEditAble(val any) HtmlLabel {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -44315,7 +44315,7 @@ func (p *htmlLegend) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlLegend) ContentEditAble(val any) HtmlLegend {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -45080,7 +45080,7 @@ func (p *htmlLi) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlLi) ContentEditAble(val any) HtmlLi {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -45902,7 +45902,7 @@ func (p *htmlLink) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlLink) ContentEditAble(val any) HtmlLink {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -46729,7 +46729,7 @@ func (p *htmlMain) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlMain) ContentEditAble(val any) HtmlMain {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -47494,7 +47494,7 @@ func (p *htmlHMap) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlHMap) ContentEditAble(val any) HtmlHMap {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -48261,7 +48261,7 @@ func (p *htmlMark) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlMark) ContentEditAble(val any) HtmlMark {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -49023,7 +49023,7 @@ func (p *htmlMenu) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlMenu) ContentEditAble(val any) HtmlMenu {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -49804,7 +49804,7 @@ func (p *htmlMeta) Content(val any) HtmlMeta {
 }
 
 func (p *htmlMeta) ContentEditAble(val any) HtmlMeta {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -50589,7 +50589,7 @@ func (p *htmlMeter) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlMeter) ContentEditAble(val any) HtmlMeter {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -51381,7 +51381,7 @@ func (p *htmlNav) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlNav) ContentEditAble(val any) HtmlNav {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -52143,7 +52143,7 @@ func (p *htmlNoScript) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlNoScript) ContentEditAble(val any) HtmlNoScript {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -52926,7 +52926,7 @@ func (p *htmlObject) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlObject) ContentEditAble(val any) HtmlObject {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -53732,7 +53732,7 @@ func (p *htmlOl) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlOl) ContentEditAble(val any) HtmlOl {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -54515,7 +54515,7 @@ func (p *htmlOptGroup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlOptGroup) ContentEditAble(val any) HtmlOptGroup {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -55299,7 +55299,7 @@ func (p *htmlOption) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlOption) ContentEditAble(val any) HtmlOption {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -56090,7 +56090,7 @@ func (p *htmlOutput) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlOutput) ContentEditAble(val any) HtmlOutput {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -56867,7 +56867,7 @@ func (p *htmlP) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlP) ContentEditAble(val any) HtmlP {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -57629,7 +57629,7 @@ func (p *htmlPicture) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlPicture) ContentEditAble(val any) HtmlPicture {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -58391,7 +58391,7 @@ func (p *htmlPre) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlPre) ContentEditAble(val any) HtmlPre {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -59159,7 +59159,7 @@ func (p *htmlProgress) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlProgress) ContentEditAble(val any) HtmlProgress {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -59939,7 +59939,7 @@ func (p *htmlQ) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlQ) ContentEditAble(val any) HtmlQ {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -60701,7 +60701,7 @@ func (p *htmlRp) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlRp) ContentEditAble(val any) HtmlRp {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -61463,7 +61463,7 @@ func (p *htmlRt) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlRt) ContentEditAble(val any) HtmlRt {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -62225,7 +62225,7 @@ func (p *htmlRuby) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlRuby) ContentEditAble(val any) HtmlRuby {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -62987,7 +62987,7 @@ func (p *htmlS) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlS) ContentEditAble(val any) HtmlS {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -63749,7 +63749,7 @@ func (p *htmlSamp) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlSamp) ContentEditAble(val any) HtmlSamp {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -64551,7 +64551,7 @@ func (p *htmlScript) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlScript) ContentEditAble(val any) HtmlScript {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -65353,7 +65353,7 @@ func (p *htmlSection) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlSection) ContentEditAble(val any) HtmlSection {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -66147,7 +66147,7 @@ func (p *htmlSelect) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlSelect) ContentEditAble(val any) HtmlSelect {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -66952,7 +66952,7 @@ func (p *htmlSlot) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlSlot) ContentEditAble(val any) HtmlSlot {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -67719,7 +67719,7 @@ func (p *htmlSmall) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlSmall) ContentEditAble(val any) HtmlSmall {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -68502,7 +68502,7 @@ func (p *htmlSource) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlSource) ContentEditAble(val any) HtmlSource {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -69299,7 +69299,7 @@ func (p *htmlSpan) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlSpan) ContentEditAble(val any) HtmlSpan {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -70061,7 +70061,7 @@ func (p *htmlStrong) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]
 }
 
 func (p *htmlStrong) ContentEditAble(val any) HtmlStrong {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -70834,7 +70834,7 @@ func (p *htmlStyle) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlStyle) ContentEditAble(val any) HtmlStyle {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -71601,7 +71601,7 @@ func (p *htmlSub) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlSub) ContentEditAble(val any) HtmlSub {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -72363,7 +72363,7 @@ func (p *htmlSummary) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem
 }
 
 func (p *htmlSummary) ContentEditAble(val any) HtmlSummary {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -73125,7 +73125,7 @@ func (p *htmlSup) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlSup) ContentEditAble(val any) HtmlSup {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -73887,7 +73887,7 @@ func (p *htmlTable) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlTable) ContentEditAble(val any) HtmlTable {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -74649,7 +74649,7 @@ func (p *htmlTBody) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlTBody) ContentEditAble(val any) HtmlTBody {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -75425,7 +75425,7 @@ func (p *htmlTd) ColSpan(val any) HtmlTd {
 }
 
 func (p *htmlTd) ContentEditAble(val any) HtmlTd {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -76197,7 +76197,7 @@ func (p *htmlTemplate) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleIte
 }
 
 func (p *htmlTemplate) ContentEditAble(val any) HtmlTemplate {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -77026,7 +77026,7 @@ func (p *htmlTextarea) Cols(val any) HtmlTextarea {
 }
 
 func (p *htmlTextarea) ContentEditAble(val any) HtmlTextarea {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -77858,7 +77858,7 @@ func (p *htmlTFoot) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlTFoot) ContentEditAble(val any) HtmlTFoot {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -78645,7 +78645,7 @@ func (p *htmlTh) ColSpan(val any) HtmlTh {
 }
 
 func (p *htmlTh) ContentEditAble(val any) HtmlTh {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -79422,7 +79422,7 @@ func (p *htmlTHead) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlTHead) ContentEditAble(val any) HtmlTHead {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -80187,7 +80187,7 @@ func (p *htmlTime) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) 
 }
 
 func (p *htmlTime) ContentEditAble(val any) HtmlTime {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -80954,7 +80954,7 @@ func (p *htmlTitle) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlTitle) ContentEditAble(val any) HtmlTitle {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -81716,7 +81716,7 @@ func (p *htmltr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmltr) ContentEditAble(val any) Htmltr {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -82493,7 +82493,7 @@ func (p *htmlTrack) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlTrack) ContentEditAble(val any) HtmlTrack {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -83280,7 +83280,7 @@ func (p *htmlU) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Htm
 }
 
 func (p *htmlU) ContentEditAble(val any) HtmlU {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -84042,7 +84042,7 @@ func (p *htmlUl) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) Ht
 }
 
 func (p *htmlUl) ContentEditAble(val any) HtmlUl {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -84804,7 +84804,7 @@ func (p *htmlVar) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlVar) ContentEditAble(val any) HtmlVar {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -85681,7 +85681,7 @@ func (p *htmlVideo) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem])
 }
 
 func (p *htmlVideo) ContentEditAble(val any) HtmlVideo {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 
@@ -86608,7 +86608,7 @@ func (p *htmlWbr) ClassIf(v *Ref[bool], name string, items ...*Ref[StyleItem]) H
 }
 
 func (p *htmlWbr) ContentEditAble(val any) HtmlWbr {
-	p.SetProperty("contenteditable", val)
+	p.SetAttribute("contenteditable", val)
 	return p
 }
 

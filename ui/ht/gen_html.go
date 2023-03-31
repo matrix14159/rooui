@@ -559,6 +559,8 @@ func initAttributes() {
 			defines[key] = attributeClass()
 		case "ClassIf":
 			defines[key] = attributeClassIf()
+		case "ContentEditAble":
+			defines[key] = getAttributeWriter(attributes[key])
 		case "DataWith":
 			defines[key] = attributeDataWith()
 		case "Id":
