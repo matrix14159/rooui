@@ -5,7 +5,11 @@ import (
 )
 
 func ToRefSlice[T any](data []T) (ret *RefSlice[T]) {
-	return &RefSlice[T]{data: data}
+	ret = &RefSlice[T]{data: data}
+	if ret.data == nil {
+		ret.data = make([]T, 0)
+	}
+	return
 }
 
 type RefSlice[T any] struct {
@@ -14,6 +18,7 @@ type RefSlice[T any] struct {
 	insertHandlers []refSliceInsertedHandler[T]
 	deleteHandlers []refSliceDeletedHandler
 	updateHandlers []refSliceUpdatedHandler[T]
+	clearHandlers  []refSliceClearedHandler
 }
 
 type refSliceInsertedHandler[T any] struct {
@@ -24,6 +29,11 @@ type refSliceInsertedHandler[T any] struct {
 type refSliceDeletedHandler struct {
 	id      string
 	handler func(pos, num int)
+}
+
+type refSliceClearedHandler struct {
+	id      string
+	handler func()
 }
 
 type refSliceUpdatedHandler[T any] struct {
@@ -113,11 +123,30 @@ func (p *RefSlice[T]) Pop() {
 	p.emitDeleted(pos, 1)
 }
 
+// Clear delete all element of data slice
+func (p *RefSlice[T]) Clear() {
+	if len(p.data) == 0 {
+		return
+	}
+	p.data = make([]T, 0)
+	p.emitCleared()
+}
+
 func (p *RefSlice[T]) emitDeleted(pos int, num int) {
 	if len(p.deleteHandlers) > 0 {
 		for _, h := range p.deleteHandlers {
 			if h.id != "" && h.handler != nil {
 				h.handler(pos, num)
+			}
+		}
+	}
+}
+
+func (p *RefSlice[T]) emitCleared() {
+	if len(p.clearHandlers) > 0 {
+		for _, h := range p.clearHandlers {
+			if h.id != "" && h.handler != nil {
+				h.handler()
 			}
 		}
 	}
@@ -189,5 +218,28 @@ func (p *RefSlice[T]) RemoveDeletedHandler(handlerId string) (ok bool, num int) 
 		}
 	}
 	num = len(p.deleteHandlers)
+	return
+}
+
+func (p *RefSlice[T]) AddClearedHandler(handler func(), id ...string) (handlerId string, num int) {
+	if len(id) > 0 && id[0] != "" {
+		handlerId = id[0]
+	} else {
+		handlerId = NewId()
+	}
+	p.clearHandlers = append(p.clearHandlers, refSliceClearedHandler{id: handlerId, handler: handler})
+	num = len(p.clearHandlers)
+	return
+}
+
+func (p *RefSlice[T]) RemoveClearedHandler(handlerId string) (ok bool, num int) {
+	for i, h := range p.clearHandlers {
+		if handlerId == h.id {
+			ok = true
+			p.clearHandlers = append(p.clearHandlers[:i], p.clearHandlers[i+1:]...)
+			break
+		}
+	}
+	num = len(p.clearHandlers)
 	return
 }

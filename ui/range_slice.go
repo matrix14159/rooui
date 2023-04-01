@@ -150,6 +150,14 @@ func (p *rangeSlice[T]) handleDeleted(pos int, num int) {
 	}
 }
 
+func (p *rangeSlice[T]) handleCleared() {
+	for _, child := range p.body {
+		child.doUnmounted()
+	}
+	p.refSource = make([]sliceRefSource[T], 0)
+	p.body = make([]UI, 0)
+}
+
 func (p *rangeSlice[T]) handleUpdated(pos int, val T) {
 	if pos < 0 || pos >= len(p.body) {
 		fmt.Printf("slice (%v) handle updated index out of range [%d] with length %d\n", p.GetUIElementId(), pos, len(p.body))
@@ -172,6 +180,7 @@ func Slice[T any](data any, f func(i *Ref[int], v *Ref[T]) UI) RangeSlice {
 		rs.AddInsertedHandler(p.handleInserted, p.GetUIElementId()+"inserted")
 		rs.AddDeletedHandler(p.handleDeleted, p.GetUIElementId()+"deleted")
 		rs.AddUpdatedHandler(p.handleUpdated, p.GetUIElementId()+"updated")
+		rs.AddClearedHandler(p.handleCleared, p.GetUIElementId()+"cleared")
 	default:
 		fmt.Printf("data must be a slice or *RefSlice\n")
 	}
@@ -201,6 +210,7 @@ func (p *rangeSlice[T]) doUnmounted() {
 		rs.RemoveInsertedHandler(p.GetUIElementId() + "inserted")
 		rs.RemoveDeletedHandler(p.GetUIElementId() + "deleted")
 		rs.RemoveUpdatedHandler(p.GetUIElementId() + "updated")
+		rs.RemoveClearedHandler(p.GetUIElementId() + "cleared")
 	}
 	if p.onUnmountedHandler != nil {
 		p.onUnmountedHandler()
