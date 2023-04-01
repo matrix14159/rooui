@@ -121,6 +121,14 @@ func (p *rangeMap[K, V]) handleDeleted(keys []K) {
 	}
 }
 
+func (p *rangeMap[K, V]) handleCleared() {
+	for _, child := range p.subs {
+		child.doUnmounted()
+	}
+	p.subs = make(map[K]UI)
+	p.refSource = make(map[K]mapRefSource[K, V])
+}
+
 func Map[K comparable, V any](data any, f func(*Ref[K], *Ref[V]) UI) RangeMap {
 	p := new(rangeMap[K, V])
 	p.id = NewId()
@@ -133,6 +141,7 @@ func Map[K comparable, V any](data any, f func(*Ref[K], *Ref[V]) UI) RangeMap {
 		rm := data.(*RefMap[K, V])
 		rm.AddUpsertHandler(p.handleUpserted, p.GetUIElementId()+"upserted")
 		rm.AddDeletedHandler(p.handleDeleted, p.GetUIElementId()+"deleted")
+		rm.AddClearHandler(p.handleCleared, p.GetUIElementId()+"cleared")
 	default:
 		fmt.Printf("data must be a map or *RefMap\n")
 	}
@@ -189,6 +198,7 @@ func (p *rangeMap[K, V]) doUnmounted() {
 	if rm, ok := p.source.(*RefMap[K, V]); ok {
 		rm.RemoveUpsertHandler(p.GetUIElementId() + "upserted")
 		rm.RemoveDeletedHandler(p.GetUIElementId() + "deleted")
+		rm.RemoveClearHandler(p.GetUIElementId() + "cleared")
 	}
 	p.source = nil
 	p.refSource = nil
