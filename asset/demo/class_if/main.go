@@ -42,7 +42,7 @@ func (p *Demo) setActiveTab(event ui.Event, options ...any) {
 func (p *Demo) Render() ui.UI {
 	return ui.Div().Style(
 		st.Display("flex"),
-		st.ColumnGap("5px"),
+		st.ColumnGap("10px"),
 	).Body(
 		ui.Div().Style(st.Display("none")).
 			Class(".tab-active",

@@ -245,7 +245,7 @@ func (p *htmlBaseElement) BuildTreeDomElement() []dom.Element {
 		return nil
 	}
 
-	fmt.Printf("%v (%v) BuildTreeDomElement\n", p.tag, p.GetUIElementId())
+	//fmt.Printf("%v (%v) BuildTreeDomElement\n", p.tag, p.GetUIElementId())
 	w := dom.GetWindow()
 	d := w.Document()
 	s := d.CreateElement(p.tag).(dom.HTMLElement)

@@ -149,7 +149,7 @@ func Map[K comparable, V any](data any, f func(*Ref[K], *Ref[V]) UI) RangeMap {
 }
 
 func (p *rangeMap[K, V]) BuildTreeDomElement() []dom.Element {
-	fmt.Printf("map (%v) BuildTreeDomElement\n", p.GetUIElementId())
+	//fmt.Printf("map (%v) BuildTreeDomElement\n", p.GetUIElementId())
 	p.iter()
 	ret := make([]dom.Element, 0, len(p.subs)+1)
 	for _, child := range p.subs {

@@ -188,7 +188,7 @@ func Slice[T any](data any, f func(i *Ref[int], v *Ref[T]) UI) RangeSlice {
 }
 
 func (p *rangeSlice[T]) BuildTreeDomElement() []dom.Element {
-	fmt.Printf("slice (%v) BuildTreeDomElement\n", p.GetUIElementId())
+	//fmt.Printf("slice (%v) BuildTreeDomElement\n", p.GetUIElementId())
 	p.body = p.iter()
 	ret := make([]dom.Element, 0, len(p.body))
 	for _, child := range p.body {

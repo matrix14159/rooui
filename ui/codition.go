@@ -157,7 +157,7 @@ func (p *condition) GetSelfDomElement() dom.Element {
 }
 
 func (p *condition) BuildTreeDomElement() []dom.Element {
-	fmt.Printf("condition (%v) BuildTreeDomElement\n", p.GetUIElementId())
+	//fmt.Printf("condition (%v) BuildTreeDomElement\n", p.GetUIElementId())
 	ret := make([]dom.Element, 0, p.elemLen())
 	for _, child := range p.elems() {
 		els := BuildHtml(child)
