@@ -3,6 +3,8 @@ package ui
 import (
 	"bytes"
 	"fmt"
+	"path/filepath"
+	"runtime"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -65,5 +67,18 @@ func (*LogWriter) Write(p []byte) (n int, err error) {
 }
 
 func (p *LogWriter) Sync() (err error) {
+	return
+}
+
+// MarkError format an error and log to console
+func MarkError(msg string, a ...any) (err error) {
+	err = fmt.Errorf(msg, a...)
+	_, file, line, ok := runtime.Caller(1)
+	if ok {
+		Console.Error(fmt.Sprintf("ERROR %v/%v:%v %v",
+			filepath.Base(filepath.Dir(file)), filepath.Base(file), line, err))
+		return
+	}
+	Console.Error(fmt.Sprintf("ERROR %v", err))
 	return
 }
