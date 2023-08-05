@@ -12,6 +12,7 @@ var RootComponent Comp
 func Init(root Comp) {
 	RootComponent = root
 	initConsole()
+	initLog()
 	js.Global().Set("MountTo", js.FuncOf(mountToFunc))
 }
 
