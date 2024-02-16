@@ -24,19 +24,8 @@ type VNodeData struct {
 	Namespace string // for SVGs
 }
 
-func a() {
-	//data := VNodeData{
-	//	Props: Props{
-	//		"":  1,
-	//		"a": 2,
-	//	},
-	//	Events: Events{
-	//		"click": func(vn VNode, event dom.Event) {
-	//
-	//		},
-	//		"dbclick": func(vn VNode, event dom.Event) {
-	//
-	//		},
-	//	},
-	//}
+func SameVNode(vnode1, vnode2 VNode) bool {
+	sameKey := vnode1.Key == vnode2.Key
+	sameSel := vnode1.Sel == vnode2.Sel
+	return sameKey && sameSel
 }
