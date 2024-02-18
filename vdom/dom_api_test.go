@@ -14,7 +14,7 @@ func TestCreateTag(t *testing.T) {
 	body := elms[0]
 
 	div := api.CreateElement("div")
-	div.SetAttribute("id", "root")
+	div.SetID("root")
 	body.InsertBefore(div, nil)
 
 	root := api.document.GetElementByID("root")
