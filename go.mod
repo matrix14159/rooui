@@ -7,4 +7,7 @@ require (
 	honnef.co/go/js/dom/v2 v2.0.0-20231112215516-51f43a291193
 )
 
-require go.uber.org/multierr v1.11.0 // indirect
+require (
+	github.com/oklog/ulid/v2 v2.1.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+)

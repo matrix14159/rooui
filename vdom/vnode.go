@@ -6,12 +6,14 @@ import (
 
 type VNode struct {
 	Sel      string
-	Data     VNodeData
-	Children []VNode
+	Data     *VNodeData
+	Children []*VNode
 	Elm      dom.Node
 	Text     string
 	Key      string
 }
+
+type VNodeChildren []*VNode
 
 type VNodeData struct {
 	Props     Props
@@ -24,7 +26,7 @@ type VNodeData struct {
 	Namespace string // for SVGs
 }
 
-func SameVNode(vnode1, vnode2 VNode) bool {
+func SameVNode(vnode1, vnode2 *VNode) bool {
 	sameKey := vnode1.Key == vnode2.Key
 	sameSel := vnode1.Sel == vnode2.Sel
 	return sameKey && sameSel
