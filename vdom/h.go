@@ -30,7 +30,7 @@ func EmptyNodeAt(elm dom.Element) *VNode {
 	}
 
 	return &VNode{
-		Sel:      elm.TagName() + id + c,
+		Sel:      strings.ToLower(elm.TagName()) + id + c,
 		Data:     nil,
 		Children: nil,
 		Elm:      elm,
