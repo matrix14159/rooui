@@ -48,6 +48,13 @@ func (p *Patcher) patchVNode(vnode *VNode) {
 }
 
 func (p *Patcher) createElm(vnode *VNode) dom.Node {
+	if vnode.Sel == "" {
+		return p.api.CreateTextNode(vnode.Text)
+	}
+
+	//hashIdx := strings.Index(vnode.Sel, "#")
+	//dotIdx := strings.Index(vnode.Sel, ".")
+
 	return nil
 }
 
