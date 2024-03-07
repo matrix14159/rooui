@@ -1,6 +1,7 @@
 package vdom
 
 import (
+	"log/slog"
 	"testing"
 )
 
@@ -21,4 +22,5 @@ func TestCreateTag(t *testing.T) {
 	if root == nil {
 		t.Fatalf("can't find the root div")
 	}
+	slog.Info("TestCreateTag done.")
 }
