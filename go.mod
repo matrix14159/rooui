@@ -9,8 +9,8 @@ require (
 )
 
 require (
-	github.com/matrix14159/sharp v0.7.0 // indirect
-	github.com/matrix14159/tint v0.6.0 // indirect
+	github.com/matrix14159/sharp v0.8.0 // indirect
+	github.com/matrix14159/tint v0.7.0 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 )

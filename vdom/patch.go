@@ -1,6 +1,8 @@
 package vdom
 
 import (
+	"log/slog"
+
 	"honnef.co/go/js/dom/v2"
 )
 
@@ -12,10 +14,11 @@ type Patcher struct {
 	inserted []*VNode
 }
 
-func NewPatcher(api DOMAPI, vnode *VNode) *Patcher {
+// NewPatcher create a patcher for dom's elm
+func NewPatcher(api DOMAPI, elm dom.Element) *Patcher {
 	return &Patcher{
 		api:      api,
-		curVNode: vnode,
+		curVNode: EmptyNodeAt(elm),
 		inserted: make([]*VNode, 0),
 	}
 }
@@ -25,21 +28,22 @@ func (p *Patcher) CurrentVNode() *VNode {
 	return p.curVNode
 }
 
-func (p *Patcher) Patch(vnode *VNode) (err error) {
-	if SameVNode(p.curVNode, vnode) {
-		p.patchVNode(vnode)
+func (p *Patcher) Patch(newNode *VNode) (err error) {
+	if SameVNode(p.curVNode, newNode) {
+		p.patchVNode(newNode)
 	} else {
+		slog.Info("not the same vnode, replace current element", "curVNode", *p.curVNode)
 		elm := p.curVNode.Elm
 		parent := p.api.ParentNode(elm)
 
-		vnode.Elm = p.createElm(vnode)
+		newNode.Elm = p.createElm(newNode)
 
 		if parent != nil {
-			p.api.InsertBefore(parent, vnode.Elm, p.api.NextSibling(vnode.Elm))
+			p.api.InsertBefore(parent, newNode.Elm, p.api.NextSibling(newNode.Elm))
 			p.removeVNodes(parent, []*VNode{p.curVNode}, 0, 0)
 		}
 	}
-	p.curVNode = vnode
+	p.curVNode = newNode
 	return
 }
 
