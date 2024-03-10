@@ -15,10 +15,10 @@ type Patcher struct {
 }
 
 // NewPatcher create a patcher for dom's elm
-func NewPatcher(api DOMAPI, elm dom.Element) *Patcher {
+func NewPatcher(api DOMAPI, cur *VNode) *Patcher {
 	return &Patcher{
 		api:      api,
-		curVNode: EmptyNodeAt(elm),
+		curVNode: cur,
 		inserted: make([]*VNode, 0),
 	}
 }
@@ -32,11 +32,14 @@ func (p *Patcher) Patch(newNode *VNode) (err error) {
 	if SameVNode(p.curVNode, newNode) {
 		p.patchVNode(newNode)
 	} else {
-		slog.Info("not the same vnode, replace current element", "curVNode", *p.curVNode)
+
 		elm := p.curVNode.Elm
 		parent := p.api.ParentNode(elm)
 
 		newNode.Elm = p.createElm(newNode)
+
+		slog.Info("not the same vnode, replace current element",
+			"curVNode", *p.curVNode, "parent", parent.NodeName())
 
 		if parent != nil {
 			p.api.InsertBefore(parent, newNode.Elm, p.api.NextSibling(newNode.Elm))
