@@ -4,6 +4,18 @@ import (
 	"testing"
 )
 
+// GOOS=js GOARCH=wasm go test -run TestH
+func TestH(t *testing.T) {
+	sel := "div"
+	vnode := H(sel, nil, "hello", nil)
+	if vnode.Sel != sel {
+		t.Fatalf("sel must be %v, but got:%v", sel, vnode.Sel)
+	}
+	if vnode.Text != "hello" {
+		t.Fatalf("text must be hello, but got:%v", vnode.Text)
+	}
+}
+
 // GOOS=js GOARCH=wasm go test -run TestEmptyNodeAt
 func TestEmptyNodeAt(t *testing.T) {
 	api := NewStandardDomApi()
