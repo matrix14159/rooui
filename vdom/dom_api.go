@@ -6,6 +6,7 @@ import (
 
 type DOMAPI interface {
 	CreateElement(name string) dom.HTMLElement
+	CreateElementNS(namespace, name string) dom.HTMLElement
 	CreateTextNode(text string) *dom.Text
 	ParentNode(node dom.Node) dom.Node
 	InsertBefore(parentNode, newNode, referenceNode dom.Node)
@@ -26,6 +27,10 @@ func NewStandardDomApi() *StandardDomApi {
 
 func (p *StandardDomApi) CreateElement(name string) dom.HTMLElement {
 	return p.document.CreateElement(name).(dom.HTMLElement)
+}
+
+func (p *StandardDomApi) CreateElementNS(namespace, name string) dom.HTMLElement {
+	return p.document.CreateElementNS(namespace, name).(dom.HTMLElement)
 }
 
 func (p *StandardDomApi) ParentNode(node dom.Node) dom.Node {
