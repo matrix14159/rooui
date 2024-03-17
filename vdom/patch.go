@@ -13,6 +13,7 @@ type Patcher struct {
 
 	curVNode *VNode
 
+	// new vnode when patch
 	inserted []*VNode
 }
 
@@ -31,6 +32,7 @@ func (p *Patcher) CurrentVNode() *VNode {
 }
 
 func (p *Patcher) Patch(newNode *VNode) (err error) {
+	p.inserted = make([]*VNode, 0)
 	if SameVNode(p.curVNode, newNode) {
 		p.patchVNode(newNode)
 	} else {
@@ -97,6 +99,19 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 		slog.Info("createElm", "raw-class", vnode.Sel[dot+1:], "use-class", cls)
 		elm.SetAttribute("class", cls)
 	}
+
+	if vnode.Text != "" && len(vnode.Children) == 0 {
+		// allow h1 and similar nodes to be created w/ text and empty child list
+		p.api.AppendChild(elm, p.api.CreateTextNode(vnode.Text))
+	}
+	for _, child := range vnode.Children {
+		if child == nil {
+			continue
+		}
+		c := p.createElm(child)
+		p.api.AppendChild(elm, c)
+	}
+	p.inserted = append(p.inserted, vnode)
 	return vnode.Elm
 }
 
