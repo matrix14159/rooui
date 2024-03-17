@@ -15,23 +15,23 @@ type DOMAPI interface {
 }
 
 type StandardDomApi struct {
-	window   dom.Window
-	document dom.Document
+	Window   dom.Window
+	Document dom.Document
 }
 
 func NewStandardDomApi() *StandardDomApi {
 	p := new(StandardDomApi)
-	p.window = dom.GetWindow()
-	p.document = p.window.Document()
+	p.Window = dom.GetWindow()
+	p.Document = p.Window.Document()
 	return p
 }
 
 func (p *StandardDomApi) CreateElement(name string) dom.HTMLElement {
-	return p.document.CreateElement(name).(dom.HTMLElement)
+	return p.Document.CreateElement(name).(dom.HTMLElement)
 }
 
 func (p *StandardDomApi) CreateElementNS(namespace, name string) dom.HTMLElement {
-	return p.document.CreateElementNS(namespace, name).(dom.HTMLElement)
+	return p.Document.CreateElementNS(namespace, name).(dom.HTMLElement)
 }
 
 func (p *StandardDomApi) ParentNode(node dom.Node) dom.Node {
@@ -47,7 +47,7 @@ func (p *StandardDomApi) NextSibling(node dom.Node) dom.Node {
 }
 
 func (p *StandardDomApi) CreateTextNode(text string) *dom.Text {
-	return p.document.CreateTextNode(text)
+	return p.Document.CreateTextNode(text)
 }
 
 func (p *StandardDomApi) AppendChild(node dom.Node, child dom.Node) {

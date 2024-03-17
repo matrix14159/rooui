@@ -19,7 +19,7 @@ func TestH(t *testing.T) {
 // GOOS=js GOARCH=wasm go test -run TestEmptyNodeAt
 func TestEmptyNodeAt(t *testing.T) {
 	api := NewStandardDomApi()
-	elms := api.document.GetElementsByTagName("body")
+	elms := api.Document.GetElementsByTagName("body")
 	if len(elms) != 1 {
 		t.Fatalf("html page miss body tag")
 	}
@@ -29,7 +29,7 @@ func TestEmptyNodeAt(t *testing.T) {
 	div.SetID("root")
 	body.InsertBefore(div, nil)
 
-	root := api.document.GetElementByID("root")
+	root := api.Document.GetElementByID("root")
 	if root == nil {
 		t.Fatalf("can't find the root div")
 	}

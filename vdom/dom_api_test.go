@@ -14,7 +14,7 @@ func TestCreateTag(t *testing.T) {
 
 func insertDiv(t *testing.T, id string) dom.Element {
 	api := NewStandardDomApi()
-	elms := api.document.GetElementsByTagName("body")
+	elms := api.Document.GetElementsByTagName("body")
 	if len(elms) != 1 {
 		t.Fatalf("html page miss body tag")
 	}
@@ -24,7 +24,7 @@ func insertDiv(t *testing.T, id string) dom.Element {
 	div.SetID(id)
 	body.InsertBefore(div, nil)
 
-	newDiv := api.document.GetElementByID(id)
+	newDiv := api.Document.GetElementByID(id)
 	if newDiv == nil {
 		t.Fatalf("can't find the %v div", id)
 	}
