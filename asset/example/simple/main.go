@@ -20,7 +20,7 @@ func main() {
 
 	p := vdom.NewPatcher(vdom.NewStandardDomApi(), vdom.EmptyNodeAt(root))
 
-	vnode := vdom.H("div", nil, "hello", nil)
+	vnode := vdom.H("div#path", nil, "hello", nil)
 	err := p.Patch(vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)
