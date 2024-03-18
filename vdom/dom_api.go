@@ -12,6 +12,7 @@ type DOMAPI interface {
 	InsertBefore(parentNode, newNode, referenceNode dom.Node)
 	NextSibling(node dom.Node) dom.Node
 	AppendChild(node dom.Node, child dom.Node)
+	RemoveChild(node dom.Node, child dom.Node)
 }
 
 type StandardDomApi struct {
@@ -52,4 +53,8 @@ func (p *StandardDomApi) CreateTextNode(text string) *dom.Text {
 
 func (p *StandardDomApi) AppendChild(node dom.Node, child dom.Node) {
 	node.AppendChild(child)
+}
+
+func (p *StandardDomApi) RemoveChild(node dom.Node, child dom.Node) {
+	node.RemoveChild(child)
 }
