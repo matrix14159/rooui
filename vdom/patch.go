@@ -46,7 +46,7 @@ func (p *Patcher) Patch(newNode *VNode) (err error) {
 
 		if parent != nil {
 			p.api.InsertBefore(parent, newNode.Elm, p.api.NextSibling(newNode.Elm))
-			p.removeVNodes(parent, []*VNode{p.curVNode}, 0, 0)
+			p.removeVNodes(parent, []*VNode{p.curVNode})
 		}
 	}
 	p.curVNode = newNode
@@ -115,6 +115,12 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	return vnode.Elm
 }
 
-func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, endIdx int) {
-
+func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode) {
+	for _, vnode := range vnodes {
+		if vnode == nil {
+			continue
+		}
+		p.removeVNodes(vnode.Elm, vnode.Children)
+		p.api.RemoveChild(parentElm, vnode.Elm)
+	}
 }
