@@ -54,6 +54,29 @@ func (p *Patcher) Patch(newNode *VNode) (err error) {
 }
 
 func (p *Patcher) patchVNode(vnode *VNode) {
+	vnode.Elm = p.curVNode.Elm
+	if vnode.Text == "" {
+		if len(vnode.Children) > 0 && len(p.curVNode.Children) > 0 {
+			p.updateChildren(vnode.Elm, p.curVNode.Children, vnode.Children)
+		} else if len(vnode.Children) > 0 {
+			if p.curVNode.Text != "" {
+				p.api.SetTextContent(vnode.Elm, "")
+			}
+			p.addVNodes(vnode.Elm, nil, vnode.Children)
+		} else if len(p.curVNode.Children) > 0 {
+			p.removeVNodes(vnode.Elm, p.curVNode.Children)
+		} else if p.curVNode.Text != "" {
+			p.api.SetTextContent(vnode.Elm, "")
+		}
+	} else if vnode.Text != p.curVNode.Text {
+		if len(p.curVNode.Children) > 0 {
+			p.removeVNodes(vnode.Elm, p.curVNode.Children)
+		}
+		p.api.SetTextContent(vnode.Elm, "")
+	}
+}
+
+func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
 
 }
 
@@ -113,6 +136,10 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	}
 	p.inserted = append(p.inserted, vnode)
 	return vnode.Elm
+}
+
+func (p *Patcher) addVNodes(parentElm, before dom.Node, vnodes []*VNode) {
+
 }
 
 func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode) {
