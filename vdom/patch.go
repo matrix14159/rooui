@@ -139,7 +139,12 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 }
 
 func (p *Patcher) addVNodes(parentElm, before dom.Node, vnodes []*VNode) {
-
+	for _, vnode := range vnodes {
+		if vnode == nil {
+			continue
+		}
+		p.api.InsertBefore(parentElm, p.createElm(vnode), before)
+	}
 }
 
 func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode) {
