@@ -13,6 +13,7 @@ type DOMAPI interface {
 	NextSibling(node dom.Node) dom.Node
 	AppendChild(node dom.Node, child dom.Node)
 	RemoveChild(node dom.Node, child dom.Node)
+	SetTextContent(node dom.Node, text string)
 }
 
 type StandardDomApi struct {
@@ -57,4 +58,8 @@ func (p *StandardDomApi) AppendChild(node dom.Node, child dom.Node) {
 
 func (p *StandardDomApi) RemoveChild(node dom.Node, child dom.Node) {
 	node.RemoveChild(child)
+}
+
+func (p *StandardDomApi) SetTextContent(node dom.Node, text string) {
+	node.SetTextContent(text)
 }
