@@ -32,52 +32,163 @@ func (p *Patcher) CurrentVNode() *VNode {
 }
 
 func (p *Patcher) Patch(newNode *VNode) (err error) {
+	oldVnode := p.curVNode
+
 	p.inserted = make([]*VNode, 0)
-	if SameVNode(p.curVNode, newNode) {
-		p.patchVNode(newNode)
+	if SameVNode(oldVnode, newNode) {
+		p.patchVNode(oldVnode, newNode)
 	} else {
-		elm := p.curVNode.Elm
+		elm := oldVnode.Elm
 		parent := p.api.ParentNode(elm)
 
 		newNode.Elm = p.createElm(newNode)
 
 		slog.Info("not the same vnode, replace current element",
-			"curVNode", *p.curVNode, "parent", parent.NodeName(), "newNode", newNode)
+			"oldVnode", *oldVnode, "parent", parent.NodeName(), "newNode", newNode)
 
 		if parent != nil {
 			p.api.InsertBefore(parent, newNode.Elm, p.api.NextSibling(newNode.Elm))
-			p.removeVNodes(parent, []*VNode{p.curVNode})
+			p.removeVNodes(parent, []*VNode{oldVnode}, 0, 0)
 		}
 	}
 	p.curVNode = newNode
 	return
 }
 
-func (p *Patcher) patchVNode(vnode *VNode) {
-	vnode.Elm = p.curVNode.Elm
+func (p *Patcher) patchVNode(oldVnode, vnode *VNode) {
+	vnode.Elm = oldVnode.Elm
 	if vnode.Text == "" {
-		if len(vnode.Children) > 0 && len(p.curVNode.Children) > 0 {
-			p.updateChildren(vnode.Elm, p.curVNode.Children, vnode.Children)
-		} else if len(vnode.Children) > 0 {
-			if p.curVNode.Text != "" {
+		switch {
+		case len(vnode.Children) > 0 && len(oldVnode.Children) > 0:
+			p.updateChildren(vnode.Elm, oldVnode.Children, vnode.Children)
+
+		case len(vnode.Children) > 0:
+			if oldVnode.Text != "" {
 				p.api.SetTextContent(vnode.Elm, "")
 			}
-			p.addVNodes(vnode.Elm, nil, vnode.Children)
-		} else if len(p.curVNode.Children) > 0 {
-			p.removeVNodes(vnode.Elm, p.curVNode.Children)
-		} else if p.curVNode.Text != "" {
+			p.addVNodes(vnode.Elm, nil, vnode.Children, 0, len(vnode.Children)-1)
+
+		case len(oldVnode.Children) > 0:
+			p.removeVNodes(vnode.Elm, oldVnode.Children, 0, len(oldVnode.Children)-1)
+
+		case oldVnode.Text != "":
 			p.api.SetTextContent(vnode.Elm, "")
 		}
-	} else if vnode.Text != p.curVNode.Text {
-		if len(p.curVNode.Children) > 0 {
-			p.removeVNodes(vnode.Elm, p.curVNode.Children)
+	} else if vnode.Text != oldVnode.Text {
+		if len(oldVnode.Children) > 0 {
+			p.removeVNodes(vnode.Elm, oldVnode.Children, 0, len(oldVnode.Children)-1)
 		}
 		p.api.SetTextContent(vnode.Elm, "")
 	}
 }
 
 func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
+	oldStartIdx := 0
+	oldEndIdx := len(oldCh) - 1
+	oldStartVnode := oldCh[0]
+	oldEndVnode := oldCh[oldEndIdx]
 
+	newStartIdx := 0
+	newEndIdx := len(newCh) - 1
+	newStartVnode := newCh[0]
+	newEndVnode := newCh[newEndIdx]
+
+	oldKeyToIdx := make(map[string]int)
+
+	for oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx {
+		switch {
+		case oldStartVnode == nil: // Vnode might have been moved left
+			oldStartIdx++
+			oldStartVnode = oldCh[oldStartIdx]
+
+		case oldEndVnode == nil:
+			oldEndIdx--
+			oldEndVnode = oldCh[oldEndIdx]
+
+		case newStartVnode == nil:
+			newStartIdx++
+			newStartVnode = newCh[newStartIdx]
+
+		case newEndVnode == nil:
+			newEndIdx--
+			newEndVnode = newCh[newEndIdx]
+
+		case SameVNode(oldStartVnode, newStartVnode):
+			p.patchVNode(oldStartVnode, newStartVnode)
+			oldStartIdx++
+			oldStartVnode = oldCh[oldStartIdx]
+			newStartIdx++
+			newStartVnode = newCh[newStartIdx]
+
+		case SameVNode(oldEndVnode, newEndVnode):
+			p.patchVNode(oldEndVnode, newEndVnode)
+			oldEndIdx--
+			oldEndVnode = oldCh[oldEndIdx]
+			newEndIdx--
+			newEndVnode = newCh[newEndIdx]
+
+		case SameVNode(oldStartVnode, newEndVnode):
+			// Vnode moved right
+			p.patchVNode(oldStartVnode, newEndVnode)
+			p.api.InsertBefore(parentElm, oldStartVnode.Elm, p.api.NextSibling(oldEndVnode.Elm))
+			oldStartIdx++
+			oldStartVnode = oldCh[oldStartIdx]
+			newEndIdx--
+			newEndVnode = newCh[newEndIdx]
+
+		case SameVNode(oldEndVnode, newStartVnode):
+			// Vnode moved left
+			p.patchVNode(oldEndVnode, newStartVnode)
+			p.api.InsertBefore(parentElm, oldEndVnode.Elm, oldStartVnode.Elm)
+			oldEndIdx--
+			oldEndVnode = oldCh[oldEndIdx]
+			newStartIdx++
+			newStartVnode = newCh[newStartIdx]
+
+		default:
+			if len(oldKeyToIdx) == 0 {
+				oldKeyToIdx = p.createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+			}
+			idxInOld, found := oldKeyToIdx[newStartVnode.Key]
+			if found {
+				elmToMove := oldCh[idxInOld]
+				if elmToMove.Sel != newStartVnode.Sel {
+					p.api.InsertBefore(parentElm, p.createElm(newStartVnode), oldStartVnode.Elm)
+				} else {
+					p.patchVNode(elmToMove, newStartVnode)
+					oldCh[idxInOld] = nil
+					p.api.InsertBefore(parentElm, elmToMove.Elm, oldStartVnode.Elm)
+				}
+			} else {
+				// New element
+				p.api.InsertBefore(parentElm, p.createElm(newStartVnode), oldStartVnode.Elm)
+			}
+
+			newStartIdx++
+			newStartVnode = newCh[newStartIdx]
+		}
+	}
+
+	if newStartIdx <= newEndIdx {
+		var before dom.Node = nil
+		if newCh[newEndIdx+1] != nil {
+			before = newCh[newEndIdx+1].Elm
+		}
+		p.addVNodes(parentElm, before, newCh, newStartIdx, newEndIdx)
+	}
+
+	if oldStartIdx <= oldEndIdx {
+		p.removeVNodes(parentElm, oldCh, oldStartIdx, oldEndIdx)
+	}
+}
+
+func (p *Patcher) createKeyToOldIdx(children []*VNode, beginIdx, endIdx int) map[string]int {
+	m := make(map[string]int)
+	for i := beginIdx; i < endIdx; i++ {
+		key := children[i].Key
+		m[key] = i
+	}
+	return m
 }
 
 func (p *Patcher) createElm(vnode *VNode) dom.Node {
@@ -138,21 +249,23 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	return vnode.Elm
 }
 
-func (p *Patcher) addVNodes(parentElm, before dom.Node, vnodes []*VNode) {
-	for _, vnode := range vnodes {
-		if vnode == nil {
+func (p *Patcher) addVNodes(parentElm, before dom.Node, vnodes []*VNode, startIdx, endIdx int) {
+	for i := startIdx; i <= endIdx; i++ {
+		ch := vnodes[i]
+		if ch == nil {
 			continue
 		}
-		p.api.InsertBefore(parentElm, p.createElm(vnode), before)
+		p.api.InsertBefore(parentElm, p.createElm(ch), before)
 	}
 }
 
-func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode) {
-	for _, vnode := range vnodes {
-		if vnode == nil {
+func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, endIdx int) {
+	for i := startIdx; i <= endIdx; i++ {
+		ch := vnodes[i]
+		if ch == nil {
 			continue
 		}
-		p.removeVNodes(vnode.Elm, vnode.Children)
-		p.api.RemoveChild(parentElm, vnode.Elm)
+		p.removeVNodes(ch.Elm, ch.Children, 0, len(ch.Children)-1)
+		p.api.RemoveChild(parentElm, ch.Elm)
 	}
 }
