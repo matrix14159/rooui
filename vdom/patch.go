@@ -12,9 +12,6 @@ type Patcher struct {
 	api DOMAPI
 
 	curVNode *VNode
-
-	// new vnode when patch
-	inserted []*VNode
 }
 
 // NewPatcher create a patcher for dom's elm
@@ -22,7 +19,6 @@ func NewPatcher(api DOMAPI, cur *VNode) *Patcher {
 	return &Patcher{
 		api:      api,
 		curVNode: cur,
-		inserted: make([]*VNode, 0),
 	}
 }
 
@@ -34,7 +30,6 @@ func (p *Patcher) CurrentVNode() *VNode {
 func (p *Patcher) Patch(newNode *VNode) (err error) {
 	oldVnode := p.curVNode
 
-	p.inserted = make([]*VNode, 0)
 	if SameVNode(oldVnode, newNode) {
 		p.patchVNode(oldVnode, newNode)
 	} else {
@@ -245,7 +240,6 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 		c := p.createElm(child)
 		p.api.AppendChild(elm, c)
 	}
-	p.inserted = append(p.inserted, vnode)
 	return vnode.Elm
 }
 
