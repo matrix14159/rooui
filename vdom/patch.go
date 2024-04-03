@@ -10,43 +10,32 @@ import (
 
 type Patcher struct {
 	api DOMAPI
-
-	curVNode *VNode
 }
 
 // NewPatcher create a patcher for dom's elm
-func NewPatcher(api DOMAPI, cur *VNode) *Patcher {
+func NewPatcher(api DOMAPI) *Patcher {
 	return &Patcher{
-		api:      api,
-		curVNode: cur,
+		api: api,
 	}
 }
 
-// CurrentVNode return current state of virtual-dom
-func (p *Patcher) CurrentVNode() *VNode {
-	return p.curVNode
-}
-
-func (p *Patcher) Patch(newNode *VNode) (err error) {
-	oldVnode := p.curVNode
-
-	if SameVNode(oldVnode, newNode) {
-		p.patchVNode(oldVnode, newNode)
+func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
+	if SameVNode(oldVnode, vnode) {
+		p.patchVNode(oldVnode, vnode)
 	} else {
 		elm := oldVnode.Elm
 		parent := p.api.ParentNode(elm)
 
-		newNode.Elm = p.createElm(newNode)
+		vnode.Elm = p.createElm(vnode)
 
 		slog.Info("not the same vnode, replace current element",
-			"oldVnode", *oldVnode, "parent", parent.NodeName(), "newNode", newNode)
+			"oldVnode", *oldVnode, "parent", parent.NodeName(), "newNode", vnode)
 
 		if parent != nil {
-			p.api.InsertBefore(parent, newNode.Elm, p.api.NextSibling(newNode.Elm))
+			p.api.InsertBefore(parent, vnode.Elm, p.api.NextSibling(vnode.Elm))
 			p.removeVNodes(parent, []*VNode{oldVnode}, 0, 0)
 		}
 	}
-	p.curVNode = newNode
 	return
 }
 
