@@ -10,16 +10,28 @@ import (
 
 type Patcher struct {
 	api DOMAPI
+
+	cbs []Module
 }
 
 // NewPatcher create a patcher for dom's elm
-func NewPatcher(api DOMAPI) *Patcher {
+func NewPatcher(api DOMAPI, module ...Module) *Patcher {
 	return &Patcher{
 		api: api,
+		cbs: module,
 	}
 }
 
 func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
+	for _, cb := range p.cbs {
+		cb.Pre()
+	}
+	defer func() {
+		for _, cb := range p.cbs {
+			cb.Post()
+		}
+	}()
+
 	if SameVNode(oldVnode, vnode) {
 		p.patchVNode(oldVnode, vnode)
 	} else {
@@ -41,6 +53,10 @@ func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
 
 func (p *Patcher) patchVNode(oldVnode, vnode *VNode) {
 	vnode.Elm = oldVnode.Elm
+	for _, cb := range p.cbs {
+		cb.Update(oldVnode, vnode)
+	}
+
 	if vnode.Text == "" {
 		switch {
 		case len(vnode.Children) > 0 && len(oldVnode.Children) > 0:
@@ -216,6 +232,10 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 		cls := strings.Replace(vnode.Sel[dot+1:], ".", " ", -1)
 		slog.Info("createElm", "raw-class", vnode.Sel[dot+1:], "use-class", cls)
 		elm.SetAttribute("class", cls)
+	}
+
+	for _, cb := range p.cbs {
+		cb.Create(emptyNode, vnode)
 	}
 
 	if vnode.Text != "" && len(vnode.Children) == 0 {

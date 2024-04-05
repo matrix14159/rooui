@@ -67,3 +67,12 @@ func EmptyNodeAt(elm dom.Element) *VNode {
 		Key:      ulid.Make().String(),
 	}
 }
+
+var emptyNode = &VNode{
+	Sel:      "",
+	Data:     nil,
+	Children: nil,
+	Elm:      nil,
+	Text:     "",
+	Key:      "",
+}
