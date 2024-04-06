@@ -8,7 +8,7 @@ type PrePatchHook func(oldVNode, vnode *VNode)
 type UpdateHook func(oldVNode, vnode *VNode)
 type PostPatchHook func(oldVNode, vnode *VNode)
 type DestroyHook func(vnode *VNode)
-type RemoveHook func(vnode *VNode)
+type RemoveHook func(vnode *VNode, removeCallback func())
 type PostHook func()
 
 type Hooks interface {
@@ -20,6 +20,6 @@ type Hooks interface {
 	Update(oldVNode, vnode *VNode)
 	PostPatch(oldVNode, vnode *VNode)
 	Destroy(vnode *VNode)
-	Remove(vnode *VNode)
+	Remove(vnode *VNode, removeCallback func())
 	Post()
 }

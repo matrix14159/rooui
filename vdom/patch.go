@@ -11,24 +11,35 @@ import (
 type Patcher struct {
 	api DOMAPI
 
-	cbs []Module
+	modules []Module
+
+	cbs HookGroup
 }
 
 // NewPatcher create a patcher for dom's elm
 func NewPatcher(api DOMAPI, module ...Module) *Patcher {
-	return &Patcher{
-		api: api,
-		cbs: module,
+	p := &Patcher{
+		api:     api,
+		modules: module,
 	}
+	for _, m := range p.modules {
+		p.cbs.Pres = append(p.cbs.Pres, m.Pre)
+		p.cbs.Creates = append(p.cbs.Creates, m.Create)
+		p.cbs.Updates = append(p.cbs.Updates, m.Update)
+		p.cbs.Destroys = append(p.cbs.Destroys, m.Destroy)
+		p.cbs.Removes = append(p.cbs.Removes, m.Remove)
+		p.cbs.Posts = append(p.cbs.Posts, m.Post)
+	}
+	return p
 }
 
 func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
-	for _, cb := range p.cbs {
-		cb.Pre()
+	for _, pre := range p.cbs.Pres {
+		pre()
 	}
 	defer func() {
-		for _, cb := range p.cbs {
-			cb.Post()
+		for _, post := range p.cbs.Posts {
+			post()
 		}
 	}()
 
@@ -53,8 +64,8 @@ func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
 
 func (p *Patcher) patchVNode(oldVnode, vnode *VNode) {
 	vnode.Elm = oldVnode.Elm
-	for _, cb := range p.cbs {
-		cb.Update(oldVnode, vnode)
+	for _, update := range p.cbs.Updates {
+		update(oldVnode, vnode)
 	}
 
 	if vnode.Text == "" {
@@ -234,8 +245,8 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 		elm.SetAttribute("class", cls)
 	}
 
-	for _, cb := range p.cbs {
-		cb.Create(emptyNode, vnode)
+	for _, create := range p.cbs.Creates {
+		create(emptyNode, vnode)
 	}
 
 	if vnode.Text != "" && len(vnode.Children) == 0 {
@@ -268,7 +279,38 @@ func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, en
 		if ch == nil {
 			continue
 		}
-		p.removeVNodes(ch.Elm, ch.Children, 0, len(ch.Children)-1)
-		p.api.RemoveChild(parentElm, ch.Elm)
+
+		switch {
+		case ch.Sel != "":
+			p.invokeDestroyHook(ch)
+			listeners := len(p.cbs.Removes) + 1
+			rm := p.createRmCb(ch.Elm, listeners)
+			for _, remove := range p.cbs.Removes {
+				remove(ch, rm)
+			}
+			rm()
+
+		case len(ch.Children) > 0:
+			p.invokeDestroyHook(ch)
+			p.removeVNodes(parentElm, ch.Children, 0, len(ch.Children)-1)
+
+		default:
+			// text node
+			p.api.RemoveChild(parentElm, ch.Elm)
+		}
 	}
+}
+
+func (p *Patcher) createRmCb(childElm dom.Node, listeners int) func() {
+	return func() {
+		listeners--
+		if listeners == 0 {
+			parent := p.api.ParentNode(childElm)
+			p.api.RemoveChild(parent, childElm)
+		}
+	}
+}
+
+func (p *Patcher) invokeDestroyHook(vnode *VNode) {
+
 }
