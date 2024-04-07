@@ -17,11 +17,11 @@ func main() {
 	initLog()
 
 	root := insertDiv("root")
-
-	p := vdom.NewPatcher(vdom.NewStandardDomApi(), vdom.EmptyNodeAt(root))
+	oldVnode := vdom.EmptyNodeAt(root)
+	p := vdom.NewPatcher(vdom.NewStandardDomApi())
 
 	vnode := vdom.H("div#path", nil, "hello", nil)
-	err := p.Patch(vnode)
+	err := p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)
 	}
