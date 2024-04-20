@@ -20,11 +20,14 @@ func main() {
 	root := insertDiv("root")
 	oldVnode := vdom.EmptyNodeAt(root)
 
-	p := vdom.NewPatcher(vdom.NewStandardDomApi(), vdom.NewStyleModule())
+	p := vdom.NewPatcher(vdom.NewStandardDomApi(),
+		vdom.NewStyleModule(),
+		vdom.NewClassModule(),
+	)
 
-	ms := vdom.NewVNodeStyle()
-	ms.Style["color"] = "red"
-	vnode := vdom.H("div#path", &vdom.VNodeData{Style: ms}, "hello", nil)
+	s := vdom.NewVNodeStyle()
+	s.Style["color"] = "red"
+	vnode := vdom.H("div#path", &vdom.VNodeData{Style: s}, "hello", nil)
 	oldVnode, err := p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)
@@ -32,9 +35,11 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 
-	ms = vdom.NewVNodeStyle()
-	ms.Style["color"] = "green"
-	vnode = vdom.H("div#path", &vdom.VNodeData{Style: ms}, "world", nil)
+	s = vdom.NewVNodeStyle()
+	s.Style["color"] = "green"
+	cls := vdom.NewClasses()
+	cls["first"] = true
+	vnode = vdom.H("div#path", &vdom.VNodeData{Style: s, Class: cls}, "world", nil)
 	oldVnode, err = p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)

@@ -290,7 +290,7 @@ func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, en
 				remove(ch, rm)
 			}
 			rm()
-			slog.Info("removeVNodes.", slog.Any("listeners", listeners))
+			//slog.Info("removeVNodes.", slog.Any("listeners", listeners))
 
 		case len(ch.Children) > 0:
 			p.invokeDestroyHook(ch)
