@@ -38,6 +38,7 @@ func setNextFrameStyle(el dom.HTMLElement, prop string, val any) {
 }
 
 type StyleModule struct {
+	reflowForced bool
 }
 
 func NewStyleModule() *StyleModule {
@@ -84,6 +85,57 @@ func (p *StyleModule) updateStyle(oldVnode, vnode *VNode) {
 	}
 }
 
+func (p *StyleModule) applyDestroyStyle(vnode *VNode) {
+	s, isNew := getStyle(vnode)
+	if isNew {
+		return
+	}
+	elm := vnode.Elm.(dom.HTMLElement)
+	for name, value := range s.Style {
+		elm.Style().Set(name, value)
+	}
+}
+
+func (p *StyleModule) applyRemoveStyle(vnode *VNode, removeCallback func()) {
+	//slog.Info("style module remove", slog.Any("key", vnode.Key))
+	defer func() {
+		removeCallback()
+	}()
+
+	s, isNew := getStyle(vnode)
+	if isNew {
+		return
+	}
+	elm := vnode.Elm.(dom.HTMLElement)
+
+	if !p.reflowForced {
+		p.reflowForced = true
+	}
+
+	for name, value := range s.Removes {
+		elm.Style().Set(name, value)
+	}
+
+	//amount := 0
+	//cs := dom.GetWindow().GetComputedStyle(elm, "")
+	//csMap := cs.ToMap()
+	//props := strings.Split(csMap["transition-property"], ",")
+	//for _, one := range props {
+	//	if _, found := s.Removes[one]; found {
+	//		amount++
+	//	}
+	//}
+	//
+	//elm.AddEventListener("transitionend", false, func(ev dom.Event) {
+	//	if ev.Target() == elm {
+	//		amount--
+	//	}
+	//	if amount == 0 {
+	//		removeCallback()
+	//	}
+	//})
+}
+
 func getStyle(vnode *VNode) (style *VNodeStyle, isNew bool) {
 	if vnode.Data == nil {
 		vnode.Data = &VNodeData{}
@@ -96,10 +148,8 @@ func getStyle(vnode *VNode) (style *VNodeStyle, isNew bool) {
 	return
 }
 
-var reflowForced = false
-
 func (p *StyleModule) Pre() {
-	reflowForced = false
+	p.reflowForced = false
 }
 
 func (p *StyleModule) Create(empty, vnode *VNode) {
@@ -110,10 +160,12 @@ func (p *StyleModule) Update(oldVNode, vnode *VNode) {
 	p.updateStyle(oldVNode, vnode)
 }
 
-func (p *StyleModule) Destroy(vnode *VNode) {}
+func (p *StyleModule) Destroy(vnode *VNode) {
+	p.applyDestroyStyle(vnode)
+}
 
 func (p *StyleModule) Remove(vnode *VNode, removeCallback func()) {
-	removeCallback()
+	p.applyRemoveStyle(vnode, removeCallback)
 }
 
 func (p *StyleModule) Post() {}

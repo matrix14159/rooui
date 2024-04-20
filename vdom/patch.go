@@ -90,7 +90,7 @@ func (p *Patcher) patchVNode(oldVnode, vnode *VNode) {
 		if len(oldVnode.Children) > 0 {
 			p.removeVNodes(vnode.Elm, oldVnode.Children, 0, len(oldVnode.Children)-1)
 		}
-		p.api.SetTextContent(vnode.Elm, "")
+		p.api.SetTextContent(vnode.Elm, vnode.Text)
 	}
 }
 

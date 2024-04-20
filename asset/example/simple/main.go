@@ -34,7 +34,7 @@ func main() {
 
 	ms = vdom.NewVNodeStyle()
 	ms.Style["color"] = "green"
-	vnode = vdom.H("div#path", &vdom.VNodeData{Style: ms}, "hello", nil)
+	vnode = vdom.H("div#path", &vdom.VNodeData{Style: ms}, "world", nil)
 	oldVnode, err = p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)
