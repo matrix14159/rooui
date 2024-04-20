@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/oklog/ulid/v2"
 	"honnef.co/go/js/dom/v2"
 )
 
@@ -25,7 +24,7 @@ func H(sel string, data *VNodeData, text string, children VNodeChildren) (vnode 
 		Children: children,
 		Elm:      nil,
 		Text:     text,
-		Key:      ulid.Make().String(),
+		Key:      data.Key,
 	}
 	return
 }
@@ -64,7 +63,7 @@ func EmptyNodeAt(elm dom.Element) *VNode {
 		Children: nil,
 		Elm:      elm,
 		Text:     "",
-		Key:      ulid.Make().String(),
+		Key:      "",
 	}
 }
 

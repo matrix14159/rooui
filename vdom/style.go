@@ -1,7 +1,10 @@
 package vdom
 
 import (
+	"log/slog"
+
 	"github.com/matrix14159/rooui/gs"
+	"honnef.co/go/js/dom/v2"
 )
 
 type VNodeStyle struct {
@@ -9,14 +12,14 @@ type VNodeStyle struct {
 
 	Delayed map[string]string
 
-	Remove map[string]string
+	Removes map[string]string
 }
 
 func NewVNodeStyle() *VNodeStyle {
 	return &VNodeStyle{
 		Style:   make(map[string]string),
 		Delayed: make(map[string]string),
-		Remove:  make(map[string]string),
+		Removes: make(map[string]string),
 	}
 }
 
@@ -29,3 +32,88 @@ func NextFrame(f func()) {
 		raf(f)
 	})
 }
+
+func setNextFrameStyle(el dom.HTMLElement, prop string, val any) {
+	el.Style().Set(prop, val)
+}
+
+type StyleModule struct {
+}
+
+func NewStyleModule() *StyleModule {
+	return new(StyleModule)
+}
+
+func (p *StyleModule) updateStyle(oldVnode, vnode *VNode) {
+	slog.Info("updateStyle", slog.Any("old", oldVnode), slog.Any("new", vnode))
+	oldStyle, isNew1 := getStyle(oldVnode)
+	newStyle, isNew2 := getStyle(vnode)
+	if isNew1 && isNew2 {
+		return
+	}
+	if oldStyle == newStyle {
+		return
+	}
+
+	elm := vnode.Elm.(dom.HTMLElement)
+	_, oldHasDel := oldStyle.Style["delayed"]
+
+	for name, _ := range oldStyle.Style {
+		if _, found := newStyle.Style[name]; !found {
+			if len(name) >= 2 && name[0] == '-' && name[1] == '-' {
+				elm.Style().RemoveProperty(name)
+			} else {
+				elm.Style().Set(name, "")
+			}
+		}
+	}
+	for name, value := range newStyle.Style {
+		if name == "delayed" && len(newStyle.Delayed) > 0 {
+			for name2, cur := range newStyle.Delayed {
+				if !oldHasDel || cur != oldStyle.Delayed[name2] {
+					setNextFrameStyle(elm, name2, cur)
+				}
+			}
+		} else if name != "remove" && value != oldStyle.Style[name] {
+			if len(name) >= 2 && name[0] == '-' && name[1] == '-' {
+				elm.Style().SetProperty(name, value, "")
+			} else {
+				elm.Style().Set(name, value)
+			}
+		}
+	}
+}
+
+func getStyle(vnode *VNode) (style *VNodeStyle, isNew bool) {
+	if vnode.Data == nil {
+		vnode.Data = &VNodeData{}
+	}
+	if vnode.Data.Style == nil {
+		vnode.Data.Style = NewVNodeStyle()
+		isNew = true
+	}
+	style = vnode.Data.Style
+	return
+}
+
+var reflowForced = false
+
+func (p *StyleModule) Pre() {
+	reflowForced = false
+}
+
+func (p *StyleModule) Create(empty, vnode *VNode) {
+	p.updateStyle(empty, vnode)
+}
+
+func (p *StyleModule) Update(oldVNode, vnode *VNode) {
+	p.updateStyle(oldVNode, vnode)
+}
+
+func (p *StyleModule) Destroy(vnode *VNode) {}
+
+func (p *StyleModule) Remove(vnode *VNode, removeCallback func()) {
+	removeCallback()
+}
+
+func (p *StyleModule) Post() {}

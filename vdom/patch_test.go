@@ -12,7 +12,7 @@ func TestPatch(t *testing.T) {
 	vnode := H("div", nil, "hello", nil)
 
 	p := NewPatcher(NewStandardDomApi())
-	err := p.Patch(oldVnode, vnode)
+	_, err := p.Patch(oldVnode, vnode)
 	if err != nil {
 		t.Fatalf("patch failed. error:%v", err)
 	}
@@ -29,7 +29,7 @@ func TestPatch2(t *testing.T) {
 	vnode := H("div#app", nil, "hello", nil)
 
 	p := NewPatcher(NewStandardDomApi())
-	err := p.Patch(oldVnode, vnode)
+	_, err := p.Patch(oldVnode, vnode)
 	if err != nil {
 		t.Fatalf("patch failed. error:%v", err)
 	}
@@ -46,7 +46,7 @@ func TestPatch3(t *testing.T) {
 	vnode := H("div.btn.mart24", nil, "hello", nil)
 
 	p := NewPatcher(NewStandardDomApi())
-	err := p.Patch(oldVnode, vnode)
+	_, err := p.Patch(oldVnode, vnode)
 	if err != nil {
 		t.Fatalf("patch failed. error:%v", err)
 	}

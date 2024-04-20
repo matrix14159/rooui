@@ -33,7 +33,7 @@ func NewPatcher(api DOMAPI, module ...Module) *Patcher {
 	return p
 }
 
-func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
+func (p *Patcher) Patch(oldVnode, vnode *VNode) (old *VNode, err error) {
 	for _, pre := range p.cbs.Pres {
 		pre()
 	}
@@ -59,6 +59,7 @@ func (p *Patcher) Patch(oldVnode, vnode *VNode) (err error) {
 			p.removeVNodes(parent, []*VNode{oldVnode}, 0, 0)
 		}
 	}
+	old = vnode
 	return
 }
 
@@ -289,6 +290,7 @@ func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, en
 				remove(ch, rm)
 			}
 			rm()
+			slog.Info("removeVNodes.", slog.Any("listeners", listeners))
 
 		case len(ch.Children) > 0:
 			p.invokeDestroyHook(ch)

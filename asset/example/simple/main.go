@@ -2,6 +2,7 @@ package main
 
 import (
 	"log/slog"
+	"time"
 
 	"github.com/matrix14159/rooui/vdom"
 	"github.com/matrix14159/sharp"
@@ -18,10 +19,23 @@ func main() {
 
 	root := insertDiv("root")
 	oldVnode := vdom.EmptyNodeAt(root)
-	p := vdom.NewPatcher(vdom.NewStandardDomApi())
 
-	vnode := vdom.H("div#path", nil, "hello", nil)
-	err := p.Patch(oldVnode, vnode)
+	p := vdom.NewPatcher(vdom.NewStandardDomApi(), vdom.NewStyleModule())
+
+	ms := vdom.NewVNodeStyle()
+	ms.Style["color"] = "red"
+	vnode := vdom.H("div#path", &vdom.VNodeData{Style: ms}, "hello", nil)
+	oldVnode, err := p.Patch(oldVnode, vnode)
+	if err != nil {
+		slog.Error("path failed.", "error", err)
+	}
+
+	time.Sleep(1 * time.Second)
+
+	ms = vdom.NewVNodeStyle()
+	ms.Style["color"] = "green"
+	vnode = vdom.H("div#path", &vdom.VNodeData{Style: ms}, "hello", nil)
+	oldVnode, err = p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)
 	}
