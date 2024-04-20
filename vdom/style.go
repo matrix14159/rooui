@@ -1,19 +1,31 @@
 package vdom
 
-// StylePair represent name value pair
-type StylePair struct {
-	Name  string
-	Value string
+import (
+	"github.com/matrix14159/rooui/gs"
+)
+
+type VNodeStyle struct {
+	Style map[string]string
+
+	Delayed map[string]string
+
+	Remove map[string]string
 }
 
-type StylePairs []StylePair
-
-type StyleItem struct {
-	Name  string
-	Value string
-
-	Delayed StylePairs
-	Remove  StylePairs
+func NewVNodeStyle() *VNodeStyle {
+	return &VNodeStyle{
+		Style:   make(map[string]string),
+		Delayed: make(map[string]string),
+		Remove:  make(map[string]string),
+	}
 }
 
-type VNodeStyle []StyleItem
+func raf(f func()) {
+	gs.RequestAnimationFrame(f)
+}
+
+func NextFrame(f func()) {
+	raf(func() {
+		raf(f)
+	})
+}

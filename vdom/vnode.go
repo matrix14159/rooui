@@ -19,7 +19,7 @@ type VNodeData struct {
 	Props     Props
 	Attrs     Attrs
 	Class     Classes
-	Style     VNodeStyle
+	Style     *VNodeStyle
 	Dataset   Dataset
 	Events    Events
 	Key       string
