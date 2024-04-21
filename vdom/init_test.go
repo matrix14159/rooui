@@ -6,6 +6,8 @@ import (
 	"github.com/matrix14159/sharp"
 )
 
+// 在执行wasm单元测试之前，需先安装 github.com/agnivade/wasmbrowsertest
+// 然后重命名为 go_js_wasm_exec.exe
 func init() {
 	opts := &slog.HandlerOptions{
 		AddSource:   true,
