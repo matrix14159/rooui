@@ -6,37 +6,23 @@ import (
 	"honnef.co/go/js/dom/v2"
 )
 
-type EventHandler func(event dom.Event)
-
-type EventTrigger struct {
-	vnode *VNode
-}
-
 // On represent event listener
 type On struct {
 	Events map[string][]EventHandler
 
 	// 事件注册后得到的js方法存根，后续可以用来移除监听器
 	stubs map[string]js.Func
+}
 
-	// 在 Events 中注册的时间统一由 trigger 触发
-	trigger *EventTrigger
+type EventHandler struct {
+	Options []any
+	Handler func(event dom.Event, options ...any)
 }
 
 func NewEventListener(vnode *VNode) *On {
 	return &On{
-		Events:  make(map[string][]EventHandler),
-		stubs:   make(map[string]js.Func),
-		trigger: &EventTrigger{vnode: vnode},
-	}
-}
-
-func (p *EventTrigger) Handle(event dom.Event) {
-	name := event.Type()
-	listener, _ := getEventListener(p.vnode)
-	handlers := listener.Events[name]
-	for _, handler := range handlers {
-		handler(event)
+		Events: make(map[string][]EventHandler),
+		stubs:  make(map[string]js.Func),
 	}
 }
 
@@ -62,8 +48,16 @@ func (p *EventModule) updateEventListeners(oldVNode, vnode *VNode) {
 
 	for name, _ := range newListener.Events {
 		if _, found := oldListener.Events[name]; !found {
-			newListener.stubs[name] = newElm.AddEventListener(name, false, newListener.trigger.Handle)
+			newListener.stubs[name] = newElm.AddEventListener(name, false, newListener.handle)
 		}
+	}
+}
+
+func (p *On) handle(event dom.Event) {
+	name := event.Type()
+	handlers := p.Events[name]
+	for _, one := range handlers {
+		one.Handler(event, one.Options...)
 	}
 }
 
