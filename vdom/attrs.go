@@ -10,9 +10,6 @@ import (
 const xlinkNS = "http://www.w3.org/1999/xlink"
 const xmlnsNS = "http://www.w3.org/2000/xmlns/"
 const xmlNS = "http://www.w3.org/XML/1998/namespace"
-const colonChar = 58
-const xChar = 120
-const mChar = 109
 
 type Attrs map[string]any // type of value must be one of the bool, number, string
 
@@ -56,7 +53,7 @@ func (p *AttrModule) updateAttrs(oldVNode, vnode *VNode) {
 			} else if len(s) >= 5 && s[5] == ':' {
 				// Assume 'xmlns' or 'xlink' namespace
 				if s[0] == 'm' {
-					elm.SetAttributeNS(xmlNS, key, s)
+					elm.SetAttributeNS(xmlnsNS, key, s)
 				} else {
 					elm.SetAttributeNS(xlinkNS, key, s)
 				}
