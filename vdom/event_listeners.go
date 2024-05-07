@@ -26,6 +26,14 @@ func NewEventListener(vnode *VNode) *On {
 	}
 }
 
+func (p *On) handle(event dom.Event) {
+	name := event.Type()
+	handlers := p.Events[name]
+	for _, one := range handlers {
+		one.Handler(event, one.Options...)
+	}
+}
+
 type EventModule struct {
 }
 
@@ -50,14 +58,6 @@ func (p *EventModule) updateEventListeners(oldVNode, vnode *VNode) {
 		if _, found := oldListener.Events[name]; !found {
 			newListener.stubs[name] = newElm.AddEventListener(name, false, newListener.handle)
 		}
-	}
-}
-
-func (p *On) handle(event dom.Event) {
-	name := event.Type()
-	handlers := p.Events[name]
-	for _, one := range handlers {
-		one.Handler(event, one.Options...)
 	}
 }
 
