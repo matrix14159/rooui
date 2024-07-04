@@ -9,7 +9,7 @@ func TestPatch(t *testing.T) {
 	root := insertDiv(t, "root")
 	oldVnode := EmptyNodeAt(root)
 
-	vnode := H("div", nil, "hello", nil)
+	vnode := H("div", "hello", nil, nil)
 
 	p := NewPatcher(NewStandardDomApi())
 	_, err := p.Patch(oldVnode, vnode)
@@ -26,7 +26,7 @@ func TestPatch2(t *testing.T) {
 	root := insertDiv(t, "root")
 	oldVnode := EmptyNodeAt(root)
 
-	vnode := H("div#app", nil, "hello", nil)
+	vnode := H("div#app", "hello", nil, nil)
 
 	p := NewPatcher(NewStandardDomApi())
 	_, err := p.Patch(oldVnode, vnode)
@@ -43,7 +43,7 @@ func TestPatch3(t *testing.T) {
 	root := insertDiv(t, "root")
 	oldVnode := EmptyNodeAt(root)
 
-	vnode := H("div.btn.mart24", nil, "hello", nil)
+	vnode := H("div.btn.mart24", "hello", nil, nil)
 
 	p := NewPatcher(NewStandardDomApi())
 	_, err := p.Patch(oldVnode, vnode)

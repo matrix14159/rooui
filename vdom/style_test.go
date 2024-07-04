@@ -22,7 +22,7 @@ func TestPatchStyle(t *testing.T) {
 
 	s := NewVNodeStyle()
 	s.Style["color"] = "red"
-	vnode := H("div", &VNodeData{Style: s}, "hello", nil)
+	vnode := H("div", "hello", &VNodeData{Style: s}, nil)
 
 	p := NewPatcher(NewStandardDomApi())
 	_, err := p.Patch(oldVnode, vnode)

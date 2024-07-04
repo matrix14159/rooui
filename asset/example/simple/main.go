@@ -27,7 +27,7 @@ func main() {
 
 	s := vdom.NewVNodeStyle()
 	s.Style["color"] = "red"
-	vnode := vdom.H("div#path", &vdom.VNodeData{Style: s}, "hello", nil)
+	vnode := vdom.H("div#path", "hello", &vdom.VNodeData{Style: s}, nil)
 	oldVnode, err := p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)
@@ -39,7 +39,7 @@ func main() {
 	s.Style["color"] = "green"
 	cls := vdom.NewClasses()
 	cls["first"] = true
-	vnode = vdom.H("div#path", &vdom.VNodeData{Style: s, Class: cls}, "world", nil)
+	vnode = vdom.H("div#path", "world", &vdom.VNodeData{Style: s, Class: cls}, nil)
 	oldVnode, err = p.Patch(oldVnode, vnode)
 	if err != nil {
 		slog.Error("path failed.", "error", err)

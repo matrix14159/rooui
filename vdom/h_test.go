@@ -7,7 +7,7 @@ import (
 // GOOS=js GOARCH=wasm go test -run TestH
 func TestH(t *testing.T) {
 	sel := "div"
-	vnode := H(sel, nil, "hello", nil)
+	vnode := H(sel, "hello", nil, nil)
 	if vnode.Sel != sel {
 		t.Fatalf("sel must be %v, but got:%v", sel, vnode.Sel)
 	}

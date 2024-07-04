@@ -8,7 +8,7 @@ import (
 )
 
 // H creates a vnode with sel tag
-func H(sel string, data *VNodeData, text string, children VNodeChildren) (vnode *VNode) {
+func H(sel, text string, data *VNodeData, children VNodeChildren) (vnode *VNode) {
 	vnode = &VNode{}
 	if data == nil {
 		data = &VNodeData{}
