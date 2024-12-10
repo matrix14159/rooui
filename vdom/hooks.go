@@ -11,15 +11,15 @@ type DestroyHook func(vnode *VNode)
 type RemoveHook func(vnode *VNode, removeCallback func())
 type PostHook func()
 
-type Hooks interface {
-	Pre()
-	Init(vnode *VNode)
-	Create(empty, vnode *VNode)
-	Insert(vnode *VNode)
-	PrePatch(oldVNode, vnode *VNode)
-	Update(oldVNode, vnode *VNode)
-	PostPatch(oldVNode, vnode *VNode)
-	Destroy(vnode *VNode)
-	Remove(vnode *VNode, removeCallback func())
-	Post()
+type Hooks struct {
+	Pre       PreHook
+	Init      InitHook
+	Create    CreateHook
+	Insert    InsertHook
+	PrePatch  PrePatchHook
+	Update    UpdateHook
+	PostPatch PostPatchHook
+	Destroy   DestroyHook
+	Remove    RemoveHook
+	Post      PostHook
 }
