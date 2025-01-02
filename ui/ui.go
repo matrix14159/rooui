@@ -1,120 +1,69 @@
-//go:generate go run ht/gen_html.go
-//go:generate go fmt html.go
-//go:generate go run st/gen/gen_styles.go
-//go:generate go fmt st/styles.go
-
 package ui
 
 import (
-	dom "honnef.co/go/js/dom/v2"
+	"log/slog"
+	"syscall/js"
+
+	"github.com/matrix14159/rooui/vdom"
+	"github.com/matrix14159/sharp"
+	"honnef.co/go/js/dom/v2"
 )
 
-type Event = dom.Event
+var RootComponent Comp
 
-// UI represent an ui element, use to construct ui-tree
-type UI interface {
-	// Kind return UI element kind
-	Kind() Kind
+func Run(c Comp) {
+	RootComponent = c
 
-	// GetUIElementId return the unique id to flag UI element
-	GetUIElementId() string
+	initLog()
 
-	// SetUIElementId set the id for UI element
-	SetUIElementId(id string)
+	js.Global().Set("MountTo", js.FuncOf(mountToFunc))
 
-	// TurnOnDisplay will modify or restore style display to show UI
-	TurnOnDisplay()
-
-	// TurnOffDisplay will set style display=none to hide UI
-	TurnOffDisplay()
-
-	// GetSelfDomElement return the raw html element according UI itself
-	// if UI is a controller, then return its first child's dome element
-	GetSelfDomElement() dom.Element
-
-	// BuildTreeDomElement creates raw html elements for UI itself and children body
-	BuildTreeDomElement() []dom.Element
-
-	// OnCreated will be called when UI element is created
-	OnCreated(f func())
-	doCreated()
-
-	// OnMounted set f which will be called when UI element added to ui-tree
-	OnMounted(f func())
-	doMounted()
-
-	// OnUnmounted set f which will be called when UI element removed from ui-tree
-	OnUnmounted(f func())
-	doUnmounted()
+	select {}
 }
 
-type HtmlUI interface {
-	UI
-}
-
-type ControllerUI interface {
-	UI
-}
-
-// Comp is the base component interface
-type Comp interface {
-	ControllerUI
-
-	setBody(child []UI)
-
-	// Render return the component template for rending
-	Render() UI
-}
-
-type ConditionController interface {
-	ControllerUI
-}
-
-type SliceController interface {
-	ControllerUI
-}
-
-type MapController interface {
-	ControllerUI
-}
-
-type getBody interface {
-	getBody() []UI
-}
-
-// Kind represent ui element type
-type Kind int
-
-const (
-	UnknownElem Kind = iota
-
-	HtmlElem
-
-	ComponentElem
-
-	ControllerElem
-
-	ConditionControlElem
-
-	RangeSliceElem
-
-	RangeMapElem
-)
-
-func (p Kind) String() string {
-	switch p {
-	case HtmlElem:
-		return "html"
-	case ComponentElem:
-		return "component"
-	case ControllerElem:
-		return "controller"
-	case ConditionControlElem:
-		return "condition"
-	case RangeSliceElem:
-		return "slice"
-	case RangeMapElem:
-		return "map"
+// if run by unit-test, before run please install "github.com/agnivade/wasmbrowsertest"
+// then rename to go_js_wasm_exec.exe
+func initLog() {
+	opts := &slog.HandlerOptions{
+		AddSource:   true,
+		Level:       slog.LevelDebug,
+		ReplaceAttr: nil,
 	}
-	return "undefined"
+	handler := sharp.NewSimpleHandler(sharp.NewWasmWriter(), opts, "2006-01-02T15:04:05.000", false)
+	slog.SetDefault(slog.New(handler))
+}
+
+func mountToFunc(this js.Value, args []js.Value) interface{} {
+	return js.ValueOf(mountTo(args[0].String()))
+}
+
+func mountTo(root string) string {
+	if RootComponent == nil {
+		slog.Error("root component not set")
+		return ""
+	}
+
+	w := dom.GetWindow()
+	d := w.Document()
+	p := d.GetElementByID(root)
+
+	oldVNode := vdom.EmptyNodeAt(p)
+
+	element := RootComponent.Render()
+	if element == nil {
+		slog.Error("root component render nil")
+		return ""
+	}
+	vnode := vdom.H(element.Tag(), "", nil, nil)
+
+	patch := vdom.NewPatcher(vdom.NewStandardDomApi())
+	old, err := patch.Patch(oldVNode, vnode)
+	if err != nil {
+		slog.Error("mount patch failed.", "error", err)
+		return ""
+	}
+	RootComponent.updateVNode(old)
+
+	slog.Info("mount is done")
+	return ""
 }
