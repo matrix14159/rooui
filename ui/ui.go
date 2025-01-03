@@ -45,9 +45,9 @@ func mountTo(root string) string {
 
 	w := dom.GetWindow()
 	d := w.Document()
-	p := d.GetElementByID(root)
+	r := d.GetElementByID(root)
 
-	oldVNode := vdom.EmptyNodeAt(p)
+	oldVNode := vdom.EmptyNodeAt(r)
 
 	element := RootComponent.Render()
 	if element == nil {
@@ -56,8 +56,8 @@ func mountTo(root string) string {
 	}
 	vnode := vdom.H(element.Tag(), "", nil, nil)
 
-	patch := vdom.NewPatcher(vdom.NewStandardDomApi())
-	old, err := patch.Patch(oldVNode, vnode)
+	p := vdom.NewPatcher(vdom.NewStandardDomApi())
+	old, err := p.Patch(oldVNode, vnode)
 	if err != nil {
 		slog.Error("mount patch failed.", "error", err)
 		return ""
