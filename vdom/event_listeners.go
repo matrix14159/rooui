@@ -37,6 +37,10 @@ func (p *On) handle(event dom.Event) {
 type EventModule struct {
 }
 
+func NewEventModule() *EventModule {
+	return new(EventModule)
+}
+
 func (p *EventModule) updateEventListeners(oldVNode, vnode *VNode) {
 	oldListener, isNew1 := getEventListener(oldVNode)
 	newListener, isNew2 := getEventListener(vnode)
@@ -44,19 +48,22 @@ func (p *EventModule) updateEventListeners(oldVNode, vnode *VNode) {
 		return
 	}
 
-	oldElm := oldVNode.Elm.(dom.HTMLElement)
-	newElm := vnode.Elm.(dom.HTMLElement)
-
-	for name, _ := range oldListener.Events {
-		if _, found := newListener.Events[name]; !found {
-			oldElm.RemoveEventListener(name, false, oldListener.stubs[name])
-			delete(oldListener.stubs, name)
+	oldElm, ok := oldVNode.Elm.(dom.HTMLElement)
+	if ok {
+		for name, _ := range oldListener.Events {
+			if _, found := newListener.Events[name]; !found {
+				oldElm.RemoveEventListener(name, false, oldListener.stubs[name])
+				delete(oldListener.stubs, name)
+			}
 		}
 	}
 
-	for name, _ := range newListener.Events {
-		if _, found := oldListener.Events[name]; !found {
-			newListener.stubs[name] = newElm.AddEventListener(name, false, newListener.handle)
+	newElm, ok := vnode.Elm.(dom.HTMLElement)
+	if ok {
+		for name, _ := range newListener.Events {
+			if _, found := oldListener.Events[name]; !found {
+				newListener.stubs[name] = newElm.AddEventListener(name, false, newListener.handle)
+			}
 		}
 	}
 }

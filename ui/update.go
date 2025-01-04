@@ -1,12 +1,48 @@
 package ui
 
-func Update(c Render, opts ...UpdateOption) {
+import (
+	"log/slog"
+	"time"
+
+	"github.com/matrix14159/rooui/vdom"
+)
+
+func Update(c Comp, opts ...UpdateOption) {
+	now := time.Now()
+	defer func() {
+		since := time.Now().Sub(now)
+		slog.Info("update done.", "time", since.Milliseconds())
+	}()
+
 	cfg := &UpdateConfig{Mode: M_Self}
 	for _, one := range opts {
 		one(cfg)
 	}
 
-	c.Render()
+	element := c.Render()
+	if element == nil {
+		return
+	}
+
+	on := vdom.NewEventListener(nil)
+	on.Events = element.GetEvents()
+	data := &vdom.VNodeData{On: on}
+	vnode := vdom.H(element.Tag(), element.GetText(), data, nil)
+
+	p := vdom.NewPatcher(vdom.NewStandardDomApi(),
+		vdom.NewAttrModule(),
+		vdom.NewClassModule(),
+		vdom.NewDatasetModule(),
+		vdom.NewEventModule(),
+		vdom.NewPropsModule(),
+		vdom.NewStyleModule(),
+	)
+	old, err := p.Patch(c.getVNode(), vnode)
+	if err != nil {
+		slog.Error("update component patch failed.", "error", err)
+		return
+	}
+	c.updateVNode(old)
 }
 
 type UpdateConfig struct {

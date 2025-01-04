@@ -20,6 +20,10 @@ func NewAttributes() Attrs {
 type AttrModule struct {
 }
 
+func NewAttrModule() *AttrModule {
+	return new(AttrModule)
+}
+
 func (p *AttrModule) updateAttrs(oldVNode, vnode *VNode) {
 	oldAttrs, isNew1 := getAttrs(oldVNode)
 	newAttrs, isNew2 := getAttrs(vnode)

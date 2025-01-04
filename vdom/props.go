@@ -15,6 +15,10 @@ func NewProps() Props {
 type PropsModule struct {
 }
 
+func NewPropsModule() *PropsModule {
+	return new(PropsModule)
+}
+
 func (p *PropsModule) updateProps(oldVNode, vnode *VNode) {
 	oldProps, isNew1 := getProps(oldVNode)
 	newProps, isNew2 := getProps(vnode)

@@ -54,16 +54,27 @@ func mountTo(root string) string {
 		slog.Error("root component render nil")
 		return ""
 	}
-	vnode := vdom.H(element.Tag(), "", nil, nil)
 
-	p := vdom.NewPatcher(vdom.NewStandardDomApi())
+	on := vdom.NewEventListener(nil)
+	on.Events = element.GetEvents()
+	data := &vdom.VNodeData{On: on}
+	vnode := vdom.H(element.Tag(), element.GetText(), data, nil)
+
+	p := vdom.NewPatcher(vdom.NewStandardDomApi(),
+		vdom.NewAttrModule(),
+		vdom.NewClassModule(),
+		vdom.NewDatasetModule(),
+		vdom.NewEventModule(),
+		vdom.NewPropsModule(),
+		vdom.NewStyleModule(),
+	)
 	old, err := p.Patch(oldVNode, vnode)
 	if err != nil {
-		slog.Error("mount patch failed.", "error", err)
+		slog.Error("root component patch failed.", "error", err)
 		return ""
 	}
 	RootComponent.updateVNode(old)
 
-	slog.Info("mount is done")
+	slog.Info("root component mount done")
 	return ""
 }

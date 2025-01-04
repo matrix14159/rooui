@@ -16,6 +16,10 @@ func NewDataset() Dataset {
 type DatasetModule struct {
 }
 
+func NewDatasetModule() *DatasetModule {
+	return new(DatasetModule)
+}
+
 func (p *DatasetModule) updateDataset(oldVNode, vnode *VNode) {
 	oldDataset, isNew1 := getDataset(oldVNode)
 	newDataset, isNew2 := getDataset(vnode)
