@@ -7,3 +7,7 @@ import (
 func Button() *html.ButtonElement {
 	return html.Button()
 }
+
+func Div() *html.DivElement {
+	return html.Div()
+}

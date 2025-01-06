@@ -24,10 +24,16 @@ func Update(c Comp, opts ...UpdateOption) {
 		return
 	}
 
+	body := []*vdom.VNode{}
+	for _, child := range element.GetBody() {
+		node := vdom.H(child.Tag(), child.GetText(), nil, nil)
+		body = append(body, node)
+	}
+
 	on := vdom.NewEventListener(nil)
 	on.Events = element.GetEvents()
 	data := &vdom.VNodeData{On: on}
-	vnode := vdom.H(element.Tag(), element.GetText(), data, nil)
+	vnode := vdom.H(element.Tag(), element.GetText(), data, body)
 
 	p := vdom.NewPatcher(vdom.NewStandardDomApi(),
 		vdom.NewAttrModule(),

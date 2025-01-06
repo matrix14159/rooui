@@ -10,4 +10,6 @@ type Element interface {
 	GetText() string
 
 	GetEvents() map[string][]vdom.EventHandler
+
+	GetBody() []Element
 }

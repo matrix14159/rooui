@@ -3,6 +3,7 @@ package html
 import (
 	"fmt"
 
+	"github.com/matrix14159/rooui/core"
 	"github.com/matrix14159/rooui/vdom"
 	"honnef.co/go/js/dom/v2"
 )
@@ -29,6 +30,10 @@ func (p *ButtonElement) GetText() string {
 
 func (p *ButtonElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
+}
+
+func (p *ButtonElement) GetBody() []core.Element {
+	return nil
 }
 
 func (p *ButtonElement) Text(text any) *ButtonElement {
