@@ -19,7 +19,7 @@ type EventHandler struct {
 	Handler func(event dom.Event, options ...any)
 }
 
-func NewEventListener(vnode *VNode) *On {
+func NewEventListener() *On {
 	return &On{
 		Events: make(map[string][]EventHandler),
 		stubs:  make(map[string]js.Func),
@@ -73,7 +73,7 @@ func getEventListener(vnode *VNode) (on *On, isNew bool) {
 		vnode.Data = &VNodeData{}
 	}
 	if vnode.Data.On == nil {
-		vnode.Data.On = NewEventListener(vnode)
+		vnode.Data.On = NewEventListener()
 		isNew = true
 	}
 	on = vnode.Data.On
