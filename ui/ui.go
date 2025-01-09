@@ -48,38 +48,9 @@ func mountTo(root string) string {
 	r := d.GetElementByID(root)
 
 	oldVNode := vdom.EmptyNodeAt(r)
+	RootComponent.updateVNode(oldVNode)
 
-	element := RootComponent.Render()
-	if element == nil {
-		slog.Error("root component render nil")
-		return ""
-	}
-
-	body := []*vdom.VNode{}
-	for _, child := range element.GetBody() {
-		node := vdom.H(child.Tag(), child.GetText(), nil, nil)
-		body = append(body, node)
-	}
-
-	on := vdom.NewEventListener(nil)
-	on.Events = element.GetEvents()
-	data := &vdom.VNodeData{On: on}
-	vnode := vdom.H(element.Tag(), element.GetText(), data, body)
-
-	p := vdom.NewPatcher(vdom.NewStandardDomApi(),
-		vdom.NewAttrModule(),
-		vdom.NewClassModule(),
-		vdom.NewDatasetModule(),
-		vdom.NewEventModule(),
-		vdom.NewPropsModule(),
-		vdom.NewStyleModule(),
-	)
-	old, err := p.Patch(oldVNode, vnode)
-	if err != nil {
-		slog.Error("root component patch failed.", "error", err)
-		return ""
-	}
-	RootComponent.updateVNode(old)
+	Update(RootComponent, WithUpdateMode(M_Tree))
 
 	slog.Info("root component mount done")
 	return ""
