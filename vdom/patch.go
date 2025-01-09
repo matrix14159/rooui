@@ -97,65 +97,58 @@ func (p *Patcher) patchVNode(oldVnode, vnode *VNode) {
 func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
 	oldStartIdx := 0
 	oldEndIdx := len(oldCh) - 1
-	oldStartVnode := oldCh[0]
-	oldEndVnode := oldCh[oldEndIdx]
-
 	newStartIdx := 0
 	newEndIdx := len(newCh) - 1
-	newStartVnode := newCh[0]
-	newEndVnode := newCh[newEndIdx]
+
+	var oldStartVnode *VNode
+	var oldEndVnode *VNode
+	var newStartVnode *VNode
+	var newEndVnode *VNode
 
 	oldKeyToIdx := make(map[string]int)
 
 	for oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx {
+		oldStartVnode = oldCh[oldStartIdx]
+		oldEndVnode = oldCh[oldEndIdx]
+		newStartVnode = newCh[newStartIdx]
+		newEndVnode = newCh[newEndIdx]
+
 		switch {
 		case oldStartVnode == nil: // Vnode might have been moved left
 			oldStartIdx++
-			oldStartVnode = oldCh[oldStartIdx]
 
 		case oldEndVnode == nil:
 			oldEndIdx--
-			oldEndVnode = oldCh[oldEndIdx]
 
 		case newStartVnode == nil:
 			newStartIdx++
-			newStartVnode = newCh[newStartIdx]
 
 		case newEndVnode == nil:
 			newEndIdx--
-			newEndVnode = newCh[newEndIdx]
 
 		case SameVNode(oldStartVnode, newStartVnode):
 			p.patchVNode(oldStartVnode, newStartVnode)
 			oldStartIdx++
-			oldStartVnode = oldCh[oldStartIdx]
 			newStartIdx++
-			newStartVnode = newCh[newStartIdx]
 
 		case SameVNode(oldEndVnode, newEndVnode):
 			p.patchVNode(oldEndVnode, newEndVnode)
 			oldEndIdx--
-			oldEndVnode = oldCh[oldEndIdx]
 			newEndIdx--
-			newEndVnode = newCh[newEndIdx]
 
 		case SameVNode(oldStartVnode, newEndVnode):
 			// Vnode moved right
 			p.patchVNode(oldStartVnode, newEndVnode)
 			p.api.InsertBefore(parentElm, oldStartVnode.Elm, p.api.NextSibling(oldEndVnode.Elm))
 			oldStartIdx++
-			oldStartVnode = oldCh[oldStartIdx]
 			newEndIdx--
-			newEndVnode = newCh[newEndIdx]
 
 		case SameVNode(oldEndVnode, newStartVnode):
 			// Vnode moved left
 			p.patchVNode(oldEndVnode, newStartVnode)
 			p.api.InsertBefore(parentElm, oldEndVnode.Elm, oldStartVnode.Elm)
 			oldEndIdx--
-			oldEndVnode = oldCh[oldEndIdx]
 			newStartIdx++
-			newStartVnode = newCh[newStartIdx]
 
 		default:
 			if len(oldKeyToIdx) == 0 {
@@ -177,7 +170,6 @@ func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
 			}
 
 			newStartIdx++
-			newStartVnode = newCh[newStartIdx]
 		}
 	}
 
