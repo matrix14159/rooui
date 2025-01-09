@@ -100,6 +100,9 @@ func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
 	newStartIdx := 0
 	newEndIdx := len(newCh) - 1
 
+	//slog.Info("1.updateChildren", "oldStartIdx", oldStartIdx, "oldEndIdx", oldEndIdx, "oldCh.len", len(oldCh))
+	//slog.Info("2.updateChildren", "newStartIdx", newStartIdx, "newEndIdx", newEndIdx, "newCh.len", len(newCh))
+
 	var oldStartVnode *VNode
 	var oldEndVnode *VNode
 	var newStartVnode *VNode
@@ -173,10 +176,13 @@ func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
 		}
 	}
 
+	//slog.Info("3.updateChildren", "oldStartIdx", oldStartIdx, "oldEndIdx", oldEndIdx, "oldCh.len", len(oldCh))
+	//slog.Info("4.updateChildren", "newStartIdx", newStartIdx, "newEndIdx", newEndIdx, "newCh.len", len(newCh))
+
 	if newStartIdx <= newEndIdx {
 		var before dom.Node = nil
-		if newCh[newEndIdx+1] != nil {
-			before = newCh[newEndIdx+1].Elm
+		if newCh[newEndIdx] != nil {
+			before = newCh[newEndIdx].Elm
 		}
 		p.addVNodes(parentElm, before, newCh, newStartIdx, newEndIdx)
 	}
