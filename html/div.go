@@ -44,7 +44,7 @@ func (p *DivElement) Text(text any) *DivElement {
 }
 
 func (p *DivElement) Body(child ...core.Element) *DivElement {
-	p.body = child
+	p.body = append(p.body, child...)
 	return p
 }
 
