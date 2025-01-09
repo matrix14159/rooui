@@ -1,8 +1,6 @@
 package vdom
 
 import (
-	"log/slog"
-
 	"github.com/matrix14159/rooui/gs"
 	"honnef.co/go/js/dom/v2"
 )
@@ -46,7 +44,6 @@ func NewStyleModule() *StyleModule {
 }
 
 func (p *StyleModule) updateStyle(oldVnode, vnode *VNode) {
-	slog.Info("updateStyle", slog.Any("old", oldVnode), slog.Any("new", vnode))
 	oldStyle, isNew1 := getStyle(oldVnode)
 	newStyle, isNew2 := getStyle(vnode)
 	if isNew1 && isNew2 {
