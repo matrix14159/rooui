@@ -8,40 +8,40 @@ import (
 	"honnef.co/go/js/dom/v2"
 )
 
-type ButtonElement struct {
+type BaseElement struct {
 	text string
 
 	events map[string][]vdom.EventHandler
 }
 
-func Button() *ButtonElement {
-	p := new(ButtonElement)
+func BaseHtmlElement() *BaseElement {
+	p := new(BaseElement)
 	p.events = make(map[string][]vdom.EventHandler)
 	return p
 }
 
-func (p *ButtonElement) Tag() string {
+func (p *BaseElement) Tag() string {
 	return "button"
 }
 
-func (p *ButtonElement) GetText() string {
+func (p *BaseElement) GetText() string {
 	return p.text
 }
 
-func (p *ButtonElement) GetEvents() map[string][]vdom.EventHandler {
+func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
 
-func (p *ButtonElement) GetBody() []core.HtmlElement {
+func (p *BaseElement) GetBody() []core.HtmlElement {
 	return nil
 }
 
-func (p *ButtonElement) Text(text any) *ButtonElement {
+func (p *BaseElement) Text(text any) *BaseElement {
 	p.text = fmt.Sprintf("%v", text)
 	return p
 }
 
-func (p *ButtonElement) OnClick(f func(event dom.Event, options ...any), options ...any) *ButtonElement {
+func (p *BaseElement) OnClick(f func(event dom.Event, options ...any), options ...any) *BaseElement {
 	handlers := p.events["click"]
 	handlers = append(handlers, vdom.EventHandler{
 		Options: options,

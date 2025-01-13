@@ -1,12 +1,13 @@
 package ui
 
 import (
+	"github.com/matrix14159/rooui/core"
 	"github.com/matrix14159/rooui/vdom"
 )
 
 // Comp is the base component interface
 type Comp interface {
-	Render
+	Render() Element
 
 	// getVNode return current component refer vnode
 	getVNode() *vdom.VNode
@@ -22,6 +23,13 @@ type Component struct {
 
 func (p *Component) Render() Element {
 	return nil
+}
+
+func (p *Component) Use(atom core.HtmlElement) Element {
+	return &compElement{
+		HtmlElement: atom,
+		comp:        p,
+	}
 }
 
 func (p *Component) getVNode() *vdom.VNode {

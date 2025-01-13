@@ -4,12 +4,12 @@ import (
 	"github.com/matrix14159/rooui/vdom"
 )
 
-type Element interface {
+type HtmlElement interface {
 	Tag() string
 
 	GetText() string
 
 	GetEvents() map[string][]vdom.EventHandler
 
-	GetBody() []Element
+	GetBody() []HtmlElement
 }

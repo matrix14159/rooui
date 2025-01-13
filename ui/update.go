@@ -4,6 +4,7 @@ import (
 	"log/slog"
 	"time"
 
+	"github.com/matrix14159/rooui/core"
 	"github.com/matrix14159/rooui/vdom"
 )
 
@@ -42,7 +43,7 @@ func Update(c Comp, opts ...UpdateOption) {
 	c.updateVNode(old)
 }
 
-func buildVNode(element Element) *vdom.VNode {
+func buildVNode(element core.HtmlElement) *vdom.VNode {
 	on := vdom.NewEventListener()
 	on.Events = element.GetEvents()
 	data := &vdom.VNodeData{On: on}

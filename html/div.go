@@ -11,7 +11,7 @@ import (
 type DivElement struct {
 	text string
 
-	body []core.Element
+	body []core.HtmlElement
 
 	events map[string][]vdom.EventHandler
 }
@@ -34,7 +34,7 @@ func (p *DivElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
 
-func (p *DivElement) GetBody() []core.Element {
+func (p *DivElement) GetBody() []core.HtmlElement {
 	return p.body
 }
 
@@ -43,7 +43,7 @@ func (p *DivElement) Text(text any) *DivElement {
 	return p
 }
 
-func (p *DivElement) Body(child ...core.Element) *DivElement {
+func (p *DivElement) Body(child ...core.HtmlElement) *DivElement {
 	p.body = append(p.body, child...)
 	return p
 }
