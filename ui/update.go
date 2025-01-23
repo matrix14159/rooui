@@ -40,7 +40,7 @@ func Update(c Comp, opts ...UpdateOption) {
 		slog.Error("update component patch failed.", "error", err)
 		return
 	}
-	c.updateVNode(old)
+	updateCompVNode(element, old)
 }
 
 func buildVNode(element core.HtmlElement) *vdom.VNode {
@@ -56,6 +56,23 @@ func buildVNode(element core.HtmlElement) *vdom.VNode {
 
 	vnode := vdom.H(element.Tag(), element.GetText(), data, body)
 	return vnode
+}
+
+func updateCompVNode(element Element, vnode *vdom.VNode) {
+	element.getComp().updateVNode(vnode)
+	len1 := len(element.GetBody())
+	len2 := len(vnode.Children)
+	if len1 != len2 {
+		slog.Error("internal error: element body and vnode children doesn't match", "body", len1, "vnode", len2)
+		return
+	}
+	for i, child := range element.GetBody() {
+		el, ok := child.(Element)
+		if !ok {
+			continue
+		}
+		updateCompVNode(el, vnode.Children[i])
+	}
 }
 
 type UpdateConfig struct {

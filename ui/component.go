@@ -25,6 +25,7 @@ func (p *Component) Render() Element {
 	return nil
 }
 
+// Use uses atom as current component's Element
 func (p *Component) Use(atom core.HtmlElement) Element {
 	return &compElement{
 		HtmlElement: atom,
