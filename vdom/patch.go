@@ -1,7 +1,6 @@
 package vdom
 
 import (
-	"log/slog"
 	"math"
 	"strings"
 
@@ -51,8 +50,8 @@ func (p *Patcher) Patch(oldVnode, vnode *VNode) (old *VNode, err error) {
 
 		vnode.Elm = p.createElm(vnode)
 
-		slog.Info("not the same vnode, replace current element",
-			"oldVnode", *oldVnode, "parent", parent.NodeName(), "newNode", vnode)
+		//slog.Info("not the same vnode, replace current element",
+		//	"oldVnode", *oldVnode, "parent", parent.NodeName(), "newNode", vnode)
 
 		if parent != nil {
 			p.api.InsertBefore(parent, vnode.Elm, p.api.NextSibling(vnode.Elm))
@@ -223,7 +222,7 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 		minLen := math.Min(float64(hash), float64(dot))
 		tag = vnode.Sel[0:int(minLen)]
 	}
-	slog.Info("createElm", "tag", tag)
+	//slog.Info("createElm", "tag", tag)
 
 	var elm dom.HTMLElement
 	if vnode.Data != nil && vnode.Data.Namespace != "" {
@@ -234,13 +233,13 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	vnode.Elm = elm
 
 	if hash < dot {
-		slog.Info("createElm", "id", vnode.Sel[hash+1:dot])
+		//slog.Info("createElm", "id", vnode.Sel[hash+1:dot])
 		elm.SetAttribute("id", vnode.Sel[hash+1:dot])
 	}
 
 	if dotIdx > 0 {
 		cls := strings.Replace(vnode.Sel[dot+1:], ".", " ", -1)
-		slog.Info("createElm", "raw-class", vnode.Sel[dot+1:], "use-class", cls)
+		//slog.Info("createElm", "raw-class", vnode.Sel[dot+1:], "use-class", cls)
 		elm.SetAttribute("class", cls)
 	}
 
