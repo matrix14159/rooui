@@ -7,6 +7,7 @@ import (
 
 // Comp is the base component interface
 type Comp interface {
+	// Render return element for current component
 	Render() Element
 
 	getElement() Element
