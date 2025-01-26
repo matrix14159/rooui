@@ -8,6 +8,16 @@ import (
 	"github.com/matrix14159/rooui/vdom"
 )
 
+var patch = vdom.NewPatcher(vdom.NewStandardDomApi(),
+	vdom.NewAttrModule(),
+	vdom.NewClassModule(),
+	vdom.NewDatasetModule(),
+	vdom.NewEventModule(),
+	vdom.NewPropsModule(),
+	vdom.NewStyleModule(),
+)
+
+// Update updates component c
 func Update(c Comp, opts ...UpdateOption) {
 	now := time.Now()
 	defer func() {
@@ -20,27 +30,31 @@ func Update(c Comp, opts ...UpdateOption) {
 		one(cfg)
 	}
 
+	oldVn := c.getVNode()
+	oldEl := c.getElement()
+
 	element := c.Render()
 	if element == nil {
 		return
 	}
 
 	vnode := buildVNode(element)
-
-	p := vdom.NewPatcher(vdom.NewStandardDomApi(),
-		vdom.NewAttrModule(),
-		vdom.NewClassModule(),
-		vdom.NewDatasetModule(),
-		vdom.NewEventModule(),
-		vdom.NewPropsModule(),
-		vdom.NewStyleModule(),
-	)
-	old, err := p.Patch(c.getVNode(), vnode)
+	newVn, err := patch.Patch(oldVn, vnode)
 	if err != nil {
 		slog.Error("update component patch failed.", "error", err)
 		return
 	}
-	updateCompVNode(element, old)
+	updateCompVNode(element, newVn)
+
+	if oldEl != nil {
+		parent := oldEl.getParent()
+		element.setParent(parent)
+
+		if parent != nil {
+			idx := parent.findVNodeChild(oldVn)
+			parent.replaceVNodeChild(idx, oldVn, newVn)
+		}
+	}
 }
 
 func buildVNode(element core.HtmlElement) *vdom.VNode {
