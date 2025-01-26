@@ -11,13 +11,19 @@ import (
 type BaseElement struct {
 	text string
 
+	body []core.HtmlElement
+
 	events map[string][]vdom.EventHandler
 }
 
 func BaseHtmlElement() *BaseElement {
 	p := new(BaseElement)
-	p.events = make(map[string][]vdom.EventHandler)
+	p.init()
 	return p
+}
+
+func (p *BaseElement) init() {
+	p.events = make(map[string][]vdom.EventHandler)
 }
 
 func (p *BaseElement) Tag() string {
@@ -28,12 +34,17 @@ func (p *BaseElement) GetText() string {
 	return p.text
 }
 
+func (p *BaseElement) GetBody() []core.HtmlElement {
+	return p.body
+}
+
 func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
 
-func (p *BaseElement) GetBody() []core.HtmlElement {
-	return nil
+func (p *BaseElement) Body(child ...core.HtmlElement) *BaseElement {
+	p.body = append(p.body, child...)
+	return p
 }
 
 func (p *BaseElement) Text(text any) *BaseElement {
