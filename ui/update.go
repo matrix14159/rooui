@@ -2,49 +2,93 @@ package ui
 
 import (
 	"log/slog"
+	"sync"
 	"time"
 
 	"github.com/matrix14159/rooui/core"
 	"github.com/matrix14159/rooui/vdom"
 )
 
-var patch = vdom.NewPatcher(vdom.NewStandardDomApi(),
-	vdom.NewAttrModule(),
-	vdom.NewClassModule(),
-	vdom.NewDatasetModule(),
-	vdom.NewEventModule(),
-	vdom.NewPropsModule(),
-	vdom.NewStyleModule(),
-)
+var defaultUpdateFlow *updateFlow
 
 // Update updates component c
 func Update(c Comp, opts ...UpdateOption) {
+	defaultUpdateFlow.Accept(c, opts)
+}
+
+type updateFlow struct {
+	ch chan updateContext
+
+	patch *vdom.Patcher
+
+	ucPool sync.Pool
+}
+
+type updateContext struct {
+	c Comp
+
+	opts []UpdateOption
+}
+
+func (p *updateFlow) Accept(c Comp, opts []UpdateOption) {
+	uc := p.ucPool.Get().(updateContext)
+	uc.c = c
+	uc.opts = opts
+	p.ch <- uc
+}
+
+func (p *updateFlow) RunUpdateLoop() {
+	p.ch = make(chan updateContext, 1024)
+	p.patch = vdom.NewPatcher(vdom.NewStandardDomApi(),
+		vdom.NewAttrModule(),
+		vdom.NewClassModule(),
+		vdom.NewDatasetModule(),
+		vdom.NewEventModule(),
+		vdom.NewPropsModule(),
+		vdom.NewStyleModule(),
+	)
+	p.ucPool.New = func() any {
+		return updateContext{}
+	}
+
+	go p.runUpdateLoop()
+}
+
+func (p *updateFlow) runUpdateLoop() {
+	for uc := range p.ch {
+		p.handleUpdate(uc)
+		p.ucPool.Put(uc)
+	}
+}
+
+// Update updates component c
+func (p *updateFlow) handleUpdate(uc updateContext) {
 	now := time.Now()
 	defer func() {
 		since := time.Now().Sub(now)
 		slog.Info("update done.", "time", since.Milliseconds())
 	}()
 
-	cfg := &UpdateConfig{Patcher: patch}
-	for _, one := range opts {
+	cfg := &UpdateConfig{Patcher: p.patch}
+	for _, one := range uc.opts {
 		one(cfg)
 	}
 
-	oldVn := c.getVNode()
-	oldEl := c.getElement()
+	oldVn := uc.c.getVNode()
+	oldEl := uc.c.getElement()
 
-	element := c.Render()
+	element := uc.c.Render()
 	if element == nil {
 		return
 	}
 
-	vnode := buildVNode(element)
+	vnode := p.buildVNode(element)
 	newVn, err := cfg.Patcher.Patch(oldVn, vnode)
 	if err != nil {
 		slog.Error("update component patch failed.", "error", err)
 		return
 	}
-	updateCompVNode(element, newVn)
+	p.updateCompVNode(element, newVn)
 
 	if oldEl != nil {
 		parent := oldEl.getParent()
@@ -57,14 +101,14 @@ func Update(c Comp, opts ...UpdateOption) {
 	}
 }
 
-func buildVNode(element core.HtmlElement) *vdom.VNode {
+func (p *updateFlow) buildVNode(element core.HtmlElement) *vdom.VNode {
 	on := vdom.NewEventListener()
 	on.Events = element.GetEvents()
 	data := &vdom.VNodeData{On: on}
 
 	body := make([]*vdom.VNode, 0, len(element.GetBody()))
 	for _, child := range element.GetBody() {
-		node := buildVNode(child)
+		node := p.buildVNode(child)
 		body = append(body, node)
 	}
 
@@ -72,7 +116,7 @@ func buildVNode(element core.HtmlElement) *vdom.VNode {
 	return vnode
 }
 
-func updateCompVNode(element Element, vnode *vdom.VNode) {
+func (p *updateFlow) updateCompVNode(element Element, vnode *vdom.VNode) {
 	element.getComp().updateVNode(vnode)
 	len1 := len(element.GetBody())
 	len2 := len(vnode.Children)
@@ -85,6 +129,6 @@ func updateCompVNode(element Element, vnode *vdom.VNode) {
 		if !ok {
 			continue
 		}
-		updateCompVNode(el, vnode.Children[i])
+		p.updateCompVNode(el, vnode.Children[i])
 	}
 }

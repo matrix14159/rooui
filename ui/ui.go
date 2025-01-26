@@ -18,6 +18,9 @@ func Run(c Comp) {
 
 	js.Global().Set("MountTo", js.FuncOf(mountToFunc))
 
+	defaultUpdateFlow = new(updateFlow)
+	defaultUpdateFlow.RunUpdateLoop()
+
 	select {}
 }
 
