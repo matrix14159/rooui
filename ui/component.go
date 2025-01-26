@@ -1,7 +1,7 @@
 package ui
 
 import (
-	"github.com/matrix14159/rooui/core"
+	"github.com/matrix14159/rooui/html"
 	"github.com/matrix14159/rooui/vdom"
 )
 
@@ -40,7 +40,7 @@ func (p *Component) Render() Element {
 }
 
 // Use uses atom as current component's Element
-func (p *Component) Use(atom core.HtmlElement) Element {
+func (p *Component) Use(atom html.Element) Element {
 	for _, child := range atom.GetBody() {
 		el, ok := child.(Element)
 		if !ok {
@@ -49,8 +49,8 @@ func (p *Component) Use(atom core.HtmlElement) Element {
 		el.setParent(p)
 	}
 	p.element = &compElement{
-		HtmlElement: atom,
-		comp:        p,
+		Element: atom,
+		comp:    p,
 	}
 	return p.element
 }

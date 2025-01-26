@@ -1,11 +1,11 @@
 package ui
 
 import (
-	"github.com/matrix14159/rooui/core"
+	"github.com/matrix14159/rooui/html"
 )
 
 type Element interface {
-	core.HtmlElement
+	html.Element
 
 	setComp(comp Comp)
 	getComp() Comp
@@ -15,7 +15,7 @@ type Element interface {
 }
 
 type compElement struct {
-	core.HtmlElement
+	html.Element
 
 	parent Comp
 

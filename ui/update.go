@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/matrix14159/rooui/core"
+	"github.com/matrix14159/rooui/html"
 	"github.com/matrix14159/rooui/vdom"
 )
 
@@ -101,7 +101,7 @@ func (p *updateFlow) handleUpdate(uc updateContext) {
 	}
 }
 
-func (p *updateFlow) buildVNode(element core.HtmlElement) *vdom.VNode {
+func (p *updateFlow) buildVNode(element html.Element) *vdom.VNode {
 	on := vdom.NewEventListener()
 	on.Events = element.GetEvents()
 	data := &vdom.VNodeData{On: on}

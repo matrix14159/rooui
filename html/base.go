@@ -3,15 +3,24 @@ package html
 import (
 	"fmt"
 
-	"github.com/matrix14159/rooui/core"
 	"github.com/matrix14159/rooui/vdom"
 	"honnef.co/go/js/dom/v2"
 )
 
+type Element interface {
+	Tag() string
+
+	GetText() string
+
+	GetEvents() map[string][]vdom.EventHandler
+
+	GetBody() []Element
+}
+
 type BaseElement struct {
 	text string
 
-	body []core.HtmlElement
+	body []Element
 
 	events map[string][]vdom.EventHandler
 }
@@ -34,7 +43,7 @@ func (p *BaseElement) GetText() string {
 	return p.text
 }
 
-func (p *BaseElement) GetBody() []core.HtmlElement {
+func (p *BaseElement) GetBody() []Element {
 	return p.body
 }
 
@@ -42,7 +51,7 @@ func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
 
-func (p *BaseElement) Body(child ...core.HtmlElement) *BaseElement {
+func (p *BaseElement) Body(child ...Element) *BaseElement {
 	p.body = append(p.body, child...)
 	return p
 }

@@ -1,7 +1,6 @@
 package html
 
 import (
-	"github.com/matrix14159/rooui/core"
 	"honnef.co/go/js/dom/v2"
 )
 
@@ -24,7 +23,7 @@ func (p *DivElement) Text(text any) *DivElement {
 	return p
 }
 
-func (p *DivElement) Body(child ...core.HtmlElement) *DivElement {
+func (p *DivElement) Body(child ...Element) *DivElement {
 	p.BaseElement.Body(child...)
 	return p
 }
