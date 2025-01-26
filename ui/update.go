@@ -25,7 +25,7 @@ func Update(c Comp, opts ...UpdateOption) {
 		slog.Info("update done.", "time", since.Milliseconds())
 	}()
 
-	cfg := &UpdateConfig{Mode: M_Self}
+	cfg := &UpdateConfig{Patcher: patch}
 	for _, one := range opts {
 		one(cfg)
 	}
@@ -39,7 +39,7 @@ func Update(c Comp, opts ...UpdateOption) {
 	}
 
 	vnode := buildVNode(element)
-	newVn, err := patch.Patch(oldVn, vnode)
+	newVn, err := cfg.Patcher.Patch(oldVn, vnode)
 	if err != nil {
 		slog.Error("update component patch failed.", "error", err)
 		return
@@ -86,24 +86,5 @@ func updateCompVNode(element Element, vnode *vdom.VNode) {
 			continue
 		}
 		updateCompVNode(el, vnode.Children[i])
-	}
-}
-
-type UpdateConfig struct {
-	Mode UpdateMode
-}
-
-type UpdateOption func(config *UpdateConfig)
-
-type UpdateMode int
-
-const (
-	M_Self UpdateMode = 1
-	M_Tree UpdateMode = 2
-)
-
-func WithUpdateMode(m UpdateMode) UpdateOption {
-	return func(config *UpdateConfig) {
-		config.Mode = m
 	}
 }

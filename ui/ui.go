@@ -50,7 +50,7 @@ func mountTo(root string) string {
 	oldVNode := vdom.EmptyNodeAt(r)
 	RootComponent.updateVNode(oldVNode)
 
-	Update(RootComponent, WithUpdateMode(M_Tree))
+	Update(RootComponent)
 
 	slog.Info("root component mount done")
 	return ""
