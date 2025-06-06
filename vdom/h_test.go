@@ -2,6 +2,8 @@ package vdom
 
 import (
 	"testing"
+
+	"github.com/matrix14159/rooui/dom"
 )
 
 // GOOS=js GOARCH=wasm go test -run TestH
@@ -19,17 +21,17 @@ func TestH(t *testing.T) {
 // GOOS=js GOARCH=wasm go test -run TestEmptyNodeAt
 func TestEmptyNodeAt(t *testing.T) {
 	api := NewStandardDomApi()
-	elms := api.Document.GetElementsByTagName("body")
-	if len(elms) != 1 {
+	elms := dom.Document.GetElementsByTagName("body")
+	if elms.Length() != 1 {
 		t.Fatalf("html page miss body tag")
 	}
-	body := elms[0]
+	body := elms.Item(0)
 
 	div := api.CreateElement("div")
-	div.SetID("root")
+	div.Id("root")
 	body.InsertBefore(div, nil)
 
-	root := api.Document.GetElementByID("root")
+	root := dom.Document.GetElementById("root")
 	if root == nil {
 		t.Fatalf("can't find the root div")
 	}

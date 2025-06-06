@@ -2,8 +2,6 @@ package vdom
 
 import (
 	"reflect"
-
-	"honnef.co/go/js/dom/v2"
 )
 
 type Props map[string]any
@@ -26,21 +24,21 @@ func (p *PropsModule) updateProps(oldVNode, vnode *VNode) {
 		return
 	}
 
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 	for key, val := range newProps {
 		oldVal := oldProps[key]
 		if reflect.DeepEqual(val, oldVal) {
 			continue
 		}
 		if key != "value" {
-			elm.Underlying().Set(key, val)
+			elm.Set(key, val)
 		}
 	}
 
 	// remove removed props
 	for key, _ := range oldProps {
 		if _, found := newProps[key]; !found {
-			elm.Underlying().Delete(key)
+			elm.Delete(key)
 		}
 	}
 }

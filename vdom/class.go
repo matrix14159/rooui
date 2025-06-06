@@ -2,8 +2,6 @@ package vdom
 
 import (
 	"maps"
-
-	"honnef.co/go/js/dom/v2"
 )
 
 type Classes map[string]bool
@@ -29,12 +27,12 @@ func (p *ClassModule) updateClass(oldVNode, vnode *VNode) {
 		return
 	}
 
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 
 	for name, val := range oldClass {
 		if val {
 			if _, ok := newClass[name]; !ok {
-				elm.Class().Remove(name)
+				elm.ClassList().Remove(name)
 			}
 		}
 	}
@@ -43,9 +41,9 @@ func (p *ClassModule) updateClass(oldVNode, vnode *VNode) {
 			continue
 		}
 		if val {
-			elm.Class().Add(name)
+			elm.ClassList().Add(name)
 		} else {
-			elm.Class().Remove(name)
+			elm.ClassList().Remove(name)
 		}
 	}
 }

@@ -1,9 +1,10 @@
 package vdom
 
 import (
+	"log/slog"
 	"syscall/js"
 
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 // On represent event listener
@@ -27,7 +28,8 @@ func NewEventListener() *On {
 }
 
 func (p *On) handle(event dom.Event) {
-	name := event.Type()
+	slog.Info("listener handle.", "event", event)
+	name := event.EventType()
 	handlers := p.Events[name]
 	for _, one := range handlers {
 		one.Handler(event, one.Options...)
@@ -48,22 +50,19 @@ func (p *EventModule) updateEventListeners(oldVNode, vnode *VNode) {
 		return
 	}
 
-	oldElm, ok := oldVNode.Elm.(dom.HTMLElement)
-	if ok {
-		for name, _ := range oldListener.Events {
-			if _, found := newListener.Events[name]; !found {
-				oldElm.RemoveEventListener(name, false, oldListener.stubs[name])
-				delete(oldListener.stubs, name)
-			}
+	oldElm := oldVNode.Elm
+	for name, _ := range oldListener.Events {
+		if _, found := newListener.Events[name]; !found {
+			oldElm.RemoveEventListener(name, false, oldListener.stubs[name])
+			delete(oldListener.stubs, name)
 		}
 	}
 
-	newElm, ok := vnode.Elm.(dom.HTMLElement)
-	if ok {
-		for name, _ := range newListener.Events {
-			if _, found := oldListener.Events[name]; !found {
-				newListener.stubs[name] = newElm.AddEventListener(name, false, newListener.handle)
-			}
+	newElm := vnode.Elm
+	for name, _ := range newListener.Events {
+		if _, found := oldListener.Events[name]; !found {
+			f := newElm.AddEventListener(name, false, newListener.handle)
+			newListener.stubs[name] = f
 		}
 	}
 }

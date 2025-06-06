@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 // H creates a vnode with sel tag
@@ -41,8 +41,8 @@ func addNS(sel string, data *VNodeData, children VNodeChildren) {
 	}
 }
 
-func EmptyNodeAt(elm dom.Element) *VNode {
-	id := elm.ID()
+func EmptyNodeAt(elm *dom.Object) *VNode {
+	id := elm.GetId()
 	if id != "" {
 		id = fmt.Sprintf("#%v", id)
 	}

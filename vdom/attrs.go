@@ -3,8 +3,6 @@ package vdom
 import (
 	"fmt"
 	"reflect"
-
-	"honnef.co/go/js/dom/v2"
 )
 
 const xlinkNS = "http://www.w3.org/1999/xlink"
@@ -31,7 +29,7 @@ func (p *AttrModule) updateAttrs(oldVNode, vnode *VNode) {
 		return
 	}
 
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 
 	// update modified attributes, add new attributes
 	for key, val := range newAttrs {

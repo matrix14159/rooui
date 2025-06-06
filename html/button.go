@@ -1,7 +1,7 @@
 package html
 
 import (
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 type ButtonElement struct {
@@ -25,6 +25,11 @@ func (p *ButtonElement) Text(text any) *ButtonElement {
 
 func (p *ButtonElement) Body(child ...Element) *ButtonElement {
 	p.BaseElement.Body(child...)
+	return p
+}
+
+func (p *ButtonElement) Class(name ...string) *ButtonElement {
+	p.BaseElement.Class(name...)
 	return p
 }
 

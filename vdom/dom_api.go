@@ -1,65 +1,61 @@
 package vdom
 
 import (
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 type DOMAPI interface {
-	CreateElement(name string) dom.HTMLElement
-	CreateElementNS(namespace, name string) dom.HTMLElement
-	CreateTextNode(text string) *dom.Text
-	ParentNode(node dom.Node) dom.Node
-	InsertBefore(parentNode, newNode, referenceNode dom.Node)
-	NextSibling(node dom.Node) dom.Node
-	AppendChild(node dom.Node, child dom.Node)
-	RemoveChild(node dom.Node, child dom.Node)
-	SetTextContent(node dom.Node, text string)
+	CreateElement(name string) *dom.Object
+	CreateElementNS(namespace, name string) *dom.Object
+	CreateTextNode(text string) *dom.Object
+	ParentNode(node *dom.Object) *dom.Object
+	InsertBefore(parentNode, newNode, referenceNode *dom.Object)
+	NextSibling(node *dom.Object) *dom.Object
+	AppendChild(node *dom.Object, child *dom.Object)
+	RemoveChild(node *dom.Object, child *dom.Object)
+	SetTextContent(node *dom.Object, text string)
 }
 
 type StandardDomApi struct {
-	Window   dom.Window
-	Document dom.Document
 }
 
 func NewStandardDomApi() *StandardDomApi {
 	p := new(StandardDomApi)
-	p.Window = dom.GetWindow()
-	p.Document = p.Window.Document()
 	return p
 }
 
-func (p *StandardDomApi) CreateElement(name string) dom.HTMLElement {
-	return p.Document.CreateElement(name).(dom.HTMLElement)
+func (p *StandardDomApi) CreateElement(name string) *dom.Object {
+	return dom.Document.CreateElement(name)
 }
 
-func (p *StandardDomApi) CreateElementNS(namespace, name string) dom.HTMLElement {
-	return p.Document.CreateElementNS(namespace, name).(dom.HTMLElement)
+func (p *StandardDomApi) CreateElementNS(namespace, name string) *dom.Object {
+	return dom.Document.CreateElementNS(namespace, name)
 }
 
-func (p *StandardDomApi) ParentNode(node dom.Node) dom.Node {
+func (p *StandardDomApi) CreateTextNode(text string) *dom.Object {
+	return dom.Document.CreateTextNode(text)
+}
+
+func (p *StandardDomApi) ParentNode(node *dom.Object) *dom.Object {
 	return node.ParentNode()
 }
 
-func (p *StandardDomApi) InsertBefore(parentNode, newNode, referenceNode dom.Node) {
+func (p *StandardDomApi) InsertBefore(parentNode, newNode, referenceNode *dom.Object) {
 	parentNode.InsertBefore(newNode, referenceNode)
 }
 
-func (p *StandardDomApi) NextSibling(node dom.Node) dom.Node {
+func (p *StandardDomApi) NextSibling(node *dom.Object) *dom.Object {
 	return node.NextSibling()
 }
 
-func (p *StandardDomApi) CreateTextNode(text string) *dom.Text {
-	return p.Document.CreateTextNode(text)
-}
-
-func (p *StandardDomApi) AppendChild(node dom.Node, child dom.Node) {
+func (p *StandardDomApi) AppendChild(node *dom.Object, child *dom.Object) {
 	node.AppendChild(child)
 }
 
-func (p *StandardDomApi) RemoveChild(node dom.Node, child dom.Node) {
+func (p *StandardDomApi) RemoveChild(node *dom.Object, child *dom.Object) {
 	node.RemoveChild(child)
 }
 
-func (p *StandardDomApi) SetTextContent(node dom.Node, text string) {
+func (p *StandardDomApi) SetTextContent(node *dom.Object, text string) {
 	node.SetTextContent(text)
 }

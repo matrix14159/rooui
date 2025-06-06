@@ -1,8 +1,8 @@
 package vdom
 
 import (
+	"github.com/matrix14159/rooui/dom"
 	"github.com/matrix14159/rooui/gs"
-	"honnef.co/go/js/dom/v2"
 )
 
 type VNodeStyle struct {
@@ -31,7 +31,7 @@ func NextFrame(f func()) {
 	})
 }
 
-func setNextFrameStyle(el dom.HTMLElement, prop string, val any) {
+func setNextFrameStyle(el *dom.Object, prop string, val any) {
 	el.Style().Set(prop, val)
 }
 
@@ -53,7 +53,7 @@ func (p *StyleModule) updateStyle(oldVnode, vnode *VNode) {
 		return
 	}
 
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 	_, oldHasDel := oldStyle.Style["delayed"]
 
 	for name, _ := range oldStyle.Style {
@@ -74,7 +74,7 @@ func (p *StyleModule) updateStyle(oldVnode, vnode *VNode) {
 			}
 		} else if name != "remove" && value != oldStyle.Style[name] {
 			if len(name) >= 2 && name[0] == '-' && name[1] == '-' {
-				elm.Style().SetProperty(name, value, "")
+				elm.Style().SetProperty(name, value)
 			} else {
 				elm.Style().Set(name, value)
 			}
@@ -87,7 +87,7 @@ func (p *StyleModule) applyDestroyStyle(vnode *VNode) {
 	if isNew {
 		return
 	}
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 	for name, value := range s.Style {
 		elm.Style().Set(name, value)
 	}
@@ -103,7 +103,7 @@ func (p *StyleModule) applyRemoveStyle(vnode *VNode, removeCallback func()) {
 	if isNew {
 		return
 	}
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 
 	if !p.reflowForced {
 		p.reflowForced = true

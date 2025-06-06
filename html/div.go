@@ -1,7 +1,7 @@
 package html
 
 import (
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 type DivElement struct {
@@ -25,6 +25,11 @@ func (p *DivElement) Text(text any) *DivElement {
 
 func (p *DivElement) Body(child ...Element) *DivElement {
 	p.BaseElement.Body(child...)
+	return p
+}
+
+func (p *DivElement) Class(name ...string) *DivElement {
+	p.BaseElement.Class(name...)
 	return p
 }
 

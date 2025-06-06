@@ -1,10 +1,11 @@
 package vdom
 
 import (
+	"log/slog"
 	"math"
 	"strings"
 
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 type Patcher struct {
@@ -93,7 +94,7 @@ func (p *Patcher) patchVNode(oldVnode, vnode *VNode) {
 	}
 }
 
-func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
+func (p *Patcher) updateChildren(parentElm *dom.Object, oldCh, newCh []*VNode) {
 	oldStartIdx := 0
 	oldEndIdx := len(oldCh) - 1
 	newStartIdx := 0
@@ -179,7 +180,7 @@ func (p *Patcher) updateChildren(parentElm dom.Node, oldCh, newCh []*VNode) {
 	//slog.Info("4.updateChildren", "newStartIdx", newStartIdx, "newEndIdx", newEndIdx, "newCh.len", len(newCh))
 
 	if newStartIdx <= newEndIdx {
-		var before dom.Node = nil
+		var before *dom.Object = nil
 		if newCh[newEndIdx] != nil {
 			before = newCh[newEndIdx].Elm
 		}
@@ -200,7 +201,7 @@ func (p *Patcher) createKeyToOldIdx(children []*VNode, beginIdx, endIdx int) map
 	return m
 }
 
-func (p *Patcher) createElm(vnode *VNode) dom.Node {
+func (p *Patcher) createElm(vnode *VNode) *dom.Object {
 	if vnode.Sel == "" {
 		return p.api.CreateTextNode(vnode.Text)
 	}
@@ -224,7 +225,7 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	}
 	//slog.Info("createElm", "tag", tag)
 
-	var elm dom.HTMLElement
+	var elm *dom.Object
 	if vnode.Data != nil && vnode.Data.Namespace != "" {
 		elm = p.api.CreateElementNS(vnode.Data.Namespace, tag)
 	} else {
@@ -233,7 +234,7 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	vnode.Elm = elm
 
 	if hash < dot {
-		//slog.Info("createElm", "id", vnode.Sel[hash+1:dot])
+		slog.Info("createElm", "id", vnode.Sel[hash+1:dot])
 		elm.SetAttribute("id", vnode.Sel[hash+1:dot])
 	}
 
@@ -261,7 +262,7 @@ func (p *Patcher) createElm(vnode *VNode) dom.Node {
 	return vnode.Elm
 }
 
-func (p *Patcher) addVNodes(parentElm, before dom.Node, vnodes []*VNode, startIdx, endIdx int) {
+func (p *Patcher) addVNodes(parentElm, before *dom.Object, vnodes []*VNode, startIdx, endIdx int) {
 	for i := startIdx; i <= endIdx; i++ {
 		ch := vnodes[i]
 		if ch == nil {
@@ -271,7 +272,7 @@ func (p *Patcher) addVNodes(parentElm, before dom.Node, vnodes []*VNode, startId
 	}
 }
 
-func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, endIdx int) {
+func (p *Patcher) removeVNodes(parentElm *dom.Object, vnodes []*VNode, startIdx, endIdx int) {
 	for i := startIdx; i <= endIdx; i++ {
 		ch := vnodes[i]
 		if ch == nil {
@@ -300,7 +301,7 @@ func (p *Patcher) removeVNodes(parentElm dom.Node, vnodes []*VNode, startIdx, en
 	}
 }
 
-func (p *Patcher) createRmCb(childElm dom.Node, listeners int) func() {
+func (p *Patcher) createRmCb(childElm *dom.Object, listeners int) func() {
 	return func() {
 		listeners--
 		if listeners == 0 {

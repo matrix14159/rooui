@@ -1,14 +1,14 @@
 package vdom
 
 import (
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 type VNode struct {
 	Sel      string
 	Data     *VNodeData
 	Children []*VNode
-	Elm      dom.Node
+	Elm      *dom.Object
 	Text     string
 	Key      string
 }

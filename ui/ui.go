@@ -4,9 +4,9 @@ import (
 	"log/slog"
 	"syscall/js"
 
+	"github.com/matrix14159/rooui/dom"
 	"github.com/matrix14159/rooui/vdom"
 	"github.com/matrix14159/sharp"
-	"honnef.co/go/js/dom/v2"
 )
 
 var RootComponent Comp
@@ -46,9 +46,7 @@ func mountTo(root string) string {
 		return ""
 	}
 
-	w := dom.GetWindow()
-	d := w.Document()
-	r := d.GetElementByID(root)
+	r := dom.Document.GetElementById(root)
 
 	oldVNode := vdom.EmptyNodeAt(r)
 	RootComponent.updateVNode(oldVNode)

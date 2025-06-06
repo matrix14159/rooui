@@ -1,7 +1,7 @@
 package ui
 
 import (
-	"honnef.co/go/js/dom/v2"
+	"github.com/matrix14159/rooui/dom"
 )
 
 type Event = dom.Event

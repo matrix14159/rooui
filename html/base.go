@@ -2,9 +2,10 @@ package html
 
 import (
 	"fmt"
+	"strings"
 
+	"github.com/matrix14159/rooui/dom"
 	"github.com/matrix14159/rooui/vdom"
-	"honnef.co/go/js/dom/v2"
 )
 
 type Element interface {
@@ -15,12 +16,16 @@ type Element interface {
 	GetEvents() map[string][]vdom.EventHandler
 
 	GetBody() []Element
+
+	GetClasses() []string
 }
 
 type BaseElement struct {
 	text string
 
 	body []Element
+
+	classes []string
 
 	events map[string][]vdom.EventHandler
 }
@@ -47,12 +52,23 @@ func (p *BaseElement) GetBody() []Element {
 	return p.body
 }
 
+func (p *BaseElement) GetClasses() []string {
+	return p.classes
+}
+
 func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
 
 func (p *BaseElement) Body(child ...Element) *BaseElement {
 	p.body = append(p.body, child...)
+	return p
+}
+
+func (p *BaseElement) Class(name ...string) *BaseElement {
+	for _, one := range name {
+		p.classes = append(p.classes, strings.TrimLeft(strings.TrimSpace(one), "."))
+	}
 	return p
 }
 

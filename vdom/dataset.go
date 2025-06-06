@@ -3,8 +3,6 @@ package vdom
 import (
 	"fmt"
 	"strings"
-
-	"honnef.co/go/js/dom/v2"
 )
 
 type Dataset map[string]string
@@ -27,7 +25,7 @@ func (p *DatasetModule) updateDataset(oldVNode, vnode *VNode) {
 		return
 	}
 
-	elm := vnode.Elm.(dom.HTMLElement)
+	elm := vnode.Elm
 
 	for key, _ := range oldDataset {
 		if _, found := newDataset[key]; !found {

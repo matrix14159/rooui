@@ -1,12 +1,14 @@
 package vdom
 
 import (
+	"log/slog"
 	"testing"
 )
 
-// GOOS=js GOARCH=wasm go test -run TestPatch
-func TestPatch(t *testing.T) {
+// GOOS=js GOARCH=wasm go test -run TestPatch1
+func TestPatch1(t *testing.T) {
 	root := insertDiv(t, "root")
+	slog.Info("TestPatch.", "root", root)
 	oldVnode := EmptyNodeAt(root)
 
 	vnode := H("div", "hello", nil, nil)
