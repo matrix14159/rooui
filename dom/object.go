@@ -19,3 +19,19 @@ func (p *Object) GetId() string {
 func (p *Object) Id(id string) {
 	p.Set("id", id)
 }
+
+func (p *Object) ObjectType() string {
+	if p.InstanceOf(js.Global().Get("HTMLElement")) {
+		return "HTMLElement"
+	}
+	if p.InstanceOf(js.Global().Get("Element")) {
+		return "Element"
+	}
+	if p.InstanceOf(js.Global().Get("Node")) {
+		return "Node"
+	}
+	if p.InstanceOf(js.Global().Get("EventTarget")) {
+		return "EventTarget"
+	}
+	return ""
+}
