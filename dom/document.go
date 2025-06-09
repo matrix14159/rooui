@@ -11,9 +11,6 @@ type document struct {
 	js.Value
 }
 
-// Window equivalent to window object in JavaScript DOM API.
-var Document = &document{Window.Get("document")}
-
 // Body return body element by shortcut
 func (p *document) Body() *Object {
 	elms := p.GetElementsByTagName("body")

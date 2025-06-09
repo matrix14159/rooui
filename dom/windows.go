@@ -11,6 +11,9 @@ type window struct {
 // Window equivalent to window object in JavaScript DOM API.
 var Window = &window{js.Global()}
 
+// https://developer.mozilla.org/en-US/docs/Web/API/Window/document
+var Document = &document{Window.Get("document")}
+
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/location
 func (p *window) Location() *Location {
 	return &Location{p.Get("location")}
@@ -65,6 +68,15 @@ func (p *window) RemoveEventListener(t string, listener func(Event), args ...int
 	} else {
 		p.Call("removeEventListener", t, listener)
 	}
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
+func (p *window) RequestAnimationFrame(f func()) {
+	wrap := func(this js.Value, args []js.Value) interface{} {
+		f()
+		return nil
+	}
+	js.Global().Call("requestAnimationFrame", js.FuncOf(wrap))
 }
 
 // Properties of window object

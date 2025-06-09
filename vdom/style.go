@@ -21,7 +21,7 @@ func NewVNodeStyle() *VNodeStyle {
 }
 
 func raf(f func()) {
-	dom.RequestAnimationFrame(f)
+	dom.Window.RequestAnimationFrame(f)
 }
 
 func NextFrame(f func()) {
