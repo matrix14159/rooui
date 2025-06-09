@@ -1,4 +1,4 @@
-package gs
+package dom
 
 import (
 	"syscall/js"

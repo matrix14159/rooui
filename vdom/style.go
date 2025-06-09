@@ -2,7 +2,6 @@ package vdom
 
 import (
 	"github.com/matrix14159/rooui/dom"
-	"github.com/matrix14159/rooui/gs"
 )
 
 type VNodeStyle struct {
@@ -22,7 +21,7 @@ func NewVNodeStyle() *VNodeStyle {
 }
 
 func raf(f func()) {
-	gs.RequestAnimationFrame(f)
+	dom.RequestAnimationFrame(f)
 }
 
 func NextFrame(f func()) {
