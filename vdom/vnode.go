@@ -21,7 +21,7 @@ type VNodeData struct {
 	Class     Classes
 	Style     *VNodeStyle
 	Dataset   Dataset
-	On        *On
+	Listener  *Listener
 	Hooks     *Hooks
 	Key       string
 	Namespace string // for SVGs

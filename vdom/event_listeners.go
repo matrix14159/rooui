@@ -1,14 +1,13 @@
 package vdom
 
 import (
-	"log/slog"
 	"syscall/js"
 
 	"github.com/matrix14159/rooui/dom"
 )
 
-// On represent event listener
-type On struct {
+// Listener represent event listener
+type Listener struct {
 	Events map[string][]EventHandler
 
 	// 事件注册后得到的js方法存根，后续可以用来移除监听器
@@ -20,15 +19,14 @@ type EventHandler struct {
 	Handler func(event dom.Event, options ...any)
 }
 
-func NewEventListener() *On {
-	return &On{
+func NewEventListener() *Listener {
+	return &Listener{
 		Events: make(map[string][]EventHandler),
 		stubs:  make(map[string]js.Func),
 	}
 }
 
-func (p *On) handle(event dom.Event) {
-	slog.Info("listener handle.", "event", event)
+func (p *Listener) handle(event dom.Event) {
 	name := event.EventType()
 	handlers := p.Events[name]
 	for _, one := range handlers {
@@ -67,15 +65,15 @@ func (p *EventModule) updateEventListeners(oldVNode, vnode *VNode) {
 	}
 }
 
-func getEventListener(vnode *VNode) (on *On, isNew bool) {
+func getEventListener(vnode *VNode) (on *Listener, isNew bool) {
 	if vnode.Data == nil {
 		vnode.Data = &VNodeData{}
 	}
-	if vnode.Data.On == nil {
-		vnode.Data.On = NewEventListener()
+	if vnode.Data.Listener == nil {
+		vnode.Data.Listener = NewEventListener()
 		isNew = true
 	}
-	on = vnode.Data.On
+	on = vnode.Data.Listener
 	return
 }
 
