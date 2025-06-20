@@ -10,6 +10,10 @@ func (p *Object) Style() *CSSStyleDeclaration {
 	return &CSSStyleDeclaration{p.Get("style")}
 }
 
+func (p *Object) Sheet() *CSSStyleSheet {
+	return &CSSStyleSheet{p.Get("sheet")}
+}
+
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
 func (p *Object) Dataset() *Object {
 	return &Object{p.Get("dataset")}

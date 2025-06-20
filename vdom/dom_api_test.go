@@ -21,7 +21,7 @@ func insertDiv(t *testing.T, id string) *dom.Object {
 	body := elms.Item(0)
 
 	div := api.CreateElement("div")
-	div.Id(id)
+	div.SetId(id)
 	body.InsertBefore(div, nil)
 
 	newDiv := dom.Document.GetElementById(id)

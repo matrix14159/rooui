@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/matrix14159/rooui/css"
 	"github.com/matrix14159/rooui/dom"
 	"github.com/matrix14159/rooui/vdom"
 )
@@ -18,30 +19,32 @@ type Element interface {
 	GetBody() []Element
 
 	GetClasses() []string
+
+	GetStyles() []css.Style
 }
 
 type BaseElement struct {
+	tag string
+
 	text string
 
 	body []Element
 
 	classes []string
 
+	styles []css.Style
+
 	events map[string][]vdom.EventHandler
 }
 
-func BaseHtmlElement() *BaseElement {
-	p := new(BaseElement)
-	p.init()
+func InitBaseElement(tag string) BaseElement {
+	p := BaseElement{tag: tag}
+	p.events = make(map[string][]vdom.EventHandler)
 	return p
 }
 
-func (p *BaseElement) init() {
-	p.events = make(map[string][]vdom.EventHandler)
-}
-
 func (p *BaseElement) Tag() string {
-	return "button"
+	return p.tag
 }
 
 func (p *BaseElement) GetText() string {
@@ -56,6 +59,10 @@ func (p *BaseElement) GetClasses() []string {
 	return p.classes
 }
 
+func (p *BaseElement) GetStyles() []css.Style {
+	return p.styles
+}
+
 func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
@@ -68,6 +75,13 @@ func (p *BaseElement) Body(child ...Element) *BaseElement {
 func (p *BaseElement) Class(name ...string) *BaseElement {
 	for _, one := range name {
 		p.classes = append(p.classes, strings.TrimLeft(strings.TrimSpace(one), "."))
+	}
+	return p
+}
+
+func (p *BaseElement) Style(style ...css.Style) *BaseElement {
+	for _, one := range style {
+		p.styles = append(p.styles, one)
 	}
 	return p
 }

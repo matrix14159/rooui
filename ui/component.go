@@ -39,9 +39,9 @@ func (p *Component) Render() Element {
 	return nil
 }
 
-// Use uses atom as current component's Element
-func (p *Component) Use(atom html.Element) Element {
-	for _, child := range atom.GetBody() {
+// Use uses el as current component's render Element
+func (p *Component) Use(el html.Element) Element {
+	for _, child := range el.GetBody() {
 		el, ok := child.(Element)
 		if !ok {
 			continue
@@ -49,7 +49,7 @@ func (p *Component) Use(atom html.Element) Element {
 		el.setParent(p)
 	}
 	p.element = &compElement{
-		Element: atom,
+		Element: el,
 		comp:    p,
 	}
 	return p.element
@@ -93,8 +93,4 @@ func (p *Component) replaceVNodeChild(idx int, oldChild, newChild *vdom.VNode) {
 	p.vnode.Children[idx] = newChild
 	delete(p.subVnodeMap, oldChild)
 	p.subVnodeMap[newChild] = idx
-}
-
-func (p *Component) LinkCSS(url string) {
-
 }

@@ -28,7 +28,7 @@ func TestEmptyNodeAt(t *testing.T) {
 	body := elms.Item(0)
 
 	div := api.CreateElement("div")
-	div.Id("root")
+	div.SetId("root")
 	body.InsertBefore(div, nil)
 
 	root := dom.Document.GetElementById("root")

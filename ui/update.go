@@ -104,7 +104,14 @@ func (p *updateFlow) handleUpdate(uc updateContext) {
 func (p *updateFlow) buildVNode(element html.Element) *vdom.VNode {
 	listener := vdom.NewEventListener()
 	listener.Events = element.GetEvents()
-	data := &vdom.VNodeData{Listener: listener}
+
+	classes := element.GetClasses()
+	classMap := make(vdom.Classes, len(classes))
+	for _, class := range classes {
+		classMap[class] = true
+	}
+
+	data := &vdom.VNodeData{Class: classMap, Listener: listener}
 
 	body := make([]*vdom.VNode, 0, len(element.GetBody()))
 	for _, child := range element.GetBody() {

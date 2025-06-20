@@ -11,6 +11,15 @@ type document struct {
 	js.Value
 }
 
+// Head return head element by shortcut
+func (p *document) Head() *Object {
+	elms := p.GetElementsByTagName("head")
+	if elms.Length() > 0 {
+		return elms.Item(0)
+	}
+	return nil
+}
+
 // Body return body element by shortcut
 func (p *document) Body() *Object {
 	elms := p.GetElementsByTagName("body")
@@ -33,6 +42,11 @@ func (p *document) DocumentElement() *Object {
 	return &Object{p.Get("documentElement")}
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/API/Document/styleSheets
+func (p *document) StyleSheets() *StyleSheetList {
+	return &StyleSheetList{p.Get("styleSheets")}
+}
+
 // Methods
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
@@ -52,7 +66,11 @@ func (p *document) CreateTextNode(textContent string) *Object {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 func (p *document) GetElementById(id string) *Object {
-	return &Object{p.Call("getElementById", id)}
+	v := p.Call("getElementById", id)
+	if v.IsNull() || v.IsUndefined() {
+		return nil
+	}
+	return &Object{v}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByTagName

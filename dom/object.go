@@ -12,11 +12,11 @@ type Object struct {
 	js.Value
 }
 
-func (p *Object) GetId() string {
+func (p *Object) Id() string {
 	return p.Get("id").String()
 }
 
-func (p *Object) Id(id string) {
+func (p *Object) SetId(id string) {
 	p.Set("id", id)
 }
 

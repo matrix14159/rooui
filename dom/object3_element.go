@@ -5,6 +5,7 @@ package dom
 
 // Properties
 
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 func (p *Object) ClassList() *DOMTokenList {
 	return &DOMTokenList{p.Get("classList")}
 }

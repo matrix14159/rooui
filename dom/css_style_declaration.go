@@ -13,10 +13,12 @@ type CSSStyleDeclaration struct {
 
 // Properties
 
+// https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/cssText
 func (s *CSSStyleDeclaration) CssText() string {
 	return s.Get("cssText").String()
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/length
 func (s *CSSStyleDeclaration) Length() int {
 	return s.Get("length").Int()
 }
@@ -35,5 +37,5 @@ func (p *CSSStyleDeclaration) RemoveProperty(name string) string {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty
 func (p *CSSStyleDeclaration) SetProperty(name, value string) {
-	p.Call("setProperty", value)
+	p.Call("setProperty", name, value)
 }

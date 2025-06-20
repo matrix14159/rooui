@@ -42,7 +42,7 @@ func addNS(sel string, data *VNodeData, children VNodeChildren) {
 }
 
 func EmptyNodeAt(elm *dom.Object) *VNode {
-	id := elm.GetId()
+	id := elm.Id()
 	if id != "" {
 		id = fmt.Sprintf("#%v", id)
 	}

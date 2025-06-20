@@ -100,3 +100,12 @@ func (p *window) ScrollX() float64 {
 func (p *window) ScrollY() float64 {
 	return p.Get("scrollY").Float()
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
+func (w *window) GetComputedStyle(el *Object, pseudoElt string) *CSSStyleDeclaration {
+	var optArg interface{}
+	if pseudoElt != "" {
+		optArg = pseudoElt
+	}
+	return &CSSStyleDeclaration{w.Call("getComputedStyle", el.Value, optArg)}
+}
