@@ -72,10 +72,14 @@ func (p *BaseElement) Body(child ...Element) *BaseElement {
 	return p
 }
 
-func (p *BaseElement) Class(name ...string) *BaseElement {
+func (p *BaseElement) Classes(name ...string) *BaseElement {
 	for _, one := range name {
 		p.classes = append(p.classes, strings.TrimLeft(strings.TrimSpace(one), "."))
 	}
+	return p
+}
+
+func (p *BaseElement) Class(name string, styles []css.Style) *BaseElement {
 	return p
 }
 
