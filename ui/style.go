@@ -6,18 +6,21 @@ import (
 
 	"github.com/matrix14159/rooui/css"
 	"github.com/matrix14159/rooui/dom"
-	"github.com/vishalkuo/bimap"
 )
 
 const c_rooui_style_id = "rooui_style"
 
 type styleMan struct {
 	// selector: index
-	ruleMap *bimap.BiMap[string, int]
+	ruleMap map[string]int
+
+	// url: struct{}
+	linkMap map[string]any
 }
 
 var Style = &styleMan{
-	ruleMap: bimap.NewBiMap[string, int](),
+	ruleMap: make(map[string]int),
+	linkMap: make(map[string]any),
 }
 
 // Add insert style associate with selector
@@ -25,7 +28,7 @@ func (p *styleMan) Add(selector string, style ...css.Style) {
 	if len(style) == 0 {
 		return
 	}
-	if p.ruleMap.Exists(selector) {
+	if _, found := p.ruleMap[selector]; found {
 		return
 	}
 
@@ -43,12 +46,12 @@ func (p *styleMan) Add(selector string, style ...css.Style) {
 	rule := fmt.Sprintf("%v {%v}", selector, b.String())
 	index := el.Sheet().CssRules().Length()
 	index = el.Sheet().InsertRule(rule, index) // rule example: "#blanc { color: white; background-color: gray; }"
-	p.ruleMap.Insert(selector, index)
+	p.ruleMap[selector] = index
 }
 
 // Remove delete style associate with selector
 func (p *styleMan) Remove(selector string) {
-	index, found := p.ruleMap.Get(selector)
+	index, found := p.ruleMap[selector]
 	if !found {
 		return
 	}
@@ -61,6 +64,22 @@ func (p *styleMan) Remove(selector string) {
 	el.Sheet().DeleteRule(index)
 }
 
-func AddLinkCSS(url string) {
+func (p *styleMan) AddLinkCSS(url string, media string) {
+	if len(url) == 0 {
+		return
+	}
+	if _, found := p.linkMap[url]; found {
+		return
+	}
 
+	link := dom.Document.CreateElement("link")
+	link.SetAttribute("type", "text/css")
+	link.SetAttribute("rel", "stylesheet")
+	link.SetAttribute("href", url)
+	if media != "" {
+		link.SetAttribute("media", media)
+	}
+	link = dom.Document.Head().AppendChild(link)
+
+	p.linkMap[url] = struct{}{}
 }
