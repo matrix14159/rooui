@@ -111,7 +111,13 @@ func (p *updateFlow) buildVNode(element html.Element) *vdom.VNode {
 		classMap[class] = true
 	}
 
-	data := &vdom.VNodeData{Class: classMap, Listener: listener}
+	styles := element.GetStyles()
+	vStyle := vdom.NewVNodeStyle()
+	for _, item := range styles {
+		vStyle.Style[item.Name] = item.Value
+	}
+
+	data := &vdom.VNodeData{Style: vStyle, Class: classMap, Listener: listener}
 
 	body := make([]*vdom.VNode, 0, len(element.GetBody()))
 	for _, child := range element.GetBody() {

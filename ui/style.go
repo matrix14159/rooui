@@ -64,7 +64,7 @@ func (p *styleMan) Remove(selector string) {
 	el.Sheet().DeleteRule(index)
 }
 
-func (p *styleMan) AddLinkCSS(url string, media string) {
+func (p *styleMan) LinkCSS(url string, media string) {
 	if len(url) == 0 {
 		return
 	}
