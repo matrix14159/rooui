@@ -12,6 +12,8 @@ import (
 type Element interface {
 	Tag() string
 
+	GetId() string
+
 	GetText() string
 
 	GetEvents() map[string][]vdom.EventHandler
@@ -25,6 +27,8 @@ type Element interface {
 
 type BaseElement struct {
 	tag string
+
+	id string
 
 	text string
 
@@ -47,6 +51,10 @@ func (p *BaseElement) Tag() string {
 	return p.tag
 }
 
+func (p *BaseElement) GetId() string {
+	return p.id
+}
+
 func (p *BaseElement) GetText() string {
 	return p.text
 }
@@ -65,6 +73,11 @@ func (p *BaseElement) GetStyles() []css.Style {
 
 func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
+}
+
+func (p *BaseElement) Id(id string) *BaseElement {
+	p.id = id
+	return p
 }
 
 func (p *BaseElement) Body(child ...Element) *BaseElement {
