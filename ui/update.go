@@ -111,6 +111,12 @@ func (p *updateFlow) buildVNode(element html.Element) *vdom.VNode {
 		classMap[class] = true
 	}
 
+	classStyleMap := element.GetClassStyle()
+	for cls, styles := range classStyleMap {
+		Style.Add("."+cls, styles...)
+		classMap[cls] = true
+	}
+
 	styles := element.GetStyles()
 	vStyle := vdom.NewVNodeStyle()
 	for _, item := range styles {

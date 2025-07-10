@@ -23,6 +23,8 @@ type Element interface {
 	GetClasses() []string
 
 	GetStyles() []css.Style
+
+	GetClassStyle() map[string][]css.Style
 }
 
 type BaseElement struct {
@@ -37,6 +39,8 @@ type BaseElement struct {
 	classes []string
 
 	styles []css.Style
+
+	classStyle map[string][]css.Style
 
 	events map[string][]vdom.EventHandler
 }
@@ -71,6 +75,10 @@ func (p *BaseElement) GetStyles() []css.Style {
 	return p.styles
 }
 
+func (p *BaseElement) GetClassStyle() map[string][]css.Style {
+	return p.classStyle
+}
+
 func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
 }
@@ -87,12 +95,17 @@ func (p *BaseElement) Body(child ...Element) *BaseElement {
 
 func (p *BaseElement) Classes(name ...string) *BaseElement {
 	for _, one := range name {
-		p.classes = append(p.classes, strings.TrimLeft(strings.TrimSpace(one), "."))
+		p.classes = append(p.classes, strings.TrimPrefix(strings.TrimSpace(one), "."))
 	}
 	return p
 }
 
 func (p *BaseElement) Class(name string, styles []css.Style) *BaseElement {
+	if p.classStyle == nil {
+		p.classStyle = make(map[string][]css.Style)
+	}
+	cls := strings.TrimPrefix(strings.TrimSpace(name), ".")
+	p.classStyle[cls] = styles
 	return p
 }
 

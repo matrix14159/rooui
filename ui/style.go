@@ -24,6 +24,7 @@ var Style = &styleMan{
 }
 
 // Add insert style associate with selector
+// inspect by browser console: document.getElementById("rooui_style").sheet
 func (p *styleMan) Add(selector string, style ...css.Style) {
 	if len(style) == 0 {
 		return
