@@ -66,10 +66,10 @@ func NewPromise(handler func() (interface{}, error)) Promise {
 	return mustJSValueToPromise(promise.New(jsHandler))
 }
 
-// Await waits for the Promise. It unmarshals the resolved value to v. An error
+// Await2 waits for the Promise. It unmarshals the resolved value to v. An error
 // will be returned if unmarshalling is unsuccessful or the Promise rejects.
 // It is implemented by calling then and catch on JS.
-func (p Promise) Await(v interface{}) error {
+func (p Promise) Await2(v interface{}) error {
 	err := make(chan error)
 	p.Call("then", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		if len(args) > 0 && v != nil {
@@ -84,6 +84,26 @@ func (p Promise) Await(v interface{}) error {
 		return nil
 	}))
 	return <-err
+}
+
+// Await waits for the Promise and return raw js.Value
+func (p Promise) Await() (val js.Value, err error) {
+	errCh := make(chan error)
+	p.Call("then", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		if len(args) > 0 {
+			val = args[0]
+			errCh <- nil
+			return nil
+		}
+		errCh <- nil
+		return nil
+	}))
+	p.Call("catch", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		errCh <- errors.New(args[0].Call("toString").String())
+		return nil
+	}))
+	err = <-errCh
+	return
 }
 
 // PromiseAll creates a promise that is fulfilled when all the provided promises have been fulfilled.
