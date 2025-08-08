@@ -1,8 +1,11 @@
 package ui
 
 import (
+	"fmt"
+
 	"github.com/matrix14159/rooui/html"
 	"github.com/matrix14159/rooui/vdom"
+	"github.com/rs/xid"
 )
 
 // Comp is the base component interface
@@ -35,6 +38,9 @@ type Component struct {
 
 	// speed up for finding vnode children
 	subVnodeMap map[*vdom.VNode]int
+
+	//
+	magicIdMap map[string]string
 }
 
 func (p *Component) Render() Element {
@@ -59,6 +65,20 @@ func (p *Component) Use(el html.Element) Element {
 
 func (p *Component) GetId() string {
 	return p.element.GetId()
+}
+
+// MagicId return a unique id for k
+// k must begin with a~z if use for id or name
+func (p *Component) MagicId(k string) string {
+	if p.magicIdMap == nil {
+		p.magicIdMap = make(map[string]string)
+	}
+	id, found := p.magicIdMap[k]
+	if !found {
+		id = fmt.Sprintf("%s%s", k, xid.New().String())
+		p.magicIdMap[k] = id
+	}
+	return id
 }
 
 func (p *Component) getElement() Element {
