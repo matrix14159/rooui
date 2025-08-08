@@ -10,6 +10,8 @@ type Comp interface {
 	// Render return element for current component
 	Render() Element
 
+	GetId() string
+
 	getElement() Element
 
 	updateElement(el Element)
@@ -53,6 +55,10 @@ func (p *Component) Use(el html.Element) Element {
 		comp:    p,
 	}
 	return p.element
+}
+
+func (p *Component) GetId() string {
+	return p.element.GetId()
 }
 
 func (p *Component) getElement() Element {
