@@ -40,21 +40,25 @@ func (p *DialogElement) OnCancel(f func(event dom.Event, options ...any), option
 	return p
 }
 
-func (p *DialogElement) Show() {
+func (p *DialogElement) Show(left, top string) {
 	dlg := dom.Document.GetElementById(p.GetId())
 	if dlg == nil {
 		slog.Warn("dialog show failed. can't find element.", "id", p.GetId())
 		return
 	}
+	dlg.Style().SetProperty("left", left)
+	dlg.Style().SetProperty("top", top)
 	dlg.Call("show")
 }
 
-func (p *DialogElement) ShowModal() {
+func (p *DialogElement) ShowModal(left, top string) {
 	dlg := dom.Document.GetElementById(p.GetId())
 	if dlg == nil {
 		slog.Warn("dialog show modal failed. can't find element.", "id", p.GetId())
 		return
 	}
+	dlg.Style().SetProperty("left", left)
+	dlg.Style().SetProperty("top", top)
 	dlg.Call("showModal")
 }
 
