@@ -181,8 +181,8 @@ func (p *Patcher) updateChildren(parentElm *dom.Object, oldCh, newCh []*VNode) {
 
 	if newStartIdx <= newEndIdx {
 		var before *dom.Object = nil
-		if newCh[newEndIdx] != nil {
-			before = newCh[newEndIdx].Elm
+		if len(newCh) >= newEndIdx+2 && newCh[newEndIdx+1] != nil {
+			before = newCh[newEndIdx+1].Elm
 		}
 		p.addVNodes(parentElm, before, newCh, newStartIdx, newEndIdx)
 	}
@@ -194,9 +194,11 @@ func (p *Patcher) updateChildren(parentElm *dom.Object, oldCh, newCh []*VNode) {
 
 func (p *Patcher) createKeyToOldIdx(children []*VNode, beginIdx, endIdx int) map[string]int {
 	m := make(map[string]int)
-	for i := beginIdx; i < endIdx; i++ {
+	for i := beginIdx; i <= endIdx; i++ {
 		key := children[i].Key
-		m[key] = i
+		if key != "" {
+			m[key] = i
+		}
 	}
 	return m
 }
