@@ -67,8 +67,8 @@ func (p *Component) GetId() string {
 	return p.element.GetId()
 }
 
-// MagicId return a unique id for k
-// k must begin with a~z if use for id or name
+// MagicId return a unique id for key k
+// k must begin with a~z when use for id or name
 func (p *Component) MagicId(k string) string {
 	if p.magicIdMap == nil {
 		p.magicIdMap = make(map[string]string)

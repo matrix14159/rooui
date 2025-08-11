@@ -20,6 +20,8 @@ type Element interface {
 
 	GetBody() []Element
 
+	GetProps() map[string]any
+
 	GetClasses() []string
 
 	GetStyles() []css.Style
@@ -36,6 +38,8 @@ type BaseElement struct {
 
 	body []Element
 
+	props map[string]any
+
 	classes []string
 
 	styles []css.Style
@@ -47,6 +51,7 @@ type BaseElement struct {
 
 func InitBaseElement(tag string) BaseElement {
 	p := BaseElement{tag: tag}
+	p.props = make(map[string]any)
 	p.events = make(map[string][]vdom.EventHandler)
 	return p
 }
@@ -65,6 +70,10 @@ func (p *BaseElement) GetText() string {
 
 func (p *BaseElement) GetBody() []Element {
 	return p.body
+}
+
+func (p *BaseElement) GetProps() map[string]any {
+	return p.props
 }
 
 func (p *BaseElement) GetClasses() []string {

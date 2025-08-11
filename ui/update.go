@@ -123,7 +123,7 @@ func (p *updateFlow) buildVNode(element html.Element) *vdom.VNode {
 		vStyle.Style[item.Name] = item.Value
 	}
 
-	props := make(vdom.Props)
+	props := element.GetProps()
 	if id := element.GetId(); len(id) > 0 {
 		props["id"] = id
 	}

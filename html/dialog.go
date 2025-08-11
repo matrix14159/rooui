@@ -16,6 +16,7 @@ func Dialog() *DialogElement {
 }
 
 func (p *DialogElement) Open() *DialogElement {
+	p.props["open"] = true
 	return p
 }
 
