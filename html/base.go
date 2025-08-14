@@ -105,6 +105,9 @@ func (p *BaseElement) Body(child ...Element) *BaseElement {
 
 func (p *BaseElement) Classes(name ...string) *BaseElement {
 	for _, one := range name {
+		if one == "" {
+			continue
+		}
 		p.classes = append(p.classes, strings.TrimPrefix(strings.TrimSpace(one), "."))
 	}
 	return p
@@ -113,6 +116,9 @@ func (p *BaseElement) Classes(name ...string) *BaseElement {
 func (p *BaseElement) Class(name string, styles []css.Style) *BaseElement {
 	if p.classStyle == nil {
 		p.classStyle = make(map[string][]css.Style)
+	}
+	if name == "" && p.id != "" {
+		name = p.id
 	}
 	cls := strings.TrimPrefix(strings.TrimSpace(name), ".")
 	p.classStyle[cls] = styles
