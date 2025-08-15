@@ -10,5 +10,5 @@ type Style struct {
 }
 
 func (p Style) ToCSS() string {
-	return fmt.Sprintf("%v: %v;", p.Name, p.Value)
+	return fmt.Sprintf("%v:%v;", p.Name, p.Value)
 }
