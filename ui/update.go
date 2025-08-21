@@ -99,6 +99,8 @@ func (p *updateFlow) handleUpdate(uc updateContext) {
 			parent.replaceVNodeChild(idx, oldVn, newVn)
 		}
 	}
+
+	p.touchOnUpdated(element)
 }
 
 func (p *updateFlow) buildVNode(element html.Element) *vdom.VNode {
@@ -154,5 +156,17 @@ func (p *updateFlow) updateCompVNode(element Element, vnode *vdom.VNode) {
 			continue
 		}
 		p.updateCompVNode(el, vnode.Children[i])
+	}
+}
+
+func (p *updateFlow) touchOnUpdated(element Element) {
+	element.getComp().OnUpdated()
+	for _, child := range element.GetBody() {
+		el, ok := child.(Element)
+		if !ok {
+			continue
+		}
+		slog.Info("touchOnUpdated", "id", el.GetId())
+		el.getComp().OnUpdated()
 	}
 }

@@ -13,6 +13,9 @@ type Comp interface {
 	// Render return element for current component
 	Render() Element
 
+	// OnUpdated will be trigger when Render() is done
+	OnUpdated()
+
 	GetId() string
 
 	getElement() Element
@@ -43,24 +46,28 @@ type Component struct {
 	magicIdMap map[string]string
 }
 
-func (p *Component) Render() Element {
-	return nil
-}
-
-// Use uses el as current component's render Element
-func (p *Component) Use(el html.Element) Element {
+// Render will render component c by element el
+func Render(c Comp, el html.Element) Element {
 	for _, child := range el.GetBody() {
 		el, ok := child.(Element)
 		if !ok {
 			continue
 		}
-		el.setParent(p)
+		el.setParent(c)
 	}
-	p.element = &compElement{
+	element := &compElement{
 		Element: el,
-		comp:    p,
+		comp:    c,
 	}
-	return p.element
+	c.updateElement(element)
+	return element
+}
+
+func (p *Component) Render() Element {
+	return nil
+}
+
+func (p *Component) OnUpdated() {
 }
 
 func (p *Component) GetId() string {
