@@ -77,3 +77,8 @@ func (p *document) GetElementById(id string) *Object {
 func (p *document) GetElementsByTagName(name string) *HTMLCollection {
 	return &HTMLCollection{p.Call("getElementsByTagName", name)}
 }
+
+// https://developer.mozilla.org/zh-CN/docs/Web/API/Document/querySelectorAll
+func (p *document) QuerySelectorAll(selectors string) *NodeList {
+	return &NodeList{p.Call("querySelectorAll", selectors)}
+}

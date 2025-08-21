@@ -103,6 +103,11 @@ func (p *BaseElement) Body(child ...Element) *BaseElement {
 	return p
 }
 
+func (p *BaseElement) Prop(name string, value any) *BaseElement {
+	p.props[name] = value
+	return p
+}
+
 func (p *BaseElement) Classes(name ...string) *BaseElement {
 	for _, one := range name {
 		if one == "" {

@@ -20,6 +20,11 @@ func (p *DialogElement) Open() *DialogElement {
 	return p
 }
 
+func (p *DialogElement) CloseByMask() *DialogElement {
+	p.props["closeByMask"] = true
+	return p
+}
+
 func (p *DialogElement) OnClose(f func(event dom.Event, options ...any), options ...any) *DialogElement {
 	handlers := p.events["close"]
 	handlers = append(handlers, vdom.EventHandler{
