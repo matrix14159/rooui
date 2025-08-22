@@ -19,6 +19,8 @@ type Element interface {
 
 	GetEvents() map[string][]vdom.EventHandler
 
+	GetAttributes() map[string]any
+
 	GetBody() []Element
 
 	GetProps() map[string]any
@@ -39,6 +41,8 @@ type BaseElement struct {
 
 	body []Element
 
+	attributes map[string]any
+
 	props map[string]any
 
 	classes []string
@@ -52,6 +56,7 @@ type BaseElement struct {
 
 func InitBaseElement(tag string) BaseElement {
 	p := BaseElement{tag: tag}
+	p.attributes = make(map[string]any)
 	p.props = make(map[string]any)
 	p.events = make(map[string][]vdom.EventHandler)
 	return p
@@ -71,6 +76,10 @@ func (p *BaseElement) GetText() string {
 
 func (p *BaseElement) GetBody() []Element {
 	return p.body
+}
+
+func (p *BaseElement) GetAttributes() map[string]any {
+	return p.attributes
 }
 
 func (p *BaseElement) GetProps() map[string]any {
@@ -100,6 +109,11 @@ func (p *BaseElement) Id(id string) *BaseElement {
 
 func (p *BaseElement) Body(child ...Element) *BaseElement {
 	p.body = append(p.body, child...)
+	return p
+}
+
+func (p *BaseElement) Attribute(name string, value any) *BaseElement {
+	p.attributes[name] = value
 	return p
 }
 

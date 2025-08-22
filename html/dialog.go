@@ -21,7 +21,7 @@ func (p *DialogElement) Open() *DialogElement {
 }
 
 func (p *DialogElement) CloseByMask() *DialogElement {
-	p.props["closeByMask"] = true
+	p.attributes["closeByMask"] = true
 	return p
 }
 
