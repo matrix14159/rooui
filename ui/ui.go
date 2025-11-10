@@ -16,6 +16,7 @@ func Run(c Comp) {
 
 	initLog()
 
+	dom.Window.Set("u_id", 0) // init for Component.Uid()
 	js.Global().Set("MountTo", js.FuncOf(mountToFunc))
 
 	defaultUpdateFlow = new(updateFlow)

@@ -3,9 +3,9 @@ package ui
 import (
 	"fmt"
 
+	"github.com/matrix14159/rooui/dom"
 	"github.com/matrix14159/rooui/html"
 	"github.com/matrix14159/rooui/vdom"
-	"github.com/rs/xid"
 )
 
 // Comp is the base component interface
@@ -82,7 +82,10 @@ func (p *Component) Uid(k string) string {
 	}
 	id, found := p.magicIdMap[k]
 	if !found {
-		id = fmt.Sprintf("%s%s", k, xid.New().String())
+		maxId := dom.Window.Get("u_id").Int()
+		maxId++
+		dom.Window.Set("u_id", maxId)
+		id = fmt.Sprintf("%s_%v", k, maxId)
 		p.magicIdMap[k] = id
 	}
 	return id
