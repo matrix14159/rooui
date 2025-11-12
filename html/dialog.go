@@ -2,6 +2,7 @@ package html
 
 import (
 	"log/slog"
+	"strings"
 
 	"github.com/matrix14159/rooui/dom"
 	"github.com/matrix14159/rooui/vdom"
@@ -22,6 +23,12 @@ func (p *DialogElement) Open() *DialogElement {
 
 func (p *DialogElement) CloseByMask() *DialogElement {
 	p.attributes["closeByMask"] = true
+	p.AddEventListener("click", func(event dom.Event, options ...any) {
+		//slog.Info("DialogElement.CloseByMask")
+		if strings.ToLower(event.Target().TagName()) == "dialog" {
+			event.Target().Call("close")
+		}
+	})
 	return p
 }
 
