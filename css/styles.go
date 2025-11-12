@@ -133,6 +133,22 @@ func Border(v string) Style {
 	return Style{Name: "border", Value: v}
 }
 
+func BorderLeft(v string) Style {
+	return Style{Name: "border-left", Value: v}
+}
+
+func BorderTop(v string) Style {
+	return Style{Name: "border-top", Value: v}
+}
+
+func BorderRight(v string) Style {
+	return Style{Name: "border-right", Value: v}
+}
+
+func BorderBottom(v string) Style {
+	return Style{Name: "border-bottom", Value: v}
+}
+
 func BorderWidth(v string) Style {
 	return Style{Name: "border-width", Value: v}
 }
