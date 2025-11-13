@@ -271,6 +271,21 @@ func WordBreak(v string) Style {
 	return Style{Name: "word-break", Value: v}
 }
 
+// 可选值: visible | hidden | scroll | auto | clip | inherit
+func Overflow(v string) Style {
+	return Style{Name: "overflow", Value: v}
+}
+
+// 可选值: visible | hidden | scroll | auto | clip | inherit
+func OverflowX(v string) Style {
+	return Style{Name: "overflow-x", Value: v}
+}
+
+// 可选值: visible | hidden | scroll | auto | clip | inherit
+func OverflowY(v string) Style {
+	return Style{Name: "overflow-y", Value: v}
+}
+
 // 可选值: normal | break-word | anywhere | inherit
 func OverflowWrap(v string) Style {
 	return Style{Name: "overflow-wrap", Value: v}
