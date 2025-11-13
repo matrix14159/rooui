@@ -4,6 +4,7 @@ package dom
 // https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
 
 import (
+	"fmt"
 	"syscall/js"
 )
 
@@ -41,4 +42,9 @@ func (p *DOMRect) Bottom() float64 {
 
 func (p *DOMRect) Left() float64 {
 	return p.Get("left").Float()
+}
+
+func (p *DOMRect) String() string {
+	return fmt.Sprintf("{X:%v, Y:%v, W:%v, H:%v, Top:%v, Right:%v, Bottom:%v, Left:%v}",
+		p.X(), p.Y(), p.Width(), p.Height(), p.Top(), p.Right(), p.Bottom(), p.Left())
 }
