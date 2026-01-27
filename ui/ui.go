@@ -12,16 +12,24 @@ import (
 var RootComponent Comp
 
 func Run(c Comp) {
-	RootComponent = c
-
 	initLog()
 
-	dom.Window.Set("u_id", 0) // init for Component.Uid()
-	js.Global().Set("MountTo", js.FuncOf(mountToFunc))
+	RootComponent = c
 
-	defaultUpdateFlow = new(updateFlow)
-	defaultUpdateFlow.RunUpdateLoop()
+	// init for Component.Uid()
+	dom.Window.Set("u_id", 0)
 
+	// Use js.FuncOf for better string parameter handling
+	js.Global().Set("MountTo", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		if len(args) > 0 {
+			MountTo(args[0].String())
+		}
+		return nil
+	}))
+
+	defaultUpdateFlow = newUpdateFlow()
+
+	// Keep the program running to respond to JavaScript calls
 	select {}
 }
 
@@ -37,17 +45,23 @@ func initLog() {
 	slog.SetDefault(slog.New(handler))
 }
 
-func mountToFunc(this js.Value, args []js.Value) interface{} {
-	return js.ValueOf(mountTo(args[0].String()))
-}
-
-func mountTo(root string) string {
+// MountTo mounts the root component to the specified element ID
+func MountTo(root string) {
 	if RootComponent == nil {
 		slog.Error("root component not set")
-		return ""
+		return
+	}
+
+	if root == "" {
+		slog.Error("root parameter is empty")
+		return
 	}
 
 	r := dom.Document.GetElementById(root)
+	if r == nil {
+		slog.Error("root element not found", "root", root)
+		return
+	}
 
 	oldVNode := vdom.EmptyNodeAt(r)
 	RootComponent.updateVNode(oldVNode)
@@ -55,5 +69,4 @@ func mountTo(root string) string {
 	Update(RootComponent)
 
 	slog.Info("root component mount done")
-	return ""
 }

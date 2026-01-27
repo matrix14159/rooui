@@ -9,15 +9,10 @@ import (
 	"github.com/matrix14159/rooui/vdom"
 )
 
-var defaultUpdateFlow *updateFlow
-
-// Update updates component c
-func Update(c Comp, opts ...UpdateOption) {
-	defaultUpdateFlow.Accept(c, opts)
-}
-
 type updateFlow struct {
-	ch chan updateContext
+	queue      []updateContext
+	processing bool
+	mu         sync.Mutex
 
 	patch *vdom.Patcher
 
@@ -30,15 +25,12 @@ type updateContext struct {
 	opts []UpdateOption
 }
 
-func (p *updateFlow) Accept(c Comp, opts []UpdateOption) {
-	uc := p.ucPool.Get().(updateContext)
-	uc.c = c
-	uc.opts = opts
-	p.ch <- uc
-}
+var defaultUpdateFlow *updateFlow
 
-func (p *updateFlow) RunUpdateLoop() {
-	p.ch = make(chan updateContext, 1024)
+func newUpdateFlow() *updateFlow {
+	p := new(updateFlow)
+	p.queue = make([]updateContext, 0, 1024)
+	p.processing = false
 	p.patch = vdom.NewPatcher(vdom.NewStandardDomApi(),
 		vdom.NewAttrModule(),
 		vdom.NewClassModule(),
@@ -50,12 +42,46 @@ func (p *updateFlow) RunUpdateLoop() {
 	p.ucPool.New = func() any {
 		return updateContext{}
 	}
-
-	go p.runUpdateLoop()
+	return p
 }
 
-func (p *updateFlow) runUpdateLoop() {
-	for uc := range p.ch {
+// Update updates component c asynchronously using JavaScript event loop
+func Update(c Comp, opts ...UpdateOption) {
+	defaultUpdateFlow.accept(c, opts)
+}
+
+func (p *updateFlow) accept(c Comp, opts []UpdateOption) {
+	uc := p.ucPool.Get().(updateContext)
+	uc.c = c
+	uc.opts = opts
+
+	p.mu.Lock()
+	p.queue = append(p.queue, uc)
+	scheduleProcessing := !p.processing
+	if scheduleProcessing {
+		p.processing = true
+	}
+	p.mu.Unlock()
+
+	if scheduleProcessing {
+		AsyncTask(p.processQueue)
+	}
+}
+
+func (p *updateFlow) processQueue() {
+	for {
+		p.mu.Lock()
+		if len(p.queue) == 0 {
+			p.processing = false
+			p.mu.Unlock()
+			break
+		}
+
+		// Take the first update from the queue
+		uc := p.queue[0]
+		p.queue = p.queue[1:]
+		p.mu.Unlock()
+
 		p.handleUpdate(uc)
 		p.ucPool.Put(uc)
 	}
