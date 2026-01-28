@@ -30,6 +30,8 @@ type Element interface {
 	GetStyles() []css.Style
 
 	GetClassStyle() map[string][]css.Style
+
+	ReplaceChild(index int, el Element)
 }
 
 type BaseElement struct {
@@ -100,6 +102,10 @@ func (p *BaseElement) GetClassStyle() map[string][]css.Style {
 
 func (p *BaseElement) GetEvents() map[string][]vdom.EventHandler {
 	return p.events
+}
+
+func (p *BaseElement) ReplaceChild(index int, el Element) {
+	p.body[index] = el
 }
 
 func (p *BaseElement) Id(id string) *BaseElement {

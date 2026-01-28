@@ -16,6 +16,10 @@ type Comp interface {
 	// OnUpdated will be trigger when Render() is done
 	OnUpdated()
 
+	// GetName return component's name, only use for debug trace
+	GetName() string
+
+	// GetId return the component render element's id
 	GetId() string
 
 	getElement() Element
@@ -33,6 +37,9 @@ type Comp interface {
 }
 
 type Component struct {
+	// debug trace
+	Name string
+
 	// render element for current component
 	element Element
 
@@ -48,18 +55,24 @@ type Component struct {
 
 // Render will render component c by element el
 func Render(c Comp, el html.Element) Element {
-	for _, child := range el.GetBody() {
-		el, ok := child.(Element)
-		if !ok {
-			continue
-		}
-		el.setParent(c)
-	}
 	element := &compElement{
 		Element: el,
 		comp:    c,
 	}
 	c.updateElement(element)
+
+	for i, child := range el.GetBody() {
+		childEl, ok := child.(Element)
+		if !ok {
+			childComp := &Component{}
+			if c.GetName() != "" {
+				childComp.Name = fmt.Sprintf("%v-%v", c.GetName(), i)
+			}
+			childEl = Render(childComp, child)
+			el.ReplaceChild(i, childEl)
+		}
+		childEl.setParent(c)
+	}
 	return element
 }
 
@@ -68,6 +81,10 @@ func (p *Component) Render() Element {
 }
 
 func (p *Component) OnUpdated() {
+}
+
+func (p *Component) GetName() string {
+	return p.Name
 }
 
 func (p *Component) GetId() string {
