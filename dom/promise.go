@@ -1,7 +1,8 @@
 package dom
 
 import (
-	"errors"
+	"sync"
+	"sync/atomic"
 	"syscall/js"
 )
 
@@ -11,161 +12,169 @@ type Promise struct {
 	js.Value
 }
 
-// FromJSValue turns a JS value to a Promise.
-func (p *Promise) FromJSValue(value js.Value) error {
-	p.Value = value
-	return nil
+// NewRawPromise wrap JS promise to a Promise
+func NewRawPromise(promise js.Value) *Promise {
+	return &Promise{Value: promise}
 }
 
-// NewPromise returns a promise that is fulfilled or rejected when the provided handler returns.
-// The handler is spawned in its own goroutine.
-func NewPromise(handler func() (interface{}, error)) Promise {
-	resultChan := make(chan interface{})
-	errChan := make(chan error)
+// NewPromise 创建新的Promise实例
+func NewPromise(executor func(resolve func(interface{}), reject func(interface{}))) *Promise {
+	promiseCtor := js.Global().Get("Promise")
 
-	// Invoke the handler in a new goroutine.
-	go func() {
-		result, err := handler()
-		if err != nil {
-			errChan <- err
-			return
-		}
-		resultChan <- result
-	}()
+	jsExecutor := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		jsNativeResolve := args[0]
+		jsNativeReject := args[1]
 
-	// Create a JS promise handler.
-	var jsHandler js.Func
-	jsHandler = js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		if len(args) < 2 {
-			panic("not enough arguments are passed to the Promise constructor handler")
+		jsResolve := func(v interface{}) {
+			jsVal := ToJSValue(v)
+			jsNativeResolve.Invoke(jsVal) // 调用JS原生resolve
 		}
 
-		resolve := args[0]
-		reject := args[1]
-
-		if resolve.Type() != js.TypeFunction || reject.Type() != js.TypeFunction {
-			panic("invalid type passed to Promise constructor handler")
+		jsReject := func(v interface{}) {
+			jsVal := ToJSValue(v)
+			jsNativeReject.Invoke(jsVal) // 调用JS原生reject
 		}
 
-		go func() {
-			select {
-			case r := <-resultChan:
-				resolve.Invoke(ToJSValue(r))
-			case err := <-errChan:
-				reject.Invoke(NewError(err))
-			}
-
-			// Free up resources now that we are done.
-			jsHandler.Release()
-		}()
-
+		executor(jsResolve, jsReject)
 		return nil
 	})
+	defer jsExecutor.Release() // 释放JS函数资源
 
-	promise := js.Global().Get("Promise")
-	return mustJSValueToPromise(promise.New(jsHandler))
+	// 创建并返回封装的Promise实例
+	return &Promise{Value: promiseCtor.New(jsExecutor)}
 }
 
-// Await2 waits for the Promise. It unmarshals the resolved value to v. An error
-// will be returned if unmarshalling is unsuccessful or the Promise rejects.
-// It is implemented by calling then and catch on JS.
-func (p Promise) Await2(v interface{}) error {
-	err := make(chan error)
-	p.Call("then", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		if len(args) > 0 && v != nil {
-			err <- FromJSValue(args[0], v)
-			return nil
-		}
-		err <- nil
-		return nil
-	}))
-	p.Call("catch", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		err <- errors.New(args[0].Call("toString").String())
-		return nil
-	}))
-	return <-err
-}
-
-// Await waits for the Promise and return raw js.Value
-func (p Promise) Await() (val js.Value, err error) {
-	errCh := make(chan error)
-	p.Call("then", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+// Then 封装Promise的then方法
+func (p *Promise) Then(onFulfilled func(js.Value)) *Promise {
+	jsCallback := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		result := js.Undefined()
 		if len(args) > 0 {
-			val = args[0]
-			errCh <- nil
-			return nil
+			result = args[0]
 		}
-		errCh <- nil
+		onFulfilled(result)
 		return nil
-	}))
-	p.Call("catch", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		errCh <- errors.New(args[0].Call("toString").String())
+	})
+	// 注意：不能在这里释放 jsCallback，因为它需要在 Promise 异步完成时被调用
+	// JS 引擎会在 Promise 链不再需要时自动垃圾回收
+
+	thenPromise := p.Call("then", jsCallback)
+	return &Promise{Value: thenPromise}
+}
+
+// Catch 封装Promise的catch方法
+func (p *Promise) Catch(onRejected func(js.Value)) *Promise {
+	jsCallback := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		err := js.Undefined()
+		if len(args) > 0 {
+			err = args[0]
+		}
+		onRejected(err)
 		return nil
-	}))
-	err = <-errCh
+	})
+	// 注意：不能在这里释放 jsCallback，因为它需要在 Promise 异步完成时被调用
+	// JS 引擎会在 Promise 链不再需要时自动垃圾回收
+
+	catchPromise := p.Call("catch", jsCallback)
+	return &Promise{Value: catchPromise}
+}
+
+// Await 模拟JS的await效果，同步等待Promise完成
+func (p *Promise) Await() (result js.Value, err js.Value) {
+	successChan := make(chan js.Value, 1)
+	errorChan := make(chan js.Value, 1)
+
+	p.Then(func(res js.Value) {
+		successChan <- res
+		close(successChan)
+	})
+
+	p.Catch(func(e js.Value) {
+		errorChan <- e
+		close(errorChan)
+	})
+
+	select {
+	case result = <-successChan:
+		err = js.Undefined()
+	case err = <-errorChan:
+		result = js.Undefined()
+	}
+
 	return
 }
 
-// PromiseAll creates a promise that is fulfilled when all the provided promises have been fulfilled.
-// The promise is rejected when any of the promises provided rejects.
-// It is implemented by calling Promise.all on JS.
-func PromiseAll(promise ...Promise) Promise {
-	promiseAll := js.Global().Get("Promise").Get("all")
-
-	pInterface := make([]interface{}, 0, len(promise))
-	for _, v := range promise {
-		pInterface = append(pInterface, v)
-	}
-
-	return mustJSValueToPromise(promiseAll.Invoke(pInterface))
+// Resolve 静态方法：创建已成功的Promise
+func Resolve(value interface{}) *Promise {
+	return NewPromise(func(resolve func(interface{}), reject func(interface{})) {
+		resolve(value)
+	})
 }
 
-// PromiseAllSettled creates a promise that is fulfilled when all the provided promises have been fulfilled or rejected.
-// It is implemented by calling Promise.allSettled on JS.
-func PromiseAllSettled(promise ...Promise) Promise {
-	promiseAllSettled := js.Global().Get("Promise").Get("allSettled")
-
-	pInterface := make([]interface{}, 0, len(promise))
-	for _, v := range promise {
-		pInterface = append(pInterface, v)
-	}
-
-	return mustJSValueToPromise(promiseAllSettled.Invoke(pInterface))
+// Reject 静态方法：创建已失败的Promise
+func Reject(reason interface{}) *Promise {
+	return NewPromise(func(resolve func(interface{}), reject func(interface{})) {
+		reject(reason)
+	})
 }
 
-// PromiseAny creates a promise that is fulfilled when any of the provided promises have been fulfilled.
-// The promise is rejected when all of the provided promises gets rejected.
-// It is implemented by calling Promise.any on JS.
-func PromiseAny(promise ...Promise) Promise {
-	promiseAny := js.Global().Get("Promise").Get("any")
+// PromiseAll 静态方法：模拟JS Promise.all()（无goroutine，适配tinygo WASM）
+func PromiseAll(promises []*Promise) *Promise {
+	return NewPromise(func(resolve func(interface{}), reject func(interface{})) {
+		// 边界：空切片直接返回空数组
+		if len(promises) == 0 {
+			resolve([]interface{}{})
+			return
+		}
 
-	pInterface := make([]interface{}, 0, len(promise))
-	for _, v := range promise {
-		pInterface = append(pInterface, v)
-	}
+		// 初始化变量（所有操作均在主线程回调中执行）
+		promiseCount := int32(len(promises))          // 总Promise数
+		completedCount := int32(0)                    // 已完成计数（原子操作）
+		results := make([]interface{}, len(promises)) // 保持结果顺序
+		var mu sync.Mutex                             // 保护rejected标记和results写入
+		rejected := false                             // 标记是否已触发失败（快速失败）
 
-	return mustJSValueToPromise(promiseAny.Invoke(pInterface))
-}
+		// 遍历所有Promise，监听结果
+		for i, p := range promises {
+			// 捕获当前循环的索引和Promise（避免闭包共享循环变量）
+			index := i
+			promise := p
 
-// PromiseRace creates a promise that is fulfilled or rejected when one of the provided promises fulfill or reject.
-// It is implemented by calling Promise.race on JS.
-func PromiseRace(promise ...Promise) Promise {
-	promiseRace := js.Global().Get("Promise").Get("race")
+			// 监听Promise成功
+			promise.Then(func(res js.Value) {
+				mu.Lock()
+				defer mu.Unlock()
 
-	pInterface := make([]interface{}, 0, len(promise))
-	for _, v := range promise {
-		pInterface = append(pInterface, v)
-	}
+				// 快速失败：若已触发reject，直接忽略
+				if rejected {
+					return
+				}
 
-	return mustJSValueToPromise(promiseRace.Invoke(pInterface))
-}
+				// 存储结果（保持输入顺序）
+				results[index] = res
 
-func mustJSValueToPromise(v js.Value) Promise {
-	var p Promise
-	err := p.FromJSValue(v)
-	if err != nil {
-		panic("Expected a Promise from JS standard library")
-	}
+				// 原子增加已完成计数
+				completed := atomic.AddInt32(&completedCount, 1)
 
-	return p
+				// 检查是否所有Promise都完成 → 触发resolve
+				if completed == promiseCount {
+					resolve(results)
+				}
+			})
+
+			// 监听Promise失败（快速失败）
+			promise.Catch(func(err js.Value) {
+				mu.Lock()
+				defer mu.Unlock()
+
+				// 只触发一次reject（快速失败）
+				if !rejected {
+					rejected = true
+					reject(err) // 立即返回第一个错误
+				}
+
+				// 原子增加已完成计数（不影响逻辑，仅保证计数完整）
+				atomic.AddInt32(&completedCount, 1)
+			})
+		}
+	})
 }

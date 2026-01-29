@@ -29,22 +29,22 @@ func (h *FileSystemHandle) Name() string {
 // Methods
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/isSameEntry
-func (h *FileSystemHandle) IsSameEntry(other *FileSystemHandle) Promise {
-	return Promise{h.Call("isSameEntry", other.Value)}
+func (h *FileSystemHandle) IsSameEntry(other *FileSystemHandle) *Promise {
+	return &Promise{Value: h.Call("isSameEntry", other.Value)}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/queryPermission
 // options can be 'read', 'readwrite', or 'readwrite-restore'
-func (h *FileSystemHandle) QueryPermission(mode string) Promise {
+func (h *FileSystemHandle) QueryPermission(mode string) *Promise {
 	opts := map[string]interface{}{"mode": mode}
-	return Promise{h.Call("queryPermission", ToJSValue(opts))}
+	return &Promise{Value: h.Call("queryPermission", ToJSValue(opts))}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/requestPermission
 // options can be 'read', 'readwrite', or 'readwrite-restore'
-func (h *FileSystemHandle) RequestPermission(mode string) Promise {
+func (h *FileSystemHandle) RequestPermission(mode string) *Promise {
 	opts := map[string]interface{}{"mode": mode}
-	return Promise{h.Call("requestPermission", ToJSValue(opts))}
+	return &Promise{Value: h.Call("requestPermission", ToJSValue(opts))}
 }
 
 // FileSystemFileHandle provides a handle to a file entry.
@@ -56,22 +56,22 @@ type FileSystemFileHandle struct {
 // Methods
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/getFile
-func (h *FileSystemFileHandle) GetFile() Promise {
-	return Promise{h.Call("getFile")}
+func (h *FileSystemFileHandle) GetFile() *Promise {
+	return &Promise{Value: h.Call("getFile")}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/createWritable
 // options can include keepExistingData (bool)
-func (h *FileSystemFileHandle) CreateWritable(options ...map[string]interface{}) Promise {
+func (h *FileSystemFileHandle) CreateWritable(options ...map[string]interface{}) *Promise {
 	if len(options) > 0 {
-		return Promise{h.Call("createWritable", ToJSValue(options[0]))}
+		return &Promise{Value: h.Call("createWritable", ToJSValue(options[0]))}
 	}
-	return Promise{h.Call("createWritable")}
+	return &Promise{Value: h.Call("createWritable")}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/createSyncAccessHandle
-func (h *FileSystemFileHandle) CreateSyncAccessHandle() Promise {
-	return Promise{h.Call("createSyncAccessHandle")}
+func (h *FileSystemFileHandle) CreateSyncAccessHandle() *Promise {
+	return &Promise{Value: h.Call("createSyncAccessHandle")}
 }
 
 // FileSystemDirectoryHandle provides a handle to a file system directory.
@@ -91,34 +91,34 @@ func (h *FileSystemDirectoryHandle) Entries() *AsyncIterable {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/getDirectoryHandle
 // options can include create (bool)
-func (h *FileSystemDirectoryHandle) GetDirectoryHandle(name string, options ...map[string]interface{}) Promise {
+func (h *FileSystemDirectoryHandle) GetDirectoryHandle(name string, options ...map[string]interface{}) *Promise {
 	if len(options) > 0 {
-		return Promise{h.Call("getDirectoryHandle", name, ToJSValue(options[0]))}
+		return &Promise{Value: h.Call("getDirectoryHandle", name, ToJSValue(options[0]))}
 	}
-	return Promise{h.Call("getDirectoryHandle", name)}
+	return &Promise{Value: h.Call("getDirectoryHandle", name)}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/getFileHandle
 // options can include create (bool)
-func (h *FileSystemDirectoryHandle) GetFileHandle(name string, options ...map[string]interface{}) Promise {
+func (h *FileSystemDirectoryHandle) GetFileHandle(name string, options ...map[string]interface{}) *Promise {
 	if len(options) > 0 {
-		return Promise{h.Call("getFileHandle", name, ToJSValue(options[0]))}
+		return &Promise{Value: h.Call("getFileHandle", name, ToJSValue(options[0]))}
 	}
-	return Promise{h.Call("getFileHandle", name)}
+	return &Promise{Value: h.Call("getFileHandle", name)}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/removeEntry
 // options can include recursive (bool)
-func (h *FileSystemDirectoryHandle) RemoveEntry(name string, options ...map[string]interface{}) Promise {
+func (h *FileSystemDirectoryHandle) RemoveEntry(name string, options ...map[string]interface{}) *Promise {
 	if len(options) > 0 {
-		return Promise{h.Call("removeEntry", name, ToJSValue(options[0]))}
+		return &Promise{Value: h.Call("removeEntry", name, ToJSValue(options[0]))}
 	}
-	return Promise{h.Call("removeEntry", name)}
+	return &Promise{Value: h.Call("removeEntry", name)}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/resolve
-func (h *FileSystemDirectoryHandle) Resolve(possibleDescendant *FileSystemHandle) Promise {
-	return Promise{h.Call("resolve", possibleDescendant.Value)}
+func (h *FileSystemDirectoryHandle) Resolve(possibleDescendant *FileSystemHandle) *Promise {
+	return &Promise{Value: h.Call("resolve", possibleDescendant.Value)}
 }
 
 // AsyncIterable represents an async iterable, typically returned by entries()
@@ -129,7 +129,7 @@ type AsyncIterable struct {
 
 // ToSlice converts an async iterable to a slice of key-value pairs
 // This is a convenience method that awaits all entries
-func (ai *AsyncIterable) ToSlice() Promise {
+func (ai *AsyncIterable) ToSlice() *Promise {
 	// Create a JS function to convert async iterable to array
 	jsCode := `
 		(async (iter) => {
@@ -142,7 +142,7 @@ func (ai *AsyncIterable) ToSlice() Promise {
 	`
 	fn := js.Global().Call("eval", jsCode)
 	result := fn.Invoke(ai.Value)
-	return Promise{result}
+	return &Promise{Value: result}
 }
 
 // FileSystemWritableFileStream represents a writable stream to a file.
@@ -155,23 +155,23 @@ type FileSystemWritableFileStream struct {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream/write
 // data can be a string, Blob, ArrayBuffer, or DataView
-func (w *FileSystemWritableFileStream) Write(data interface{}) Promise {
-	return Promise{w.Call("write", ToJSValue(data))}
+func (w *FileSystemWritableFileStream) Write(data interface{}) *Promise {
+	return &Promise{Value: w.Call("write", ToJSValue(data))}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream/seek
-func (w *FileSystemWritableFileStream) Seek(position int) Promise {
-	return Promise{w.Call("seek", position)}
+func (w *FileSystemWritableFileStream) Seek(position int) *Promise {
+	return &Promise{Value: w.Call("seek", position)}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream/truncate
-func (w *FileSystemWritableFileStream) Truncate(size int) Promise {
-	return Promise{w.Call("truncate", size)}
+func (w *FileSystemWritableFileStream) Truncate(size int) *Promise {
+	return &Promise{Value: w.Call("truncate", size)}
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream/close
-func (w *FileSystemWritableFileStream) Close() Promise {
-	return Promise{w.Call("close")}
+func (w *FileSystemWritableFileStream) Close() *Promise {
+	return &Promise{Value: w.Call("close")}
 }
 
 // FileSystemDirectoryPickerOptions represents options for directory picker.
@@ -228,29 +228,29 @@ type FileType struct {
 
 // ShowOpenFilePicker shows a file picker that allows a user to select a file or files.
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/showOpenFilePicker
-func (w *window) ShowOpenFilePicker(options ...FileSystemFilePickerOptions) Promise {
+func (w *window) ShowOpenFilePicker(options ...FileSystemFilePickerOptions) *Promise {
 	if len(options) > 0 {
-		return Promise{w.Call("showOpenFilePicker", ToJSValue(options[0]))}
+		return &Promise{Value: w.Call("showOpenFilePicker", ToJSValue(options[0]))}
 	}
-	return Promise{w.Call("showOpenFilePicker")}
+	return &Promise{Value: w.Call("showOpenFilePicker")}
 }
 
 // ShowSaveFilePicker shows a file picker that allows a user to save a file.
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker
-func (w *window) ShowSaveFilePicker(options ...SaveFilePickerOptions) Promise {
+func (w *window) ShowSaveFilePicker(options ...SaveFilePickerOptions) *Promise {
 	if len(options) > 0 {
-		return Promise{w.Call("showSaveFilePicker", ToJSValue(options[0]))}
+		return &Promise{Value: w.Call("showSaveFilePicker", ToJSValue(options[0]))}
 	}
-	return Promise{w.Call("showSaveFilePicker")}
+	return &Promise{Value: w.Call("showSaveFilePicker")}
 }
 
 // ShowDirectoryPicker shows a directory picker that allows a user to select a directory.
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker
-func (w *window) ShowDirectoryPicker(options ...FileSystemDirectoryPickerOptions) Promise {
+func (w *window) ShowDirectoryPicker(options ...FileSystemDirectoryPickerOptions) *Promise {
 	if len(options) > 0 {
-		return Promise{w.Call("showDirectoryPicker", ToJSValue(options[0]))}
+		return &Promise{Value: w.Call("showDirectoryPicker", ToJSValue(options[0]))}
 	}
-	return Promise{w.Call("showDirectoryPicker")}
+	return &Promise{Value: w.Call("showDirectoryPicker")}
 }
 
 // GetOriginPrivateFileSystem returns a handle for a storage endpoint specific to the origin of the calling code.
