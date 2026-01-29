@@ -191,6 +191,11 @@ func BorderImageRepeat(v string) Style {
 	return Style{Name: "border-image-repeat", Value: v}
 }
 
+// 可选值: collapse | separate | inherit
+func BorderCollapse(v string) Style {
+	return Style{Name: "border-collapse", Value: v}
+}
+
 /// 文本与字体
 
 func Color(v string) Style {
