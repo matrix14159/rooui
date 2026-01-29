@@ -6,6 +6,7 @@ import (
 )
 
 // ToJSValue 转换Go类型为JS值
+// 自定义结构体需要转换为 []any 或者 map[string]any 类型再传入
 func ToJSValue(v interface{}) js.Value {
 	switch val := v.(type) {
 	case nil:
