@@ -338,19 +338,19 @@ ui.Div().Classes("blue")
 或者使用 `Class()` 方法直接定义：
 
 ```go
-ui.Div().Class("my-class", []css.Style{
+ui.Div().Class("my-class",
 	css.Color("blue"),
 	css.BackgroundColor("gray"),
-})
+)
 ```
 
 当元素设置了id时，class-name可以忽略，例如：
 
 ```go
-ui.Div().Id("my-div").Class("", []css.Style{
+ui.Div().Id("my-div").Class("",
 	css.Color("blue"),
 	css.BackgroundColor("gray"),
-})
+)
 ```
 
 ### 全局样式管理
@@ -632,11 +632,11 @@ func NewList() *List {
 }
 
 func (p *List) Render() ui.Element {
-	d := ui.Div().Class("", []css.Style{
+	d := ui.Div().Class("",
 		css.Display("flex"),
 		css.FlexDirection("column"),
 		css.Gap("10px"),
-	})
+	)
 
 	d.Body(
 		ui.Button().Text("Increase All").OnClick(p.increase),
@@ -765,12 +765,12 @@ func NewPage() *Page {
 	p := &Page{}
 	p.dialog = ui.Dialog()
 	p.dialog.Id("my-dialog")
-	p.dialog.Class("", pop.Style())
+	p.dialog.Class("", pop.Style()...)
 	p.dialog.CloseByMask()
 	p.dialog.Body(
-		ui.Div().Class("my-class", []css.Style{
+		ui.Div().Class("my-class",
 			css.Padding("1rem"),
-		}).Body(
+		).Body(
 			ui.P().Text("Dialog Content"),
 			ui.Button().Text("Close").OnClick(p.closeDialog),
 		),
@@ -779,27 +779,27 @@ func NewPage() *Page {
 }
 
 func (p *Page) Render() ui.Element {
-	d := ui.Div().Id("page").Class("", []css.Style{
+	d := ui.Div().Id("page").Class("",
 		css.Display("flex"),
 		css.FlexDirection("column"),
 		css.Height("100vh"),
-	})
+	)
 
 	d.Body(
-		ui.Div().Id("header").Class("", []css.Style{
+		ui.Div().Id("header").Class("",
 			css.Height("50px"),
 			css.BorderBottom("1px solid #d0d7de"),
 			css.Padding("0 30px"),
 			css.BackgroundColor("#f6f7fa"),
 			css.Display("flex"),
 			css.AlignItems("center"),
-		}).Body(
+		).Body(
 			ui.Button().Text("Open Dialog").OnClick(p.openDialog),
 		),
-		ui.Div().Class("class-2", []css.Style{
+		ui.Div().Class("class-2",
 			css.Flex("1"),
 			css.Padding("20px"),
-		}).Body(
+		).Body(
 			ui.P().Text("Page Content"),
 		),
 		p.dialog,
