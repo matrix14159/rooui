@@ -138,7 +138,7 @@ func (p *BaseElement) Classes(name ...string) *BaseElement {
 	return p
 }
 
-func (p *BaseElement) Class(name string, styles []css.Style) *BaseElement {
+func (p *BaseElement) Class(name string, styles ...css.Style) *BaseElement {
 	if p.classStyle == nil {
 		p.classStyle = make(map[string][]css.Style)
 	}
